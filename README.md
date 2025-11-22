@@ -10,14 +10,14 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 
 - 🏨 **Finds pet-friendly hotels** at strategic stops (rated by score)
 - 🏥 **Locates 24/7 emergency vets** at each major city
-- �️ **Discovers national parks** in every state you pass through
+- 🏞️ **Discovers national parks** in every state you pass through
 - 🗿 **Finds monuments & memorials** in each state along your route
-- �🌲 **Discovers parks** along your entire route (with tighter radius for roadside stops)
+-  **Discovers parks** along your entire route (with tighter radius for roadside stops)
 - 🏛️ **Finds museums & cultural attractions** in stop cities
 - 🍽️ **Locates dog-friendly restaurants** with outdoor seating
 - 🐾 **Finds dog parks** for exercise breaks
 - 📸 **Identifies scenic viewpoints** along the way
-- 📏 **Shows distances & driving times** between each hotel stop
+- 📏 **Shows distances & driving times** between each stop city
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
 - 📄 **Generates detailed reports** in Markdown and JSON formats
 - 🛣️ **Uses actual road routes** with accurate distances and driving times
@@ -33,7 +33,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - **Multi-city routes**: Add unlimited waypoints for varied return routes
 - **Smart filtering**: Only major parks (4.5+ stars, 500+ reviews) along route
 - **Deduplication**: Automatically removes duplicate attractions
-- **Distance tracking**: Shows miles and driving time between each hotel stop
+- **Distance tracking**: Shows miles and driving time between each stop city
 
 ### Interactive Map Features
 - **Toggle All Layers**: One-click button to show/hide all map categories at once
@@ -141,7 +141,7 @@ Each trip generates three files in the `trip routes/` directory:
 - 🍽️ Orange fork icons for dog-friendly restaurants
 - 🐾 Light green paw icons for dog parks
 - 📸 Blue camera icons for scenic viewpoints
-- 📏 Distance & time markers between hotel stops
+- 📏 Distance & time markers between stop cities
 - ☑️ **"Toggle All" button** to show/hide all layers at once
 - Layer controls to toggle each category individually
 - Fullscreen mode and measure tool
