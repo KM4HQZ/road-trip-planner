@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# Trip output files (optional - uncomment if you don't want to track generated trips)
+# trip routes/
+
+# Cache files
+location_cache.json
+location_cache_backup.json
+
+# Backup files
+*_backup.py
+*_backup.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
