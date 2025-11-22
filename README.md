@@ -4,17 +4,22 @@
 
 An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips.
 
+> 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
+
 ## 🌟 What This Does
 
 - 🏨 **Finds pet-friendly hotels** at strategic stops (rated by score)
 - 🏥 **Locates 24/7 emergency vets** at each major city
-- 🌲 **Discovers parks** along your entire route (with tighter radius for roadside stops)
+- �️ **Discovers national parks** in every state you pass through
+- 🗿 **Finds monuments & memorials** in each state along your route
+- �🌲 **Discovers parks** along your entire route (with tighter radius for roadside stops)
 - 🏛️ **Finds museums & cultural attractions** in stop cities
 - 🍽️ **Locates dog-friendly restaurants** with outdoor seating
-- � **Finds dog parks** for exercise breaks
+- 🐾 **Finds dog parks** for exercise breaks
 - 📸 **Identifies scenic viewpoints** along the way
+- 📏 **Shows distances & driving times** between each hotel stop
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
-- � **Generates detailed reports** in Markdown and JSON formats
+- 📄 **Generates detailed reports** in Markdown and JSON formats
 - 🛣️ **Uses actual road routes** with accurate distances and driving times
 
 ## 🎯 Key Features
@@ -28,6 +33,13 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - **Multi-city routes**: Add unlimited waypoints for varied return routes
 - **Smart filtering**: Only major parks (4.5+ stars, 500+ reviews) along route
 - **Deduplication**: Automatically removes duplicate attractions
+- **Distance tracking**: Shows miles and driving time between each hotel stop
+
+### Interactive Map Features
+- **Toggle All Layers**: One-click button to show/hide all map categories at once
+- **Distance Markers**: Visual indicators showing miles and hours between stops
+- **Customizable Layers**: Show/hide any combination of hotels, vets, parks, monuments, etc.
+- **Rich Popups**: Detailed information for every point of interest
 
 ### Pet-First Design
 - Prioritizes 24/7 vets with 1.5x score boost
@@ -35,7 +47,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - Finds dedicated dog parks at each stop city
 - All hotels from trusted pet-friendly chains
 
-## � Services Used
+## 🛠️ Services Used
 
 1. **Google Places API (New)** - Hotels, restaurants, vets, attractions, ratings
 2. **OpenStreetMap (Nominatim)** - City geocoding and reverse geocoding
@@ -55,9 +67,15 @@ pip install -r requirements.txt
 
 ### 2. Set Up Google Places API
 
-Create a `.env` file:
+Copy the example environment file and add your API key:
 ```bash
-GOOGLE_PLACES_API_KEY=your_api_key_here
+cp .env.example .env
+# Edit .env and add your API key
+```
+
+Your `.env` file should look like:
+```bash
+GOOGLE_PLACES_API_KEY=your_actual_api_key_here
 ```
 
 **Get your API key:**
@@ -106,47 +124,63 @@ python plan_trip.py "Atlanta, GA" "Chicago, IL" --roundtrip
 
 ## 📂 Output Files
 
-Each trip generates three files:
+Each trip generates three files in the `trip routes/` directory:
 
 ### 1. Interactive Map (HTML)
-`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_Memphis_TN.html`
+`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN.html`
 
+**Map Features:**
 - 🗺️ Blue route line following actual highways
-- 📍 Red markers for stop cities
-- 🏨 Purple markers for hotels
-- 🏥 Dark red markers for emergency vets
-- 🌲 Green tree icons for parks
+- 📍 Blue markers for stop cities
+- 🏨 Red bed icons for pet-friendly hotels
+- 🏥 Dark red cross icons for emergency vets
+- �️ Dark green flag icons for national parks
+- 🗿 Gray monument icons for monuments & memorials
+- �🌲 Green tree icons for parks
 - 🏛️ Purple building icons for museums
 - 🍽️ Orange fork icons for dog-friendly restaurants
 - 🐾 Light green paw icons for dog parks
 - 📸 Blue camera icons for scenic viewpoints
-- Layer controls to toggle each type on/off
+- 📏 Distance & time markers between hotel stops
+- ☑️ **"Toggle All" button** to show/hide all layers at once
+- Layer controls to toggle each category individually
+- Fullscreen mode and measure tool
 
 ### 2. Trip Data (JSON)
-`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_Memphis_TN_data.json`
+`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_data.json`
 
 Complete structured data including:
 - All stops with coordinates
 - Hotel details (name, rating, reviews, phone, website)
 - Vet details (name, rating, 24/7 status, phone)
-- All attractions by category with ratings
+- All attractions by category (national parks, monuments, parks, museums, restaurants, dog parks, viewpoints) with ratings
 
 ### 3. Summary Report (Markdown)
-`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_Memphis_TN_summary.md`
+`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_summary.md`
 
 Human-readable summary with:
 - Trip overview (distance, time, route)
 - Stop cities list
 - Hotel recommendations with full details
 - Emergency vet locations
-- Categorized attractions (parks, museums, restaurants, dog parks, viewpoints)
+- Categorized attractions with ratings and locations
 
-## � Attraction Categories
+## 🎯 Attraction Categories
+
+### 🏞️ National Parks
+- **By State**: Searches each state crossed by the route
+- **Criteria**: 4.3+ stars, 1000+ reviews
+- Examples: National Parks, National Monuments, National Recreation Areas
+
+### 🗿 Monuments & Memorials
+- **By State**: Searches each state crossed by the route
+- **Criteria**: 4.0+ stars, 50+ reviews
+- Examples: Historical monuments, war memorials, commemorative statues
 
 ### 🌲 Parks
 - **Along Route**: 4.5+ stars, 500+ reviews (major parks only)
 - **At Cities**: 4.0+ stars, 50+ reviews (top 3 per city)
-- Examples: National parks, state parks, botanical gardens
+- Examples: State parks, regional parks, botanical gardens
 
 ### 🏛️ Museums & Cultural Attractions
 - **At Cities Only**: 4.0+ stars, 100+ reviews (top 3 per city)
@@ -200,246 +234,17 @@ The system strictly verifies 24/7 status:
   - 4 Scenic viewpoints
 - 24/7 Vets: 4 confirmed (Atlanta, Chicago, Nashville, Memphis)
 
-## 🔍 Legacy Validation Tools
+## � Tips
 
-The original static itinerary validation tools are still available:
+1. **Cache**: The script uses Nominatim's geocoding which has a 1 request/second rate limit. Be patient on first runs.
 
-- `validate_locations.py` - Validate pre-defined itinerary
-- `calculate_routes.py` - Calculate routes from itinerary
-- `enrich_data.py` - Add Wikipedia data
-- `generate_report.py` - Create validation reports
-- `filter_hotels.py` - Filter hotel list by ratings
-- `run_validation.sh` - Run complete validation pipeline
+2. **API Key**: Make sure your Google Places API key is set in the `.env` file and has billing enabled (free tier is generous).
 
-See bottom of this README for legacy tool documentation.
+3. **Customization**: Adjust `--stop-distance` to change how often you want hotel stops (default is 250 miles).
 
----
+4. **Multiple Routes**: Use `--via` to create interesting return routes instead of backtracking.
 
-## 🛠️ Legacy Tool Documentation
-
-*(The original static itinerary validation scripts are preserved below)*
-
-### Original Purpose
-This toolkit validates a pre-written road trip itinerary using **100% free, open-source services**.
-
-### Legacy Scripts
-
-- `validate_locations.py` - Verify all locations exist and get coordinates
-- `calculate_routes.py` - Get accurate driving times between points
-- `enrich_data.py` - Add Wikipedia context to locations
-- `generate_report.py` - Create comprehensive validation reports
-- `filter_hotels.py` - Filter hotel list by ratings
-- `run_validation.sh` - Run complete pipeline automatically
-
-### Running the Legacy Pipeline
-
-**First, activate the virtual environment:**
-```bash
-source venv/bin/activate
-```
-
-**Then run the validation:**
-```bash
-./run_validation.sh
-```
-
-This will:
-1. Validate all locations from a static itinerary file
-2. Calculate actual routes and travel times
-3. Enrich with Wikipedia data
-4. Generate reports
-5. Create an interactive map
-
-### Individual Legacy Script Usage
-
-**Validate Locations**
-```bash
-python validate_locations.py ../road-trip-itinerary.md
-```
-
-Extracts and validates hotels, cities, parks, and gas stops from a markdown itinerary.
-Output: `validated_locations.json`
-
-**Calculate Routes**
-```bash
-python calculate_routes.py
-```
-
-Calculates actual driving distances and times between stops.
-Output: `calculated_routes.json`
-
-**Enrich Data**
-```bash
-python enrich_data.py
-```
-
-Adds Wikipedia descriptions and images.
-Output: `enriched_locations.json`
-
-**Generate Report**
-```bash
-python generate_report.py
-```
-
-Creates validation reports.
-Outputs: `validation_report.md`, `validation_report.html`
-
-**Create Map**
-```bash
-python create_map.py
-```
-
-Generates interactive HTML map with all validated locations.
-Output: `road_trip_map.html`
-
-**Filter Hotels**
-```bash
-python filter_hotels.py
-```
-
-Filters hotels by Google Places ratings (requires API key in `.env`).
-Output: Console output with top-rated hotels per location.
-
-### Legacy Output Files
-
-After running the validation pipeline:
-
-```
-road-trip/
-├── validated_locations.json     # All locations with coordinates
-├── calculated_routes.json       # Route segments with distances/times
-├── enriched_locations.json      # Wikipedia data for locations
-├── validation_report.md         # Markdown report
-├── validation_report.html       # HTML report (open in browser)
-├── road_trip_map.html          # Interactive map (open in browser)
-└── location_cache.json         # Cache to avoid re-querying APIs
-```
-
-### API Rate Limits
-
-All legacy services are free but have rate limits:
-
-- **Nominatim (OSM)**: 1 request/second (built-in 1s delay)
-- **OSRM**: No hard limit (please be respectful)
-- **Wikipedia**: No hard limit (built-in 0.5s delay)
-
-### Troubleshooting
-
-**Python externally-managed-environment error**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-**"Location not found" errors**
-- Names might differ slightly in OSM database
-- Check validation report for failed items
-- Adjust names if needed
-
-**Missing dependencies**
-```bash
-source venv/bin/activate
-pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabulate python-dotenv
-```
-
----
-
-**Happy Road Tripping! 🚗🐾**
-- Driving time
-- Compares with itinerary estimates
-
-Output: `calculated_routes.json`
-
-### Enrich Location Data
-
-```bash
-python enrich_data.py
-```
-
-Adds for cities and major attractions:
-- Wikipedia summaries
-- Images
-- Links to full articles
-
-Output: `enriched_locations.json`
-
-### Generate Reports
-
-```bash
-python generate_report.py
-```
-
-Creates:
-- `validation_report.md` - Markdown version
-- `validation_report.html` - Nicely formatted HTML version
-
-### Create Interactive Map
-
-```bash
-python create_map.py
-```
-
-Generates `road_trip_map.html` with:
-- All locations marked with appropriate icons
-- Route lines with distances/times
-- Toggle layers (cities, hotels, parks)
-- Measure tool for custom distances
-- Wikipedia info in popups
-
-## 📊 Output Files
-
-After running the validation:
-
-```
-road-trip/
-├── validated_locations.json     # All locations with coordinates
-├── calculated_routes.json       # Route segments with distances/times
-├── enriched_locations.json      # Wikipedia data for locations
-├── validation_report.md         # Markdown report
-├── validation_report.html       # HTML report (open in browser)
-├── road_trip_map.html          # Interactive map (open in browser)
-└── location_cache.json         # Cache to avoid re-querying APIs
-```
-
-## ⚙️ API Rate Limits
-
-All services are free but have rate limits to prevent abuse:
-
-- **Nominatim (OSM)**: 1 request/second (built-in 1s delay in script)
-- **OSRM**: No hard limit (please be respectful)
-- **Wikipedia**: No hard limit (built-in 0.5s delay)
-
-The scripts automatically handle rate limiting for you.
-
-## 🔍 What Gets Validated
-
-From your itinerary, the toolkit extracts and validates:
-
-### Hotels (Examples)
-- La Quinta Inn & Suites Memphis Downtown
-- Aloft Oklahoma City Downtown
-- Drury Inn & Suites Colorado Springs
-- The Cosmopolitan Las Vegas
-
-### Cities
-- Memphis, TN
-- Oklahoma City, OK
-- Colorado Springs, CO
-- Flagstaff, AZ
-- Las Vegas, NV
-
-### Parks & Attractions
-- Oak Mountain State Park
-- Palo Duro Canyon State Park
-- Garden of the Gods
-- Red Rock Canyon
-- Grand Canyon South Rim
-
-### Gas Stops
-- Birmingham, AL
-- Amarillo, TX
-- Barstow, CA
+5. **Browser**: For best map experience, use Chrome, Firefox, or Edge.
 
 ## 🛠️ Troubleshooting
 
@@ -459,106 +264,27 @@ pip install -r requirements.txt
 
 ### "Location not found" errors
 
-Some hotels/locations might not validate if:
-- Name is slightly different in OSM (e.g., "La Quinta Inn" vs "La Quinta Inn & Suites")
-- Very new location not yet in OSM database
-- Need more specific address
+Some cities might not geocode if:
+- Name is ambiguous (try adding state: "Springfield, IL" not just "Springfield")
+- Very small or remote location
+- Spelling is different in OSM database
 
-**Solution**: Check the validation report for failed items and adjust names if needed.
-
-### Folium tile layer errors
-
-If you see errors about tile attributions:
-```
-ValueError: Custom tiles must have an attribution.
-```
-
-This is due to newer versions of Folium requiring proper attribution for tile layers. The script has been updated to handle this automatically.
+**Solution**: Use more specific city names with state abbreviations.
 
 ### API timeout errors
 
 If you see timeouts:
 - Check your internet connection
 - Wait a minute and try again (temporary API issues)
-- The script will cache successful results, so you won't re-query them
+- Some services (Nominatim, OSRM) are public and may have intermittent issues
 
 ### Missing dependencies
 
 If you see import errors, make sure the virtual environment is activated and dependencies are installed:
 ```bash
 source venv/bin/activate
-pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabulate
+pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabulate python-dotenv
 ```
-
-## 📝 Example Output
-
-After validation, you'll see:
-
-```
-VALIDATION SUMMARY
-═══════════════════════════════════════════════════════════════════
-Total locations: 127
-Successfully validated: 118 (92.9%)
-Failed validation: 9 (7.1%)
-
-By Type:
-  city: 45/45 validated
-  hotel: 56/62 validated
-  park: 17/20 validated
-```
-
-## 🗺️ Interactive Map Features
-
-The generated map includes:
-
-- **Road-focused design**: Default view optimized for highway and route planning
-- **70 validated locations** marked with different colored icons
-- **Route visualization**: Highway-style red lines with directional arrows
-- **Multiple map layers**: Road Map (default), Light Map, Street Map, and Terrain reference
-- **Toggle controls** to show/hide different location types (Cities, Hotels, Parks, Routes)
-- **Interactive features**: Click markers for Wikipedia descriptions, click routes for distance/time info
-- **Measure tool** for calculating custom distances
-- **Fullscreen mode** for detailed exploration
-
-## 🗺️ Map Layer Options
-
-- **Road Map (Default)**: Optimized for road trips with clear highway visibility
-- **Light Map**: Clean, minimal view focusing on routes
-- **Street Map**: Detailed street-level view
-- **Terrain (Reference)**: Topographic view for geographic context
-
-## 💡 Tips
-
-1. **Cache**: Results are cached in `location_cache.json`. Delete this file if you want to re-query everything.
-
-2. **Partial runs**: You can run scripts individually. Each depends on the previous:
-   - `validate_locations.py` (required first)
-   - `calculate_routes.py` (needs validated locations)
-   - `enrich_data.py` (needs validated locations)
-   - `generate_report.py` (uses all above data)
-   - `create_map.py` (uses all above data)
-
-3. **Updates**: If you modify the itinerary, just re-run the validation pipeline.
-
-4. **Browser**: For best map experience, use Chrome, Firefox, or Edge.
-
-## 🎁 Bonus Features
-
-- Route segments show difference between calculated and itinerary estimates
-- Failed validations are clearly marked for manual review
-- Wikipedia summaries help you learn about stops along the way
-- Interactive map is shareable (just send the HTML file)
-
-## 📞 No External Services Required
-
-Everything runs locally on your machine. The only external calls are to:
-- OpenStreetMap (public, free)
-- OSRM (public, free)  
-- Wikipedia (public, free)
-
-No API keys, no sign-ups, no costs!
-
----
 
 ## 📄 License
 
@@ -582,4 +308,3 @@ Please contact the author for commercial licensing options.
 ---
 
 **Happy Road Tripping! 🚗🐾**
-**Happy Road Tripping! 🚗🐕🐕**

@@ -999,6 +999,94 @@ class GooglePlacesFinder:
         except Exception as e:
             print(f"    ⚠ Error searching for national parks in {state_name}: {e}")
             return []
+    
+    def find_monuments_by_state(self, state_name: str, limit: int = None) -> List[Attraction]:
+        """
+        Find monuments and memorials in a given state.
+        
+        Args:
+            state_name: Full state name (e.g., "Colorado", "California")
+            limit: Maximum number of monuments to return (default None = all)
+            
+        Returns:
+            List of Attraction objects with type='monument'
+        """
+        # Search for monuments and memorials
+        search_query = f"monument OR memorial {state_name}"
+        
+        request_body = {
+            "textQuery": search_query,
+            "maxResultCount": 20
+        }
+        
+        try:
+            response = requests.post(
+                self.TEXT_SEARCH_URL,
+                headers=self.headers,
+                json=request_body,
+                timeout=10
+            )
+            
+            if response.status_code != 200:
+                return []
+            
+            data = response.json()
+            monuments = []
+            
+            for place in data.get('places', []):
+                name = place.get('displayName', {}).get('text', '')
+                name_lower = name.lower()
+                address = place.get('formattedAddress', '')
+                
+                # VERIFY the monument is actually in this state
+                if state_name not in address:
+                    continue
+                
+                # Look for monument/memorial keywords
+                if not any(keyword in name_lower for keyword in [
+                    'monument', 'memorial', 'statue', 'historic site',
+                    'historical marker', 'commemorative'
+                ]):
+                    continue
+                
+                # Skip generic or low-quality results
+                if any(skip in name_lower for skip in [
+                    'cemetery', 'funeral', 'pet memorial', 'plaque company'
+                ]):
+                    continue
+                
+                rating = place.get('rating', 0.0)
+                reviews = place.get('userRatingCount', 0)
+                
+                # Require decent ratings and reviews
+                if rating >= 4.0 and reviews >= 50:
+                    location_data = place.get('location', {})
+                    
+                    monument = Attraction(
+                        name=name,
+                        address=address,
+                        location=state_name,
+                        type='monument',
+                        rating=rating,
+                        user_ratings_total=reviews,
+                        lat=location_data.get('latitude', 0),
+                        lon=location_data.get('longitude', 0)
+                    )
+                    monuments.append(monument)
+            
+            # Sort by popularity (rating * log(reviews))
+            monuments.sort(
+                key=lambda m: m.rating * math.log10(m.user_ratings_total + 1),
+                reverse=True
+            )
+            
+            if limit:
+                return monuments[:limit]
+            return monuments
+            
+        except Exception as e:
+            print(f"    ⚠ Error searching for monuments in {state_name}: {e}")
+            return []
 
 
 def create_trip_map(
@@ -1007,7 +1095,8 @@ def create_trip_map(
     hotels: Dict[str, Hotel],
     vets: Dict[str, Veterinarian],
     attractions: Dict[str, List[Attraction]],  # Changed to dict with categories
-    trip_name: str
+    trip_name: str,
+    route_data: Dict = None
 ) -> folium.Map:
     """Create an interactive map for the trip."""
     
@@ -1083,6 +1172,63 @@ def create_trip_map(
             icon=folium.Icon(color='red', icon='bed', prefix='fa')
         ).add_to(hotel_group)
     
+    # Add distance/time markers between consecutive hotel stops
+    if hotels and route_data:
+        # Create a distance/time group
+        distance_group = folium.FeatureGroup(name='📏 Distances & Times', show=True)
+        
+        # Get ordered list of stops that have hotels
+        hotel_stops = [stop for stop in stops if stop['name'] in hotels and stop['type'] in ['start', 'stop', 'destination', 'via']]
+        
+        # Calculate distances between consecutive hotel stops
+        for i in range(len(hotel_stops) - 1):
+            current_stop = hotel_stops[i]
+            next_stop = hotel_stops[i + 1]
+            
+            # Calculate distance and time using haversine as approximation
+            # (More accurate would be to use route segments, but this is simpler)
+            import math
+            
+            def haversine_miles(lat1, lon1, lat2, lon2):
+                R = 3959  # Earth's radius in miles
+                phi1, phi2 = math.radians(lat1), math.radians(lat2)
+                dphi = math.radians(lat2 - lat1)
+                dlambda = math.radians(lon2 - lon1)
+                a = math.sin(dphi/2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda/2)**2
+                return 2 * R * math.asin(math.sqrt(a))
+            
+            distance_mi = haversine_miles(current_stop['lat'], current_stop['lon'], 
+                                          next_stop['lat'], next_stop['lon'])
+            # Estimate driving time at 60 mph average
+            hours = distance_mi / 60.0
+            
+            # Calculate midpoint for marker placement
+            mid_lat = (current_stop['lat'] + next_stop['lat']) / 2
+            mid_lon = (current_stop['lon'] + next_stop['lon']) / 2
+            
+            # Format time display
+            if hours >= 1:
+                time_str = f"{int(hours)}h {int((hours % 1) * 60)}m"
+            else:
+                time_str = f"{int(hours * 60)}m"
+            
+            # Create distance marker with custom div icon
+            distance_html = f"""
+            <div style="font-size: 12px; font-weight: bold; background-color: white; 
+                        border: 2px solid #2E86AB; border-radius: 5px; padding: 3px 6px;
+                        box-shadow: 2px 2px 4px rgba(0,0,0,0.3); white-space: nowrap;">
+                {distance_mi:.0f} mi<br>{time_str}
+            </div>
+            """
+            
+            folium.Marker(
+                location=[mid_lat, mid_lon],
+                icon=folium.DivIcon(html=distance_html),
+                popup=f"<b>{current_stop['name']} → {next_stop['name']}</b><br>{distance_mi:.1f} miles<br>~{time_str} driving"
+            ).add_to(distance_group)
+        
+        distance_group.add_to(m)
+    
     # Add vets
     for city_name, vet in vets.items():
         popup_html = f"<b>🏥 {vet.name}</b><br>"
@@ -1105,6 +1251,7 @@ def create_trip_map(
     # Add attractions with different icons based on type
     icon_config = {
         'national_park': {'color': 'darkgreen', 'icon': 'flag', 'prefix': 'fa', 'emoji': '🏞️'},
+        'monument': {'color': 'gray', 'icon': 'monument', 'prefix': 'fa', 'emoji': '🗿'},
         'park': {'color': 'green', 'icon': 'tree', 'prefix': 'fa', 'emoji': '🌲'},
         'museum': {'color': 'purple', 'icon': 'university', 'prefix': 'fa', 'emoji': '🏛️'},
         'restaurant': {'color': 'orange', 'icon': 'cutlery', 'prefix': 'fa', 'emoji': '🍽️'},
@@ -1170,6 +1317,76 @@ def create_trip_map(
     folium.LayerControl(collapsed=False).add_to(m)
     plugins.Fullscreen().add_to(m)
     plugins.MeasureControl(position='topleft').add_to(m)
+    
+    # Add custom "Select All / Deselect All" button
+    select_all_script = """
+    <script>
+    // Wait for map to load
+    window.addEventListener('load', function() {
+        // Find the layer control
+        var layerControl = document.querySelector('.leaflet-control-layers');
+        if (layerControl) {
+            // Create button container
+            var buttonDiv = document.createElement('div');
+            buttonDiv.style.padding = '6px 10px';
+            buttonDiv.style.backgroundColor = '#fff';
+            buttonDiv.style.borderTop = '1px solid #ddd';
+            buttonDiv.style.marginTop = '5px';
+            
+            // Create the button
+            var toggleButton = document.createElement('button');
+            toggleButton.innerHTML = '☑️ Toggle All';
+            toggleButton.style.width = '100%';
+            toggleButton.style.padding = '5px';
+            toggleButton.style.cursor = 'pointer';
+            toggleButton.style.backgroundColor = '#f4f4f4';
+            toggleButton.style.border = '1px solid #ccc';
+            toggleButton.style.borderRadius = '3px';
+            toggleButton.style.fontSize = '12px';
+            toggleButton.style.fontWeight = 'bold';
+            
+            // Add hover effect
+            toggleButton.onmouseover = function() {
+                this.style.backgroundColor = '#e0e0e0';
+            };
+            toggleButton.onmouseout = function() {
+                this.style.backgroundColor = '#f4f4f4';
+            };
+            
+            // Add click handler
+            toggleButton.onclick = function() {
+                var overlayInputs = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
+                var allChecked = true;
+                
+                // Check if all are currently checked
+                overlayInputs.forEach(function(input) {
+                    if (!input.checked) {
+                        allChecked = false;
+                    }
+                });
+                
+                // Toggle all to opposite state
+                overlayInputs.forEach(function(input) {
+                    if (allChecked && input.checked) {
+                        input.click();
+                    } else if (!allChecked && !input.checked) {
+                        input.click();
+                    }
+                });
+            };
+            
+            buttonDiv.appendChild(toggleButton);
+            
+            // Insert button into layer control
+            var overlaysSection = document.querySelector('.leaflet-control-layers-overlays');
+            if (overlaysSection) {
+                overlaysSection.parentNode.appendChild(buttonDiv);
+            }
+        }
+    });
+    </script>
+    """
+    m.get_root().html.add_child(folium.Element(select_all_script))
     
     # Add title
     title_html = f'''
@@ -1433,7 +1650,8 @@ def main():
         'restaurants': [],
         'dog_parks': [],
         'viewpoints': [],
-        'national_parks': []
+        'national_parks': [],
+        'monuments': []
     }
     
     # 0. Find national parks in each state we pass through
@@ -1467,6 +1685,10 @@ def main():
         print(f"    Searching {state_name}...")
         national_parks = places_finder.find_national_parks_by_state(state_name)  # No limit - get all
         all_attractions['national_parks'].extend(national_parks)
+        
+        # Also find monuments in this state
+        monuments = places_finder.find_monuments_by_state(state_name)  # No limit - get all
+        all_attractions['monuments'].extend(monuments)
         time.sleep(1)
     
     # 1. Major parks along the route (tighter criteria)
@@ -1518,8 +1740,9 @@ def main():
     # Print summary
     total_attractions = sum(len(v) for v in all_attractions.values())
     print(f"\n✓ Found {total_attractions} total attractions:")
-    print(f"   �️ National Parks: {len(all_attractions['national_parks'])}")
-    print(f"   �🌲 Parks: {len(all_attractions['parks'])}")
+    print(f"   🏞️ National Parks: {len(all_attractions['national_parks'])}")
+    print(f"   🗿 Monuments: {len(all_attractions['monuments'])}")
+    print(f"   🌲 Parks: {len(all_attractions['parks'])}")
     print(f"   🏛️ Museums: {len(all_attractions['museums'])}")
     print(f"   🍽️ Restaurants: {len(all_attractions['restaurants'])}")
     print(f"   🐾 Dog Parks: {len(all_attractions['dog_parks'])}")
@@ -1544,7 +1767,8 @@ def main():
         hotels,
         vets,
         all_attractions,
-        trip_name
+        trip_name,
+        route_data
     )
     
     # Create output directory
@@ -1582,6 +1806,7 @@ def main():
         'vets': {city: asdict(vet) for city, vet in vets.items()},
         'attractions': {
             'national_parks': [asdict(a) for a in all_attractions['national_parks']],
+            'monuments': [asdict(a) for a in all_attractions['monuments']],
             'parks': [asdict(a) for a in all_attractions['parks']],
             'museums': [asdict(a) for a in all_attractions['museums']],
             'restaurants': [asdict(a) for a in all_attractions['restaurants']],
@@ -1644,6 +1869,12 @@ def main():
                 f.write(f"- **{park.name}** ({park.rating}⭐, {park.user_ratings_total:,} reviews) - {park.state}\n")
                 if park.website:
                     f.write(f"  - Website: {park.website}\n")
+            f.write("\n")
+        
+        if all_attractions['monuments']:
+            f.write(f"## 🗿 Monuments & Memorials ({len(all_attractions['monuments'])} found)\n\n")
+            for monument in all_attractions['monuments']:
+                f.write(f"- **{monument.name}** ({monument.rating}⭐, {monument.user_ratings_total:,} reviews) - {monument.location}\n")
             f.write("\n")
         
         if all_attractions['parks']:
