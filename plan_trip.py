@@ -333,7 +333,7 @@ class GooglePlacesFinder:
             "locationRestriction": {
                 "circle": {
                     "center": {"latitude": lat, "longitude": lon},
-                    "radius": 15000  # 15km radius
+                    "radius": 25000  # Increased to 25km radius for better coverage
                 }
             },
             "rankPreference": "POPULARITY",
@@ -359,7 +359,8 @@ class GooglePlacesFinder:
                 'sleep inn', 'econo lodge', 'days inn', 'super 8',
                 'knights inn', 'travelodge', 'ramada', 'wyndham',
                 'howard johnson', 'microtel', 'baymont', 'hampton', 'hilton',
-                'marriott', 'hyatt', 'sheraton', 'westin'
+                'marriott', 'hyatt', 'sheraton', 'westin', 'doubletree',
+                'holiday inn', 'courtyard', 'country inn'
             ]
             
             for place in data.get('places', []):
@@ -367,6 +368,7 @@ class GooglePlacesFinder:
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
                 
+                # Keep good quality standards - pet-friendly doesn't mean low quality!
                 if rating < 3.5 or reviews < 50:
                     continue
                 
@@ -1177,16 +1179,15 @@ def create_trip_map(
         # Create a distance/time group
         distance_group = folium.FeatureGroup(name='📏 Distances & Times', show=True)
         
-        # Get ordered list of stops that have hotels
-        hotel_stops = [stop for stop in stops if stop['name'] in hotels and stop['type'] in ['start', 'stop', 'destination', 'via']]
+        # Get ordered list of ALL stops (not just those with hotels), maintaining route order
+        # Filter for 'stop' type to get the regular interval stops along the route
+        stop_cities = [stop for stop in stops if stop['type'] == 'stop']
         
-        # Calculate distances between consecutive hotel stops
-        for i in range(len(hotel_stops) - 1):
-            current_stop = hotel_stops[i]
-            next_stop = hotel_stops[i + 1]
+        # Calculate distances between consecutive stops
+        for i in range(len(stop_cities) - 1):
+            current_stop = stop_cities[i]
+            next_stop = stop_cities[i + 1]
             
-            # Calculate distance and time using haversine as approximation
-            # (More accurate would be to use route segments, but this is simpler)
             import math
             
             def haversine_miles(lat1, lon1, lat2, lon2):
@@ -1199,6 +1200,7 @@ def create_trip_map(
             
             distance_mi = haversine_miles(current_stop['lat'], current_stop['lon'], 
                                           next_stop['lat'], next_stop['lon'])
+            
             # Estimate driving time at 60 mph average
             hours = distance_mi / 60.0
             
@@ -1214,9 +1216,10 @@ def create_trip_map(
             
             # Create distance marker with custom div icon
             distance_html = f"""
-            <div style="font-size: 12px; font-weight: bold; background-color: white; 
-                        border: 2px solid #2E86AB; border-radius: 5px; padding: 3px 6px;
-                        box-shadow: 2px 2px 4px rgba(0,0,0,0.3); white-space: nowrap;">
+            <div style="font-size: 11px; font-weight: bold; background-color: rgba(255, 255, 255, 0.95); 
+                        border: 2px solid #2E86AB; border-radius: 4px; padding: 2px 5px;
+                        box-shadow: 2px 2px 6px rgba(0,0,0,0.4); white-space: nowrap;
+                        text-align: center;">
                 {distance_mi:.0f} mi<br>{time_str}
             </div>
             """
