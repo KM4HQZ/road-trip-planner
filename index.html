@@ -1,278 +1,554 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
 
-<html lang="en"><html>
+<html lang="en">
 
-<head><head>
+<head><html lang="en"><html>
 
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
 
-    <title>Road Trip Planner - Example Trips</title>    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <title>Road Trip Planner - Example Trips</title>
 
-    <style>    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>    <meta charset="UTF-8">    
 
-        * {    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+        * {
 
-            margin: 0;    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+            margin: 0;    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-            padding: 0;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+            padding: 0;
 
-            box-sizing: border-box;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-
-        }    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
-
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-
-        body {    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    
-
-            min-height: 100vh;            <meta name="viewport" content="width=device-width,
-
-            padding: 20px;                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-        }            <style>
-
-                        #map_999332ce2b592126fe37469fbd890ab3 {
-
-        .container {                    position: relative;
-
-            max-width: 1000px;                    width: 100.0%;
-
-            margin: 0 auto;                    height: 100.0%;
-
-        }                    left: 0.0%;
-
-                            top: 0.0%;
-
-        header {                }
-
-            text-align: center;                .leaflet-container { font-size: 1rem; }
-
-            color: white;            </style>
-
-            margin-bottom: 40px;
-
-            padding: 40px 20px;            <style>html, body {
-
-        }                width: 100%;
-
-                        height: 100%;
-
-        h1 {                margin: 0;
-
-            font-size: 3em;                padding: 0;
-
-            margin-bottom: 10px;            }
-
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);            </style>
+            box-sizing: border-box;    <title>Road Trip Planner - Example Trips</title>    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
 
         }
 
-                    <style>#map {
+            <style>    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-        .subtitle {                position:absolute;
+        body {
 
-            font-size: 1.2em;                top:0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;        * {    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-            opacity: 0.9;                bottom:0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
-        }                right:0;
+            min-height: 100vh;            margin: 0;    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
-                        left:0;
+            padding: 20px;
 
-        .trips-grid {                }
+        }            padding: 0;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
 
-            display: grid;            </style>
+        
+
+        .container {            box-sizing: border-box;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+
+            max-width: 1000px;
+
+            margin: 0 auto;        }    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+
+        }
+
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+
+        header {
+
+            text-align: center;        body {    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+
+            color: white;
+
+            margin-bottom: 40px;            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+            padding: 40px 20px;
+
+        }            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    
+
+        
+
+        h1 {            min-height: 100vh;            <meta name="viewport" content="width=device-width,
+
+            font-size: 3em;
+
+            margin-bottom: 10px;            padding: 20px;                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        }        }            <style>
+
+        
+
+        .subtitle {                        #map_999332ce2b592126fe37469fbd890ab3 {
+
+            font-size: 1.2em;
+
+            opacity: 0.9;        .container {                    position: relative;
+
+        }
+
+                    max-width: 1000px;                    width: 100.0%;
+
+        .trips-grid {
+
+            display: grid;            margin: 0 auto;                    height: 100.0%;
 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-            gap: 30px;            <script>
+            gap: 30px;        }                    left: 0.0%;
 
-            margin-bottom: 40px;                L_NO_TOUCH = false;
+            margin-bottom: 40px;
 
-        }                L_DISABLE_3D = false;
+        }                            top: 0.0%;
 
-                    </script>
+        
 
-        .trip-card {
+        .trip-card {        header {                }
 
-            background: white;        
+            background: white;
 
-            border-radius: 12px;    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+            border-radius: 12px;            text-align: center;                .leaflet-container { font-size: 1rem; }
 
-            padding: 30px;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+            padding: 30px;
 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);            color: white;            </style>
 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-        }</head>
+        }            margin-bottom: 40px;
 
-        <body>
+        
 
-        .trip-card:hover {    
+        .trip-card:hover {            padding: 40px 20px;            <style>html, body {
 
-            transform: translateY(-5px);    
+            transform: translateY(-5px);
 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);    <script>
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);        }                width: 100%;
 
-        }    // Wait for map to load
+        }
 
-            window.addEventListener('load', function() {
+                                height: 100%;
 
-        .trip-card h2 {        // Find the layer control
+        .trip-card h2 {
 
-            color: #2E86AB;        var layerControl = document.querySelector('.leaflet-control-layers');
+            color: #2E86AB;        h1 {                margin: 0;
 
-            font-size: 1.5em;        if (layerControl) {
+            font-size: 1.5em;
 
-            margin-bottom: 15px;            // Create button container
+            margin-bottom: 15px;            font-size: 3em;                padding: 0;
 
-        }            var buttonDiv = document.createElement('div');
+        }
 
-                    buttonDiv.style.padding = '6px 10px';
+                    margin-bottom: 10px;            }
 
-        .route {            buttonDiv.style.backgroundColor = '#fff';
+        .route {
 
-            background: #f0f4f8;            buttonDiv.style.borderTop = '1px solid #ddd';
+            background: #f0f4f8;            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);            </style>
 
-            padding: 15px;            buttonDiv.style.marginTop = '5px';
+            padding: 15px;
 
-            border-radius: 8px;            
+            border-radius: 8px;        }
 
-            margin: 15px 0;            // Create the button
+            margin: 15px 0;
 
-            font-size: 0.95em;            var toggleButton = document.createElement('button');
+            font-size: 0.95em;                    <style>#map {
 
-            line-height: 1.6;            toggleButton.innerHTML = '☑️ Toggle All';
+            line-height: 1.6;
 
-        }            toggleButton.style.width = '100%';
+        }        .subtitle {                position:absolute;
 
-                    toggleButton.style.padding = '5px';
+        
 
-        .route strong {            toggleButton.style.cursor = 'pointer';
+        .route strong {            font-size: 1.2em;                top:0;
 
-            color: #2E86AB;            toggleButton.style.backgroundColor = '#f4f4f4';
+            color: #2E86AB;
 
-        }            toggleButton.style.border = '1px solid #ccc';
+        }            opacity: 0.9;                bottom:0;
 
-                    toggleButton.style.borderRadius = '3px';
+        
 
-        .stats {            toggleButton.style.fontSize = '12px';
+        .stats {        }                right:0;
 
-            display: flex;            toggleButton.style.fontWeight = 'bold';
+            display: flex;
 
-            justify-content: space-between;            
+            justify-content: space-between;                        left:0;
 
-            margin: 15px 0;            // Add hover effect
+            margin: 15px 0;
 
-            padding: 15px;            toggleButton.onmouseover = function() {
+            padding: 15px;        .trips-grid {                }
 
-            background: #fff8e1;                this.style.backgroundColor = '#e0e0e0';
+            background: #fff8e1;
 
-            border-radius: 8px;            };
+            border-radius: 8px;            display: grid;            </style>
 
-        }            toggleButton.onmouseout = function() {
+        }
 
-                        this.style.backgroundColor = '#f4f4f4';
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-        .stat {            };
+        .stat {
 
-            text-align: center;            
+            text-align: center;            gap: 30px;            <script>
 
-        }            // Add click handler
+        }
 
-                    toggleButton.onclick = function() {
+                    margin-bottom: 40px;                L_NO_TOUCH = false;
 
-        .stat-value {                var overlayInputs = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
+        .stat-value {
 
-            font-size: 1.3em;                var allChecked = true;
+            font-size: 1.3em;        }                L_DISABLE_3D = false;
 
-            font-weight: bold;                
+            font-weight: bold;
 
-            color: #2E86AB;                // Check if all are currently checked
+            color: #2E86AB;                    </script>
 
-        }                overlayInputs.forEach(function(input) {
+        }
 
-                            if (!input.checked) {
+                .trip-card {
 
-        .stat-label {                        allChecked = false;
+        .stat-label {
 
-            font-size: 0.85em;                    }
+            font-size: 0.85em;            background: white;        
 
-            color: #666;                });
+            color: #666;
 
-            margin-top: 5px;                
+            margin-top: 5px;            border-radius: 12px;    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
 
-        }                // Toggle all to opposite state
+        }
 
-                        overlayInputs.forEach(function(input) {
+                    padding: 30px;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
 
-        .btn {                    if (allChecked && input.checked) {
+        .btn {
 
-            display: inline-block;                        input.click();
+            display: inline-block;            box-shadow: 0 10px 30px rgba(0,0,0,0.2);    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);                    } else if (!allChecked && !input.checked) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
-            color: white;                        input.click();
+            color: white;            transition: transform 0.3s ease, box-shadow 0.3s ease;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
 
-            padding: 15px 30px;                    }
+            padding: 15px 30px;
 
-            border-radius: 8px;                });
+            border-radius: 8px;        }</head>
 
-            text-decoration: none;            };
+            text-decoration: none;
 
-            font-weight: bold;            
+            font-weight: bold;        <body>
 
-            text-align: center;            buttonDiv.appendChild(toggleButton);
+            text-align: center;
 
-            transition: opacity 0.3s ease;            
+            transition: opacity 0.3s ease;        .trip-card:hover {    
 
-            width: 100%;            // Insert button into layer control
+            width: 100%;
 
-            margin-top: 15px;            var overlaysSection = document.querySelector('.leaflet-control-layers-overlays');
+            margin-top: 15px;            transform: translateY(-5px);    
 
-        }            if (overlaysSection) {
+        }
 
-                        overlaysSection.parentNode.appendChild(buttonDiv);
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);    <script>
 
-        .btn:hover {            }
+        .btn:hover {
 
-            opacity: 0.9;        }
+            opacity: 0.9;        }    // Wait for map to load
 
-        }    });
+        }
 
-            </script>
+                    window.addEventListener('load', function() {
 
-        .highlights {    
+        .highlights {
 
-            margin: 15px 0;    
+            margin: 15px 0;        .trip-card h2 {        // Find the layer control
 
-            padding: 15px;    <div style="position: fixed; 
+            padding: 15px;
 
-            background: #e8f5e9;                top: 10px; left: 50px; width: 400px; height: 60px; 
+            background: #e8f5e9;            color: #2E86AB;        var layerControl = document.querySelector('.leaflet-control-layers');
 
-            border-radius: 8px;                background-color: white; border: 2px solid grey; z-index:9999; 
+            border-radius: 8px;
 
-            font-size: 0.9em;                font-size: 18px; padding: 10px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
+            font-size: 0.9em;            font-size: 1.5em;        if (layerControl) {
 
-        }        <b>Road Trip: Atlanta, GA → Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA</b><br>
+        }
 
-                <span style="font-size: 14px;">Generated: 2025-11-22</span>
+                    margin-bottom: 15px;            // Create button container
 
-        .highlights ul {    </div>
+        .highlights ul {
 
-            list-style: none;    
+            list-style: none;        }            var buttonDiv = document.createElement('div');
 
-            padding-left: 0;    
+            padding-left: 0;
 
-        }            <div class="folium-map" id="map_999332ce2b592126fe37469fbd890ab3" ></div>
+        }                    buttonDiv.style.padding = '6px 10px';
+
+        
+
+        .highlights li {        .route {            buttonDiv.style.backgroundColor = '#fff';
+
+            padding: 5px 0;
+
+        }            background: #f0f4f8;            buttonDiv.style.borderTop = '1px solid #ddd';
+
+        
+
+        .highlights li:before {            padding: 15px;            buttonDiv.style.marginTop = '5px';
+
+            content: "✓ ";
+
+            color: #4caf50;            border-radius: 8px;            
+
+            font-weight: bold;
+
+            margin-right: 8px;            margin: 15px 0;            // Create the button
+
+        }
+
+                    font-size: 0.95em;            var toggleButton = document.createElement('button');
+
+        footer {
+
+            text-align: center;            line-height: 1.6;            toggleButton.innerHTML = '☑️ Toggle All';
+
+            color: white;
+
+            padding: 30px 20px;        }            toggleButton.style.width = '100%';
+
+            margin-top: 40px;
+
+        }                    toggleButton.style.padding = '5px';
+
+        
+
+        footer a {        .route strong {            toggleButton.style.cursor = 'pointer';
+
+            color: white;
+
+            text-decoration: none;            color: #2E86AB;            toggleButton.style.backgroundColor = '#f4f4f4';
+
+            font-weight: bold;
+
+            border-bottom: 2px solid white;        }            toggleButton.style.border = '1px solid #ccc';
+
+            transition: opacity 0.3s ease;
+
+        }                    toggleButton.style.borderRadius = '3px';
+
+        
+
+        footer a:hover {        .stats {            toggleButton.style.fontSize = '12px';
+
+            opacity: 0.8;
+
+        }            display: flex;            toggleButton.style.fontWeight = 'bold';
+
+        
+
+        @media (max-width: 768px) {            justify-content: space-between;            
+
+            h1 {
+
+                font-size: 2em;            margin: 15px 0;            // Add hover effect
+
+            }
+
+                        padding: 15px;            toggleButton.onmouseover = function() {
+
+            .stats {
+
+                flex-direction: column;            background: #fff8e1;                this.style.backgroundColor = '#e0e0e0';
+
+                gap: 10px;
+
+            }            border-radius: 8px;            };
+
+        }
+
+    </style>        }            toggleButton.onmouseout = function() {
+
+</head>
+
+<body>                        this.style.backgroundColor = '#f4f4f4';
+
+    <div class="container">
+
+        <header>        .stat {            };
+
+            <h1>🚗 Road Trip Planner 🗺️</h1>
+
+            <p class="subtitle">Automatic pet-friendly road trip planning with hotels, vets, parks & attractions</p>            text-align: center;            
+
+        </header>
+
+                }            // Add click handler
+
+        <div class="trips-grid">
+
+            <!-- Trip 1: Atlanta to Los Angeles -->                    toggleButton.onclick = function() {
+
+            <div class="trip-card">
+
+                <h2>🌄 Cross-Country Adventure</h2>        .stat-value {                var overlayInputs = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
 
                 
+
+                <div class="route">            font-size: 1.3em;                var allChecked = true;
+
+                    <strong>Route:</strong><br>
+
+                    Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA            font-weight: bold;                
+
+                </div>
+
+                            color: #2E86AB;                // Check if all are currently checked
+
+                <div class="stats">
+
+                    <div class="stat">        }                overlayInputs.forEach(function(input) {
+
+                        <div class="stat-value">4,652</div>
+
+                        <div class="stat-label">miles</div>                            if (!input.checked) {
+
+                    </div>
+
+                    <div class="stat">        .stat-label {                        allChecked = false;
+
+                        <div class="stat-value">82</div>
+
+                        <div class="stat-label">hours</div>            font-size: 0.85em;                    }
+
+                    </div>
+
+                    <div class="stat">            color: #666;                });
+
+                        <div class="stat-value">217</div>
+
+                        <div class="stat-label">attractions</div>            margin-top: 5px;                
+
+                    </div>
+
+                </div>        }                // Toggle all to opposite state
+
+                
+
+                <div class="highlights">                        overlayInputs.forEach(function(input) {
+
+                    <ul>
+
+                        <li>20 strategic stops</li>        .btn {                    if (allChecked && input.checked) {
+
+                        <li>16 pet-friendly hotels</li>
+
+                        <li>129 parks & viewpoints</li>            display: inline-block;                        input.click();
+
+                        <li>25 museums & cultural sites</li>
+
+                    </ul>            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);                    } else if (!allChecked && !input.checked) {
+
+                </div>
+
+                            color: white;                        input.click();
+
+                <a href="atlanta-to-la.html" class="btn">
+
+                    View Interactive Map →            padding: 15px 30px;                    }
+
+                </a>
+
+            </div>            border-radius: 8px;                });
+
+            
+
+            <!-- Trip 2: Winston to Covington -->            text-decoration: none;            };
+
+            <div class="trip-card">
+
+                <h2>🌲 Southern States Tour</h2>            font-weight: bold;            
+
+                
+
+                <div class="route">            text-align: center;            buttonDiv.appendChild(toggleButton);
+
+                    <strong>Route:</strong><br>
+
+                    Winston, GA → Montevallo, AL → Covington, LA → Winston, GA            transition: opacity 0.3s ease;            
+
+                </div>
+
+                            width: 100%;            // Insert button into layer control
+
+                <div class="stats">
+
+                    <div class="stat">            margin-top: 15px;            var overlaysSection = document.querySelector('.leaflet-control-layers-overlays');
+
+                        <div class="stat-value">926</div>
+
+                        <div class="stat-label">miles</div>        }            if (overlaysSection) {
+
+                    </div>
+
+                    <div class="stat">                        overlaysSection.parentNode.appendChild(buttonDiv);
+
+                        <div class="stat-value">17</div>
+
+                        <div class="stat-label">hours</div>        .btn:hover {            }
+
+                    </div>
+
+                    <div class="stat">            opacity: 0.9;        }
+
+                        <div class="stat-value">67</div>
+
+                        <div class="stat-label">attractions</div>        }    });
+
+                    </div>
+
+                </div>            </script>
+
+                
+
+                <div class="highlights">        .highlights {    
+
+                    <ul>
+
+                        <li>6 strategic stops</li>            margin: 15px 0;    
+
+                        <li>5 pet-friendly hotels</li>
+
+                        <li>19 parks & viewpoints</li>            padding: 15px;    <div style="position: fixed; 
+
+                        <li>25 dog-friendly restaurants</li>
+
+                    </ul>            background: #e8f5e9;                top: 10px; left: 50px; width: 400px; height: 60px; 
+
+                </div>
+
+                            border-radius: 8px;                background-color: white; border: 2px solid grey; z-index:9999; 
+
+                <a href="trip routes/trip_Winston_GA_Montevallo_AL_via_Covington_LA.html" class="btn">
+
+                    View Interactive Map →            font-size: 0.9em;                font-size: 18px; padding: 10px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
+
+                </a>
+
+            </div>        }        <b>Road Trip: Atlanta, GA → Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA</b><br>
+
+        </div>
+
+                        <span style="font-size: 14px;">Generated: 2025-11-22</span>
+
+        <footer>
+
+            <p>        .highlights ul {    </div>
+
+                <a href="https://github.com/KM4HQZ/road-trip-planner" target="_blank">📂 View Source Code on GitHub</a>
+
+            </p>            list-style: none;    
+
+            <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9em;">
+
+                Built with Google Places API, OpenStreetMap, OSRM & Folium            padding-left: 0;    
+
+            </p>
+
+        </footer>        }            <div class="folium-map" id="map_999332ce2b592126fe37469fbd890ab3" ></div>
+
+    </div>
+
+</body>                
+
+</html>
 
         .highlights li {</body>
 
