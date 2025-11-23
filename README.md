@@ -12,11 +12,13 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - 🏥 **Locates 24/7 emergency vets** at each major city
 - 🏞️ **Discovers national parks** in every state you pass through
 - 🗿 **Finds monuments & memorials** in each state along your route
--  **Discovers parks** along your entire route (with tighter radius for roadside stops)
+- 🌲 **Discovers parks** along your entire route (with tighter radius for roadside stops)
 - 🏛️ **Finds museums & cultural attractions** in stop cities
 - 🍽️ **Locates dog-friendly restaurants** with outdoor seating
 - 🐾 **Finds dog parks** for exercise breaks
 - 📸 **Identifies scenic viewpoints** along the way
+- 📚 **Provides Wikipedia articles & summaries** for parks, museums, and monuments
+- 📖 **Links to Wikivoyage travel guides** for all stop cities
 - 📏 **Shows distances & driving times** between each stop city
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
 - 📄 **Generates detailed reports** in Markdown and JSON formats
@@ -52,7 +54,9 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 1. **Google Places API (New)** - Hotels, restaurants, vets, attractions, ratings
 2. **OpenStreetMap (Nominatim)** - City geocoding and reverse geocoding
 3. **OSRM (Open Source Routing Machine)** - Actual road routes and geometry
-4. **Folium** - Interactive map generation with layers
+4. **Wikipedia API** - Educational content and articles for attractions
+5. **Wikivoyage API** - Travel guides and city information
+6. **Folium** - Interactive map generation with layers
 
 ## 🚀 Quick Start
 

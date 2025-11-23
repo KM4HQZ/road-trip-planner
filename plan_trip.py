@@ -35,6 +35,7 @@ class Location:
     lat: float
     lon: float
     type: str  # 'start', 'stop', 'destination', 'waypoint'
+    wikivoyage_url: Optional[str] = None
 
 
 @dataclass
@@ -82,6 +83,9 @@ class Attraction:
     user_ratings_total: int
     lat: float
     lon: float
+    website: Optional[str] = None
+    wikipedia_url: Optional[str] = None
+    wikipedia_summary: Optional[str] = None
 
 
 @dataclass
@@ -95,6 +99,127 @@ class NationalPark:
     lat: float
     lon: float
     website: Optional[str] = None
+    wikipedia_url: Optional[str] = None
+    wikipedia_summary: Optional[str] = None
+
+
+class WikipediaHelper:
+    """Fetches Wikipedia and Wikivoyage content."""
+    
+    WIKI_API = "https://en.wikipedia.org/w/api.php"
+    WIKIVOYAGE_API = "https://en.wikivoyage.org/w/api.php"
+    USER_AGENT = "RoadTripPlanner/1.0 (https://github.com/KM4HQZ/road-trip-planner; Educational use)"
+    
+    @staticmethod
+    def search_wikipedia(query: str) -> Optional[Dict[str, str]]:
+        """
+        Search Wikipedia and return article URL and summary.
+        
+        Args:
+            query: Search term (e.g., "Grand Canyon National Park")
+            
+        Returns:
+            Dict with 'url', 'title', 'summary' or None
+        """
+        try:
+            headers = {'User-Agent': WikipediaHelper.USER_AGENT}
+            
+            # Search for article
+            search_params = {
+                'action': 'query',
+                'list': 'search',
+                'srsearch': query,
+                'format': 'json',
+                'srlimit': 1
+            }
+            
+            response = requests.get(WikipediaHelper.WIKI_API, params=search_params, headers=headers, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            
+            if not data.get('query', {}).get('search'):
+                return None
+            
+            page_title = data['query']['search'][0]['title']
+            
+            # Get extract (summary)
+            extract_params = {
+                'action': 'query',
+                'titles': page_title,
+                'prop': 'extracts|info',
+                'exintro': True,
+                'explaintext': True,
+                'inprop': 'url',
+                'format': 'json'
+            }
+            
+            response = requests.get(WikipediaHelper.WIKI_API, params=extract_params, headers=headers, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            
+            pages = data.get('query', {}).get('pages', {})
+            if not pages:
+                return None
+            
+            page = list(pages.values())[0]
+            
+            # Get first 2-3 sentences for popup
+            extract = page.get('extract', '')
+            sentences = extract.split('. ')
+            short_summary = '. '.join(sentences[:2]) + '.' if len(sentences) >= 2 else extract
+            
+            return {
+                'url': page.get('fullurl', ''),
+                'title': page.get('title', ''),
+                'summary': short_summary[:300] + '...' if len(short_summary) > 300 else short_summary
+            }
+            
+        except Exception as e:
+            print(f"  ⚠️  Wikipedia search failed for '{query}': {e}")
+            return None
+    
+    @staticmethod
+    def search_wikivoyage(city_name: str) -> Optional[str]:
+        """
+        Get Wikivoyage URL for a city.
+        
+        Args:
+            city_name: City name (e.g., "Denver")
+            
+        Returns:
+            Wikivoyage URL or None
+        """
+        try:
+            headers = {'User-Agent': WikipediaHelper.USER_AGENT}
+            
+            # Try exact match first
+            params = {
+                'action': 'query',
+                'titles': city_name,
+                'prop': 'info',
+                'inprop': 'url',
+                'format': 'json'
+            }
+            
+            response = requests.get(WikipediaHelper.WIKIVOYAGE_API, params=params, headers=headers, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            
+            pages = data.get('query', {}).get('pages', {})
+            if not pages:
+                return None
+            
+            page = list(pages.values())[0]
+            
+            # Check if page exists (missing=-1)
+            if page.get('missing'):
+                return None
+            
+            return page.get('fullurl')
+            
+        except Exception as e:
+            print(f"  ⚠️  Wikivoyage search failed for '{city_name}': {e}")
+            return None
 
 
 class OSRMRouter:
@@ -578,7 +703,8 @@ class GooglePlacesFinder:
                                     rating=rating,
                                     user_ratings_total=reviews,
                                     lat=location.get('latitude', lat),
-                                    lon=location.get('longitude', lon)
+                                    lon=location.get('longitude', lon),
+                                    website=place.get('websiteUri', None)
                                 )
                                 all_parks.append(park)
                                 seen_parks.add(place_id)
@@ -634,7 +760,8 @@ class GooglePlacesFinder:
                     rating=rating,
                     user_ratings_total=reviews,
                     lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon)
+                    lon=place.get('location', {}).get('longitude', lon),
+                    website=place.get('websiteUri', None)
                 )
                 attractions.append(attraction)
             
@@ -678,6 +805,9 @@ class GooglePlacesFinder:
                 if rating < 4.0 or reviews < 100:
                     continue
                 
+                # Get Wikipedia info for museums
+                wiki_info = WikipediaHelper.search_wikipedia(name)
+                
                 museum = Attraction(
                     name=name,
                     address=place.get('formattedAddress', ''),
@@ -686,7 +816,10 @@ class GooglePlacesFinder:
                     rating=rating,
                     user_ratings_total=reviews,
                     lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon)
+                    lon=place.get('location', {}).get('longitude', lon),
+                    website=place.get('websiteUri', None),
+                    wikipedia_url=wiki_info['url'] if wiki_info else None,
+                    wikipedia_summary=wiki_info['summary'] if wiki_info else None
                 )
                 museums.append(museum)
             
@@ -737,7 +870,8 @@ class GooglePlacesFinder:
                     rating=rating,
                     user_ratings_total=reviews,
                     lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon)
+                    lon=place.get('location', {}).get('longitude', lon),
+                    website=place.get('websiteUri', None)
                 )
                 restaurants.append(restaurant)
             
@@ -788,7 +922,8 @@ class GooglePlacesFinder:
                     rating=rating,
                     user_ratings_total=reviews,
                     lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon)
+                    lon=place.get('location', {}).get('longitude', lon),
+                    website=place.get('websiteUri', None)
                 )
                 dog_parks.append(dog_park)
             
@@ -894,7 +1029,8 @@ class GooglePlacesFinder:
                                         rating=rating,
                                         user_ratings_total=reviews,
                                         lat=location_data.get('latitude', lat),
-                                        lon=location_data.get('longitude', lon)
+                                        lon=location_data.get('longitude', lon),
+                                        website=place.get('websiteUri', None)
                                     )
                                     viewpoints.append(viewpoint)
                                     seen_viewpoints.add(place_id)
@@ -985,6 +1121,9 @@ class GooglePlacesFinder:
                 # Accept all national parks regardless of ratings/reviews
                 location_data = place.get('location', {})
                 
+                # Get Wikipedia info
+                wiki_info = WikipediaHelper.search_wikipedia(name)
+                
                 park = NationalPark(
                     name=name,
                     address=address,
@@ -993,7 +1132,9 @@ class GooglePlacesFinder:
                     user_ratings_total=reviews,
                     lat=location_data.get('latitude', 0),
                     lon=location_data.get('longitude', 0),
-                    website=place.get('websiteUri', None)
+                    website=place.get('websiteUri', None),
+                    wikipedia_url=wiki_info['url'] if wiki_info else None,
+                    wikipedia_summary=wiki_info['summary'] if wiki_info else None
                 )
                 national_parks.append(park)
             
@@ -1072,6 +1213,9 @@ class GooglePlacesFinder:
                 # Accept all monuments regardless of ratings/reviews
                 location_data = place.get('location', {})
                 
+                # Get Wikipedia info for monuments
+                wiki_info = WikipediaHelper.search_wikipedia(name)
+                
                 monument = Attraction(
                     name=name,
                     address=address,
@@ -1080,7 +1224,10 @@ class GooglePlacesFinder:
                     rating=rating,
                     user_ratings_total=reviews,
                     lat=location_data.get('latitude', 0),
-                    lon=location_data.get('longitude', 0)
+                    lon=location_data.get('longitude', 0),
+                    website=place.get('websiteUri', None),
+                    wikipedia_url=wiki_info['url'] if wiki_info else None,
+                    wikipedia_summary=wiki_info['summary'] if wiki_info else None
                 )
                 monuments.append(monument)
             
@@ -1153,10 +1300,14 @@ def create_trip_map(
     
     # Add stop markers
     for stop in stops:
+        popup_html = f"<b>{stop['name']}</b><br>Stop #{stop.get('stop_number', '?')}"
+        if stop.get('wikivoyage_url'):
+            popup_html += f'<br><br><a href="{stop["wikivoyage_url"]}" target="_blank">📚 Wikivoyage Travel Guide</a>'
+        
         folium.CircleMarker(
             location=[stop['lat'], stop['lon']],
             radius=8,
-            popup=f"<b>{stop['name']}</b><br>Stop #{stop.get('stop_number', '?')}",
+            popup=folium.Popup(popup_html, max_width=300),
             tooltip=stop['name'],
             color='blue',
             fill=True,
@@ -1308,8 +1459,12 @@ def create_trip_map(
                 if attraction.address:
                     popup_html += f"📍 {attraction.address}<br>"
                 if hasattr(attraction, 'website') and attraction.website:
-                    popup_html += f'<br><a href="{attraction.website}" target="_blank">Official Website</a>'
-                popup_html += f"<br><i>{attraction.state}</i>"
+                    popup_html += f'<br><a href="{attraction.website}" target="_blank">🔗 Official Website</a>'
+                if hasattr(attraction, 'wikipedia_url') and attraction.wikipedia_url:
+                    popup_html += f'<br><a href="{attraction.wikipedia_url}" target="_blank">📚 Wikipedia</a>'
+                    if hasattr(attraction, 'wikipedia_summary') and attraction.wikipedia_summary:
+                        popup_html += f'<br><br><i style="font-size: 0.85em;">{attraction.wikipedia_summary}</i>'
+                popup_html += f"<br><br><i>{attraction.state}</i>"
                 
                 folium.Marker(
                     location=[attraction.lat, attraction.lon],
@@ -1325,7 +1480,13 @@ def create_trip_map(
                 popup_html += f"<b>⭐ {attraction.rating}/5.0</b> ({attraction.user_ratings_total:,} reviews)<br>"
                 if attraction.address:
                     popup_html += f"📍 {attraction.address}<br>"
-                popup_html += f"<i>{attraction.location}</i>"
+                if hasattr(attraction, 'website') and attraction.website:
+                    popup_html += f'<br><a href="{attraction.website}" target="_blank">🔗 Website</a>'
+                if hasattr(attraction, 'wikipedia_url') and attraction.wikipedia_url:
+                    popup_html += f'<br><a href="{attraction.wikipedia_url}" target="_blank">📚 Wikipedia</a>'
+                    if hasattr(attraction, 'wikipedia_summary') and attraction.wikipedia_summary:
+                        popup_html += f'<br><br><i style="font-size: 0.85em;">{attraction.wikipedia_summary}</i>'
+                popup_html += f"<br><br><i>{attraction.location}</i>"
                 
                 group = attraction_groups.get(attraction.type)
                 if group:
@@ -1553,13 +1714,17 @@ def main():
     print(f"🎯 Selecting strategic stop cities (~{args.stop_distance} miles apart)...")
     stops = []
     
-    # Add origin
+    # Add origin with Wikivoyage link
+    city_name_only = args.origin.split(',')[0].strip()
+    wikivoyage_url = WikipediaHelper.search_wikivoyage(city_name_only)
+    
     start_location = {
         'name': args.origin,
         'lat': origin_lat,
         'lon': origin_lon,
         'type': 'start',
-        'stop_number': 0
+        'stop_number': 0,
+        'wikivoyage_url': wikivoyage_url
     }
     stops.append(start_location)
     
@@ -1579,36 +1744,48 @@ def main():
             
             # Add city as stop if it's roughly the target distance from last stop
             if dist >= target_distance_m * 0.8:  # At least 80% of target distance
+                city_name_only = city['name'].split(',')[0].strip()
+                wikivoyage_url = WikipediaHelper.search_wikivoyage(city_name_only)
+                
                 stops.append({
                     'name': city['name'],
                     'lat': city['lat'],
                     'lon': city['lon'],
                     'type': 'stop',
-                    'stop_number': stop_num
+                    'stop_number': stop_num,
+                    'wikivoyage_url': wikivoyage_url
                 })
                 print(f"  Stop {stop_num}: {city['name']} (~{dist_mi:.0f} mi from last stop)")
                 last_stop_lat, last_stop_lon = city['lat'], city['lon']
                 stop_num += 1
     
     # Add destination
+    dest_city_name = args.destination.split(',')[0].strip()
+    dest_wikivoyage = WikipediaHelper.search_wikivoyage(dest_city_name)
+    
     stops.append({
         'name': args.destination,
         'lat': dest_lat,
         'lon': dest_lon,
         'type': 'destination',
-        'stop_number': len(stops)
+        'stop_number': len(stops),
+        'wikivoyage_url': dest_wikivoyage
     })
     print(f"  Destination: {args.destination}")
     
     # Add via cities and return if multi-city route
     if via_cities:
         for via in via_cities:
+            via_city_name = via['name'].split(',')[0].strip()
+            via_wikivoyage = WikipediaHelper.search_wikivoyage(via_city_name)
+            
             stops.append({
                 'name': via['name'],
                 'lat': via['lat'],
                 'lon': via['lon'],
                 'type': 'via',
-                'stop_number': len(stops)
+                'stop_number': len(stops),
+                'wikivoyage_url': via_wikivoyage
             })
             print(f"  Via: {via['name']}")
         
@@ -1617,7 +1794,8 @@ def main():
             'lat': origin_lat,
             'lon': origin_lon,
             'type': 'return',
-            'stop_number': len(stops)
+            'stop_number': len(stops),
+            'wikivoyage_url': wikivoyage_url  # Reuse origin's wikivoyage
         })
         print(f"  Return to: {args.origin}")
     elif args.roundtrip:
@@ -1626,7 +1804,8 @@ def main():
             'lat': origin_lat,
             'lon': origin_lon,
             'type': 'return',
-            'stop_number': len(stops)
+            'stop_number': len(stops),
+            'wikivoyage_url': wikivoyage_url  # Reuse origin's wikivoyage
         })
         print(f"  Return to: {args.origin}")
     
