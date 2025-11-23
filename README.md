@@ -138,9 +138,9 @@ Each trip generates three files in the `trip routes/` directory:
 - 📍 Blue markers for stop cities
 - 🏨 Red bed icons for pet-friendly hotels
 - 🏥 Dark red cross icons for emergency vets
-- �️ Dark green flag icons for national parks
+- 🏞️ Dark green flag icons for national parks
 - 🗿 Gray monument icons for monuments & memorials
-- �🌲 Green tree icons for parks
+- 🌲 Green tree icons for parks
 - 🏛️ Purple building icons for museums
 - 🍽️ Orange fork icons for dog-friendly restaurants
 - 🐾 Light green paw icons for dog parks
@@ -238,7 +238,7 @@ The system strictly verifies 24/7 status:
   - 4 Scenic viewpoints
 - 24/7 Vets: 4 confirmed (Atlanta, Chicago, Nashville, Memphis)
 
-## � Tips
+## 💡 Tips
 
 1. **Cache**: The script uses Nominatim's geocoding which has a 1 request/second rate limit. Be patient on first runs.
 

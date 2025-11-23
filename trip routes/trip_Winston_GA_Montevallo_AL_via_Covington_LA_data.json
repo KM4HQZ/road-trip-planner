@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-23 10:03:08",
+  "generated": "2025-11-23 11:34:36",
   "origin": "Winston, GA",
   "destination": "Montevallo, AL",
   "via_cities": [
@@ -14,28 +14,32 @@
       "lat": 33.725108,
       "lon": -84.8249382,
       "type": "start",
-      "stop_number": 0
+      "stop_number": 0,
+      "wikivoyage_url": "https://en.wikivoyage.org/wiki/Winston"
     },
     {
       "name": "Montevallo, AL",
       "lat": 33.1006746,
       "lon": -86.8641558,
       "type": "destination",
-      "stop_number": 1
+      "stop_number": 1,
+      "wikivoyage_url": "https://en.wikivoyage.org/wiki/Montevallo"
     },
     {
       "name": "Covington, LA",
       "lat": 30.4753525,
       "lon": -90.1010474,
       "type": "via",
-      "stop_number": 2
+      "stop_number": 2,
+      "wikivoyage_url": "https://en.wikivoyage.org/wiki/Covington"
     },
     {
       "name": "Winston, GA (return)",
       "lat": 33.725108,
       "lon": -84.8249382,
       "type": "return",
-      "stop_number": 3
+      "stop_number": 3,
+      "wikivoyage_url": "https://en.wikivoyage.org/wiki/Winston"
     }
   ],
   "hotels": {
@@ -127,7 +131,56 @@
     }
   },
   "attractions": {
-    "national_parks": [],
+    "national_parks": [
+      {
+        "name": "Oconee National Forest",
+        "address": "Georgia, USA",
+        "state": "Georgia",
+        "rating": 4.6,
+        "user_ratings_total": 1433,
+        "lat": 33.4137949,
+        "lon": -83.3727201,
+        "website": "http://www.fs.usda.gov/main/conf/home",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Chattahoochee%E2%80%93Oconee_National_Forest",
+        "wikipedia_summary": "The Chattahoochee\u2013Oconee National Forest in northern Georgia comprises two United States National Forests, the Oconee National Forest in eastern Georgia and the Chattahoochee National Forest located in the North Georgia Mountains.  The Chattahoochee National Forest is composed of an eastern and west..."
+      },
+      {
+        "name": "Conecuh National Forest",
+        "address": "24481 Alabama 55, Andalusia, AL 36420, USA",
+        "state": "Alabama",
+        "rating": 4.6,
+        "user_ratings_total": 146,
+        "lat": 31.0808714,
+        "lon": -86.6206741,
+        "website": "http://www.fs.usda.gov/alabama",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Conecuh_National_Forest",
+        "wikipedia_summary": "The Conecuh National Forest in southern Alabama covers 83,000 acres (340 km2), along the Alabama - Florida line in Covington and Escambia counties.  Topography is level to moderately sloping, broad ridges with stream terraces and broad floodplains.\nThe Conecuh Trail winds 20 miles (30 km) through Al..."
+      },
+      {
+        "name": "Kisatchie National Forest",
+        "address": "Kisatchie National Forest, Louisiana 71433, USA",
+        "state": "Louisiana",
+        "rating": 4.5,
+        "user_ratings_total": 67,
+        "lat": 30.9988012,
+        "lon": -92.6237529,
+        "website": "",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kisatchie_National_Forest",
+        "wikipedia_summary": "Kisatchie National Forest, the only National forest in Louisiana, United States, is located in the forested piney hills and hardwood bottoms of seven central and northern parishes. It is part of the Cenozoic uplands (some of Louisiana's oldest rocks) and has large areas of longleaf pine forests (a f..."
+      },
+      {
+        "name": "Talladega National Forest",
+        "address": "Talladega National Forest, Alabama 36793, USA",
+        "state": "Alabama",
+        "rating": 4.7,
+        "user_ratings_total": 15,
+        "lat": 32.8779032,
+        "lon": -86.9972142,
+        "website": "",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Talladega_National_Forest",
+        "wikipedia_summary": "The Talladega National Forest is located in the U.S. state of Alabama and covers 392,567 acres (613.39 sq mi, or 1,588.66 km2) at the southern edge of the Appalachian Mountains.\nBefore it was bought by the federal government in the 1930s, the area that composes the Talladega was extensively logged a..."
+      }
+    ],
     "monuments": [],
     "parks": [
       {
@@ -136,9 +189,12 @@
         "location": "Winston, GA",
         "type": "park",
         "rating": 4.7,
-        "user_ratings_total": 85842,
+        "user_ratings_total": 85845,
         "lat": 33.763382,
-        "lon": -84.3951098
+        "lon": -84.3951098,
+        "website": "https://www.georgiaaquarium.org/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Sweetwater Creek State Park",
@@ -146,9 +202,12 @@
         "location": "Winston, GA",
         "type": "park",
         "rating": 4.8,
-        "user_ratings_total": 7427,
+        "user_ratings_total": 7428,
         "lat": 33.7525384,
-        "lon": -84.628709
+        "lon": -84.628709,
+        "website": "http://gastateparks.org/SweetwaterCreek",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Six Flags Over Georgia",
@@ -158,7 +217,10 @@
         "rating": 4.1,
         "user_ratings_total": 33243,
         "lat": 33.7683499,
-        "lon": -84.5500261
+        "lon": -84.5500261,
+        "website": "https://www.sixflags.com/overgeorgia?utm_source=googlebusinessprofile&utm_medium=organic&utm_campaign=Google+Business+Profile",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Oak Mountain State Park",
@@ -168,7 +230,10 @@
         "rating": 4.7,
         "user_ratings_total": 5197,
         "lat": 33.3361069,
-        "lon": -86.7312359
+        "lon": -86.7312359,
+        "website": "http://www.alapark.com/oak-mountain-state-park",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Fontainebleau State Park",
@@ -178,7 +243,10 @@
         "rating": 4.6,
         "user_ratings_total": 3862,
         "lat": 30.3412412,
-        "lon": -90.0250626
+        "lon": -90.0250626,
+        "website": "https://www.lastateparks.com/parks-preserves/fontainebleau-state-park",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Global Wildlife Center",
@@ -188,7 +256,10 @@
         "rating": 4.7,
         "user_ratings_total": 3112,
         "lat": 30.628613199999997,
-        "lon": -90.2864946
+        "lon": -90.2864946,
+        "website": "http://www.globalwildlife.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "K1 Speed - Indoor Go Karts, Corporate Event Venue, Team Building Activities",
@@ -198,7 +269,10 @@
         "rating": 4.7,
         "user_ratings_total": 2311,
         "lat": 33.346052,
-        "lon": -86.9224768
+        "lon": -86.9224768,
+        "website": "https://www.k1speed.com/birmingham-location.html",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Moss Rock Preserve",
@@ -208,7 +282,10 @@
         "rating": 4.8,
         "user_ratings_total": 1835,
         "lat": 33.38171700000001,
-        "lon": -86.84009189999999
+        "lon": -86.84009189999999,
+        "website": "http://www.hooveral.gov/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Bogue Chitto State Park",
@@ -218,7 +295,10 @@
         "rating": 4.7,
         "user_ratings_total": 1172,
         "lat": 30.7668518,
-        "lon": -90.1448046
+        "lon": -90.1448046,
+        "website": "https://www.lastateparks.com/parks-preserves/bogue-chitto-state-park",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Aldridge Gardens",
@@ -228,7 +308,10 @@
         "rating": 4.8,
         "user_ratings_total": 621,
         "lat": 33.387200299999996,
-        "lon": -86.7921315
+        "lon": -86.7921315,
+        "website": "http://www.aldridgegardens.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Government Plaza",
@@ -238,7 +321,10 @@
         "rating": 4.8,
         "user_ratings_total": 532,
         "lat": 33.2092853,
-        "lon": -87.564505
+        "lon": -87.564505,
+        "website": "https://liveplaytuscaloosa.com/city-events/live-at-the-plaza",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Hoover Dog Park",
@@ -248,7 +334,10 @@
         "rating": 4.6,
         "user_ratings_total": 555,
         "lat": 33.4059331,
-        "lon": -86.77745449999999
+        "lon": -86.77745449999999,
+        "website": "http://www.hooveral.org/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Dunn's Falls Park",
@@ -258,7 +347,10 @@
         "rating": 4.5,
         "user_ratings_total": 607,
         "lat": 32.2290996,
-        "lon": -88.82089119999999
+        "lon": -88.82089119999999,
+        "website": "http://www.phwd.net/dunns/dunns.html",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Meridian East / Toomsuba KOA Journey",
@@ -268,7 +360,10 @@
         "rating": 4.5,
         "user_ratings_total": 521,
         "lat": 32.392859,
-        "lon": -88.504592
+        "lon": -88.504592,
+        "website": "https://koa.com/campgrounds/meridian-east/?utm_source=google&utm_medium=organic&utm_campaign=gbp",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       }
     ],
     "museums": [
@@ -280,7 +375,10 @@
         "rating": 4.8,
         "user_ratings_total": 6989,
         "lat": 33.9513354,
-        "lon": -84.59639930000002
+        "lon": -84.59639930000002,
+        "website": "http://www.nps.gov/kemo/planyourvisit/basicinfo.htm",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kennesaw_Mountain_National_Battlefield_Park",
+        "wikipedia_summary": "Kennesaw Battlefield Park preserves a Civil War battleground of the Atlanta campaign, and also contains Kennesaw Mountain. It is located at 900 Kennesaw Mountain Drive, between Marietta and Kennesaw, Georgia."
       },
       {
         "name": "Delta Flight Museum",
@@ -290,7 +388,10 @@
         "rating": 4.7,
         "user_ratings_total": 3484,
         "lat": 33.656076999999996,
-        "lon": -84.4223542
+        "lon": -84.4223542,
+        "website": "http://deltamuseum.org/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Delta_Flight_Museum",
+        "wikipedia_summary": "The Delta Flight Museum is an aviation and corporate museum located in Hapeville, Georgia, United States, near the airline's main hub, Hartsfield\u2013Jackson Atlanta International Airport. The museum is housed in two 1940s-era Delta Air Lines aircraft hangars at Delta's headquarters, designated a Histor..."
       },
       {
         "name": "College Football Hall of Fame",
@@ -300,7 +401,10 @@
         "rating": 4.6,
         "user_ratings_total": 3633,
         "lat": 33.760276,
-        "lon": -84.39537330000002
+        "lon": -84.39537330000002,
+        "website": "https://www.cfbhall.com/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/College_Football_Hall_of_Fame",
+        "wikipedia_summary": "The College Football Hall of Fame is a hall of fame and interactive attraction devoted to American college football. The National Football Foundation (NFF) founded the Hall in 1951 to immortalize the players and coaches of college football that were voted first team All-American by the media.\nIn Aug..."
       },
       {
         "name": "Heart of Dixie Railroad Museum",
@@ -310,7 +414,10 @@
         "rating": 4.5,
         "user_ratings_total": 1050,
         "lat": 33.0992639,
-        "lon": -86.7499083
+        "lon": -86.7499083,
+        "website": "https://www.hodrrm.org/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Heart_of_Dixie_Railroad_Museum",
+        "wikipedia_summary": "The Heart of Dixie Railroad Museum (initialised HOD, reporting mark CSMX) is a heritage railroad museum of Alabama. Dedicated to the preservation, restoration, and operation of historically significant railway equipment, the museum is located at 1919 Ninth Street, Calera, Alabama, on I-65 approximat..."
       },
       {
         "name": "Abita Mystery House / UCM Museum",
@@ -320,7 +427,10 @@
         "rating": 4.6,
         "user_ratings_total": 810,
         "lat": 30.4774275,
-        "lon": -90.0362433
+        "lon": -90.0362433,
+        "website": "http://ucmmuseum.com/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Abita_Mystery_House",
+        "wikipedia_summary": "The Abita Mystery House is a roadside attraction and self-guided folk art museum located in Abita Springs, Louisiana, United States. It features thousands of handmade displays and oddities created by artist and inventor John Preble.."
       },
       {
         "name": "Louisiana Children's Discovery Center",
@@ -330,7 +440,10 @@
         "rating": 4.5,
         "user_ratings_total": 354,
         "lat": 30.5050514,
-        "lon": -90.46011709999999
+        "lon": -90.46011709999999,
+        "website": "https://www.lcdcofhammond.org/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/List_of_children%27s_museums_in_the_United_States",
+        "wikipedia_summary": "This is a list of children's museums in the United States."
       },
       {
         "name": "Abita Springs Trailhead Museum",
@@ -340,7 +453,10 @@
         "rating": 4.7,
         "user_ratings_total": 256,
         "lat": 30.4790487,
-        "lon": -90.0391709
+        "lon": -90.0391709,
+        "website": "https://trailheadmuseum.org/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/List_of_museums_in_Louisiana",
+        "wikipedia_summary": "This list of museums in Louisiana is a list of museums, defined for this context as institutions (including nonprofit organizations, government entities, and private businesses) that collect and care for objects of cultural, artistic, scientific, or historical interest and make their collections or ..."
       },
       {
         "name": "American Village",
@@ -350,7 +466,10 @@
         "rating": 4.7,
         "user_ratings_total": 207,
         "lat": 33.1379698,
-        "lon": -86.8298952
+        "lon": -86.8298952,
+        "website": "http://www.americanvillage.org/",
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Amerikamura",
+        "wikipedia_summary": "Amerikamura (also America mura; \u30a2\u30e1\u30ea\u30ab\u6751, American Village) is a sizable retail and entertainment area near Shinsaibashi in the Ch\u016b\u014d-ku district of Osaka, Japan. It is usually referred to by locals as \"Ame-mura\"."
       },
       {
         "name": "Tannehill Grist Mill",
@@ -360,7 +479,10 @@
         "rating": 4.7,
         "user_ratings_total": 123,
         "lat": 33.257711,
-        "lon": -87.0629328
+        "lon": -87.0629328,
+        "website": null,
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tannehill_Ironworks",
+        "wikipedia_summary": "The Tannehill Ironworks is the central feature of Tannehill Ironworks Historical State Park near the unincorporated town of McCalla in Tuscaloosa County, Alabama. Listed on the National Register of Historic Places as Tannehill Furnace, it was a major supplier of iron for Confederate ordnance."
       }
     ],
     "restaurants": [
@@ -372,7 +494,10 @@
         "rating": 4.6,
         "user_ratings_total": 4889,
         "lat": 33.750674,
-        "lon": -84.74932
+        "lon": -84.74932,
+        "website": "http://www.gumbeauxs.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "The Chimes Covington",
@@ -382,7 +507,10 @@
         "rating": 4.4,
         "user_ratings_total": 3987,
         "lat": 30.4735482,
-        "lon": -90.0887137
+        "lon": -90.0887137,
+        "website": "https://thechimes.com/covington/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Fin & Feathers Restaurants",
@@ -392,7 +520,10 @@
         "rating": 4.5,
         "user_ratings_total": 2200,
         "lat": 33.7253974,
-        "lon": -84.76823449999999
+        "lon": -84.76823449999999,
+        "website": "http://finandfeathersrestaurants.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Main Street Tavern",
@@ -402,17 +533,10 @@
         "rating": 4.7,
         "user_ratings_total": 1283,
         "lat": 33.1020126,
-        "lon": -86.86137389999999
-      },
-      {
-        "name": "The Old Fourth Street Filling Station",
-        "address": "871 W 4th St, Winston-Salem, NC 27101, USA",
-        "location": "Winston, GA",
-        "type": "restaurant",
-        "rating": 4.4,
-        "user_ratings_total": 1871,
-        "lat": 36.0971958,
-        "lon": -80.25665339999999
+        "lon": -86.86137389999999,
+        "website": "https://www.instagram.com/mainst_tavern?igsh=OGllNTFtamJtbXhx",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Butter Krisp Diner",
@@ -422,7 +546,10 @@
         "rating": 4.4,
         "user_ratings_total": 1846,
         "lat": 30.4758911,
-        "lon": -90.0859832
+        "lon": -90.0859832,
+        "website": "http://butterkrispdiner.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "The Bagel Meister",
@@ -432,7 +559,10 @@
         "rating": 4.7,
         "user_ratings_total": 1137,
         "lat": 33.731062699999995,
-        "lon": -84.7358115
+        "lon": -84.7358115,
+        "website": "http://www.thebagelmeister.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "High Noon Brunchery",
@@ -440,9 +570,25 @@
         "location": "Winston, GA",
         "type": "restaurant",
         "rating": 4.6,
-        "user_ratings_total": 1285,
+        "user_ratings_total": 1288,
         "lat": 33.750505,
-        "lon": -84.74993909999999
+        "lon": -84.74993909999999,
+        "website": "https://www.highnoonbrunchery.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
+      },
+      {
+        "name": "Taco Mac Douglasville",
+        "address": "7397 Douglas Blvd, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 2819,
+        "lat": 33.7243989,
+        "lon": -84.7652162,
+        "website": "https://tacomac.com/locations/7397-douglas-blvd-douglasville-ga-30135/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Abita Roasting Co. Covington",
@@ -452,7 +598,23 @@
         "rating": 4.4,
         "user_ratings_total": 1117,
         "lat": 30.4781361,
-        "lon": -90.0922038
+        "lon": -90.0922038,
+        "website": "http://abitaroasting.com/abita-roasting-co-covington/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
+      },
+      {
+        "name": "Cafe Du Monde Covington",
+        "address": "70437 LA-21 STE 100, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 1071,
+        "lat": 30.454139800000004,
+        "lon": -90.1356018,
+        "website": "http://www.cafedumonde.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Mattina Bella Restaurant",
@@ -462,17 +624,23 @@
         "rating": 4.7,
         "user_ratings_total": 628,
         "lat": 30.476665500000003,
-        "lon": -90.0951335
+        "lon": -90.0951335,
+        "website": "https://www.mattinabella.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
-        "name": "Mugshots Grill and Bar - Covington, LA",
-        "address": "300 River Highland Blvd, Covington, LA 70433, USA",
-        "location": "Covington, LA",
+        "name": "Big Whiskey's - Alabaster",
+        "address": "285 S Colonial Dr, Alabaster, AL 35007, USA",
+        "location": "Montevallo, AL",
         "type": "restaurant",
-        "rating": 4.1,
-        "user_ratings_total": 1437,
-        "lat": 30.4588336,
-        "lon": -90.0838345
+        "rating": 4.5,
+        "user_ratings_total": 513,
+        "lat": 33.2243905,
+        "lon": -86.802088,
+        "website": "https://www.bigwhiskeys.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Adventurer's Coffee Co.",
@@ -482,7 +650,10 @@
         "rating": 4.7,
         "user_ratings_total": 322,
         "lat": 33.102878,
-        "lon": -86.7518121
+        "lon": -86.7518121,
+        "website": "http://adventurerscoffee.co/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Huddle House",
@@ -492,17 +663,10 @@
         "rating": 4,
         "user_ratings_total": 852,
         "lat": 33.094543699999996,
-        "lon": -86.8538064
-      },
-      {
-        "name": "Sage Bar & Grill",
-        "address": "4979 US-31, Calera, AL 35040, USA",
-        "location": "Montevallo, AL",
-        "type": "restaurant",
-        "rating": 4.1,
-        "user_ratings_total": 514,
-        "lat": 33.1498594,
-        "lon": -86.7490797
+        "lon": -86.8538064,
+        "website": "https://huddlehouse.com/locations/al/montevallo/4653-alabama-25",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "China Garden",
@@ -512,10 +676,26 @@
         "rating": 4.2,
         "user_ratings_total": 409,
         "lat": 33.0936486,
-        "lon": -86.86504359999999
+        "lon": -86.86504359999999,
+        "website": null,
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       }
     ],
     "dog_parks": [
+      {
+        "name": "Hunter Memorial Park",
+        "address": "8830 Gurley Rd, Douglasville, GA 30134, USA",
+        "location": "Winston, GA",
+        "type": "dog_park",
+        "rating": 4.6,
+        "user_ratings_total": 1948,
+        "lat": 33.7398239,
+        "lon": -84.7706408,
+        "website": "https://www.douglasvillega.gov/Home/Components/FacilityDirectory/FacilityDirectory/4/176",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
+      },
       {
         "name": "Veterans Park",
         "address": "7305 Hwy 119, Alabaster, AL 35007, USA",
@@ -524,7 +704,10 @@
         "rating": 4.7,
         "user_ratings_total": 1190,
         "lat": 33.1865441,
-        "lon": -86.82815710000001
+        "lon": -86.82815710000001,
+        "website": "http://cityofalabaster.com/Facilities/Facility/Details/Veterans-Park-10",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Orr Park",
@@ -534,7 +717,10 @@
         "rating": 4.8,
         "user_ratings_total": 567,
         "lat": 33.097782099999996,
-        "lon": -86.8565388
+        "lon": -86.8565388,
+        "website": "https://www.cityofmontevallo.com/OrrPark.aspx",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
         "name": "Pretty Acres Dog Park",
@@ -544,27 +730,23 @@
         "rating": 4.2,
         "user_ratings_total": 166,
         "lat": 30.4387107,
-        "lon": -90.0761265
+        "lon": -90.0761265,
+        "website": null,
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       },
       {
-        "name": "Deer Lick Dog Park",
-        "address": "2105 Mack Rd, Douglasville, GA 30135, USA",
+        "name": "Winston Park Baseball Inc.",
+        "address": "13727 Veterans Memorial Hwy, Winston, GA 30187, USA",
         "location": "Winston, GA",
         "type": "dog_park",
         "rating": 4.6,
-        "user_ratings_total": 34,
-        "lat": 33.7474467,
-        "lon": -84.6834391
-      },
-      {
-        "name": "Dog River Trails",
-        "address": "Unnamed Road, Douglasville, GA 30135, USA",
-        "location": "Winston, GA",
-        "type": "dog_park",
-        "rating": 4.5,
-        "user_ratings_total": 34,
-        "lat": 33.637754099999995,
-        "lon": -84.8273509
+        "user_ratings_total": 61,
+        "lat": 33.7267542,
+        "lon": -84.82113179999999,
+        "website": "https://www.winstonparkbaseball.com/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       }
     ],
     "viewpoints": [
@@ -576,7 +758,10 @@
         "rating": 4.8,
         "user_ratings_total": 104,
         "lat": 33.5456657,
-        "lon": -86.7169239
+        "lon": -86.7169239,
+        "website": "https://ruffnermountain.org/",
+        "wikipedia_url": null,
+        "wikipedia_summary": null
       }
     ]
   }

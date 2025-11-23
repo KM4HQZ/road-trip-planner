@@ -359,12 +359,12 @@ class OSRMRouter:
         
         geometry = route_data['geometry']['coordinates']
         
-        # Sample points along the route every ~100 miles
+        # Sample points along the route every ~50 miles (more frequent for better coverage)
         cities_found = []
         seen_cities = set()
         cumulative_distance = 0
         last_check_distance = 0
-        check_interval_m = 100 * 1609.34  # Check every 100 miles
+        check_interval_m = 50 * 1609.34  # Check every 50 miles
         
         for i in range(len(geometry) - 1):
             coord1 = geometry[i]
@@ -893,8 +893,16 @@ class GooglePlacesFinder:
                 name = place.get('displayName', {}).get('text', '')
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
+                place_lat = place.get('location', {}).get('latitude', lat)
+                place_lon = place.get('location', {}).get('longitude', lon)
                 
                 if rating < 4.0 or reviews < 50:
+                    continue
+                
+                # VERIFY restaurant is actually within reasonable distance (50km max)
+                # Prevents Winston-Salem, NC results when searching Winston, GA
+                distance_km = haversine_distance(lat, lon, place_lat, place_lon, unit='km')
+                if distance_km > 50:
                     continue
                 
                 restaurant = Attraction(
@@ -904,8 +912,8 @@ class GooglePlacesFinder:
                     type='restaurant',
                     rating=rating,
                     user_ratings_total=reviews,
-                    lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon),
+                    lat=place_lat,
+                    lon=place_lon,
                     website=place.get('websiteUri', None)
                 )
                 restaurants.append(restaurant)
@@ -945,8 +953,15 @@ class GooglePlacesFinder:
                 name = place.get('displayName', {}).get('text', '')
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
+                place_lat = place.get('location', {}).get('latitude', lat)
+                place_lon = place.get('location', {}).get('longitude', lon)
                 
                 if rating < 4.0:
+                    continue
+                
+                # VERIFY dog park is actually within reasonable distance (50km max)
+                distance_km = haversine_distance(lat, lon, place_lat, place_lon, unit='km')
+                if distance_km > 50:
                     continue
                 
                 dog_park = Attraction(
@@ -956,8 +971,8 @@ class GooglePlacesFinder:
                     type='dog_park',
                     rating=rating,
                     user_ratings_total=reviews,
-                    lat=place.get('location', {}).get('latitude', lat),
-                    lon=place.get('location', {}).get('longitude', lon),
+                    lat=place_lat,
+                    lon=place_lon,
                     website=place.get('websiteUri', None)
                 )
                 dog_parks.append(dog_park)
@@ -1166,6 +1181,70 @@ class GooglePlacesFinder:
                 national_parks.append(park)
             
             # Sort by popularity (rating * log(reviews))
+            national_parks.sort(
+                key=lambda p: calculate_popularity_score(p.rating, p.user_ratings_total),
+                reverse=True
+            )
+            
+            # ADDITIONAL SEARCH: USDA National Forests (often missing from NPS search)
+            # The Forest Service manages 154 national forests across the US
+            try:
+                # Use simpler query - "National Forest Alabama" works better than "USDA"
+                forest_query = f"National Forest {state_name}"
+                forest_request = {
+                    "textQuery": forest_query,
+                    "maxResultCount": 10
+                }
+                
+                forest_response = requests.post(
+                    self.TEXT_SEARCH_URL,
+                    headers=self.headers,
+                    json=forest_request,
+                    timeout=10
+                )
+                
+                if forest_response.status_code == 200:
+                    forest_data = forest_response.json()
+                    
+                    for place in forest_data.get('places', []):
+                        name = place.get('displayName', {}).get('text', '')
+                        address = place.get('formattedAddress', '')
+                        
+                        # Verify it's in the correct state and is a National Forest
+                        if state_name not in address:
+                            continue
+                        if 'national forest' not in name.lower():
+                            continue
+                        
+                        # Check if we already have this forest (avoid duplicates)
+                        if any(p.name == name for p in national_parks):
+                            continue
+                        
+                        location = place.get('location', {})
+                        rating = place.get('rating', 4.5)  # Default rating for forests
+                        reviews = place.get('userRatingCount', 10)
+                        
+                        # Get Wikipedia info for the forest
+                        wiki_info = WikipediaHelper.search_wikipedia(name)
+                        
+                        forest = NationalPark(
+                            name=name,
+                            address=address,
+                            state=state_name,
+                            rating=rating,
+                            user_ratings_total=reviews,
+                            lat=location.get('latitude', 0.0),
+                            lon=location.get('longitude', 0.0),
+                            website=place.get('websiteUri', ''),
+                            wikipedia_url=wiki_info.get('url') if wiki_info else None,
+                            wikipedia_summary=wiki_info.get('summary') if wiki_info else None
+                        )
+                        national_parks.append(forest)
+                        
+            except Exception as forest_error:
+                print(f"    ℹ Note: Could not search USDA forests: {forest_error}")
+            
+            # Re-sort after adding forests
             national_parks.sort(
                 key=lambda p: calculate_popularity_score(p.rating, p.user_ratings_total),
                 reverse=True
@@ -1886,11 +1965,21 @@ def main():
     # 0. Find national parks in each state we pass through
     print(f"  🏞️ Finding major national parks by state...")
     states_visited = set()
+    
+    # Get states from cities found along route
     for city in all_cities:
         # Extract state from city name (format: "City, ST")
         if ', ' in city['name']:
             state_abbrev = city['name'].split(', ')[-1]
             states_visited.add(state_abbrev)
+    
+    # ALSO get states from our actual stop cities (origin, destination, via cities)
+    for stop in stops:
+        if ', ' in stop['name']:
+            state_abbrev = stop['name'].split(', ')[-1].strip()
+            # Only add if it looks like a state abbreviation (2 uppercase letters)
+            if len(state_abbrev) == 2 and state_abbrev.isupper():
+                states_visited.add(state_abbrev)
     
     # Use module-level state mapping
     for state_abbrev in sorted(states_visited):

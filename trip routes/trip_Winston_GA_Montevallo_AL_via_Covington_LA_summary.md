@@ -1,6 +1,6 @@
 # Road Trip: Winston, GA → Montevallo, AL → Covington, LA → Winston, GA
 
-*Generated: 2025-11-23 10:03:08*
+*Generated: 2025-11-23 11:34:36*
 
 ## Trip Overview
 
@@ -73,10 +73,19 @@
 - Phone: +1 985-626-4862
 - Website: https://www.medvet.com/location/mandeville/
 
+## 🏞️ Major National Parks (4 found)
+
+- **Oconee National Forest** (4.6⭐, 1,433 reviews) - Georgia
+  - Website: http://www.fs.usda.gov/main/conf/home
+- **Conecuh National Forest** (4.6⭐, 146 reviews) - Alabama
+  - Website: http://www.fs.usda.gov/alabama
+- **Kisatchie National Forest** (4.5⭐, 67 reviews) - Louisiana
+- **Talladega National Forest** (4.7⭐, 15 reviews) - Alabama
+
 ## 🌲 Parks (14 found)
 
-- **Georgia Aquarium** (4.7⭐, 85,842 reviews) - Winston, GA
-- **Sweetwater Creek State Park** (4.8⭐, 7,427 reviews) - Winston, GA
+- **Georgia Aquarium** (4.7⭐, 85,845 reviews) - Winston, GA
+- **Sweetwater Creek State Park** (4.8⭐, 7,428 reviews) - Winston, GA
 - **Six Flags Over Georgia** (4.1⭐, 33,243 reviews) - Winston, GA
 - **Oak Mountain State Park** (4.7⭐, 5,197 reviews) - ~125 mi from start
 - **Fontainebleau State Park** (4.6⭐, 3,862 reviews) - Covington, LA
@@ -108,25 +117,25 @@
 - **The Chimes Covington** (4.4⭐, 3,987 reviews) - Covington, LA
 - **Fin & Feathers Restaurants** (4.5⭐, 2,200 reviews) - Winston, GA
 - **Main Street Tavern** (4.7⭐, 1,283 reviews) - Montevallo, AL
-- **The Old Fourth Street Filling Station** (4.4⭐, 1,871 reviews) - Winston, GA
 - **Butter Krisp Diner** (4.4⭐, 1,846 reviews) - Covington, LA
 - **The Bagel Meister** (4.7⭐, 1,137 reviews) - Winston, GA
-- **High Noon Brunchery** (4.6⭐, 1,285 reviews) - Winston, GA
+- **High Noon Brunchery** (4.6⭐, 1,288 reviews) - Winston, GA
+- **Taco Mac Douglasville** (4.1⭐, 2,819 reviews) - Winston, GA
 - **Abita Roasting Co. Covington** (4.4⭐, 1,117 reviews) - Covington, LA
+- **Cafe Du Monde Covington** (4.4⭐, 1,071 reviews) - Covington, LA
 - **Mattina Bella Restaurant** (4.7⭐, 628 reviews) - Covington, LA
-- **Mugshots Grill and Bar - Covington, LA** (4.1⭐, 1,437 reviews) - Covington, LA
+- **Big Whiskey's - Alabaster** (4.5⭐, 513 reviews) - Montevallo, AL
 - **Adventurer's Coffee Co.** (4.7⭐, 322 reviews) - Montevallo, AL
 - **Huddle House** (4⭐, 852 reviews) - Montevallo, AL
-- **Sage Bar & Grill** (4.1⭐, 514 reviews) - Montevallo, AL
 - **China Garden** (4.2⭐, 409 reviews) - Montevallo, AL
 
 ## 🐾 Dog Parks (5 found)
 
+- **Hunter Memorial Park** (4.6⭐, 1,948 reviews) - Winston, GA
 - **Veterans Park** (4.7⭐, 1,190 reviews) - Montevallo, AL
 - **Orr Park** (4.8⭐, 567 reviews) - Montevallo, AL
 - **Pretty Acres Dog Park** (4.2⭐, 166 reviews) - Covington, LA
-- **Deer Lick Dog Park** (4.6⭐, 34 reviews) - Winston, GA
-- **Dog River Trails** (4.5⭐, 34 reviews) - Winston, GA
+- **Winston Park Baseball Inc.** (4.6⭐, 61 reviews) - Winston, GA
 
 ## 📸 Scenic Viewpoints (1 found)
 
