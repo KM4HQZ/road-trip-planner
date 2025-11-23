@@ -1211,9 +1211,32 @@ def create_trip_map(
             # Estimate driving time at 60 mph average
             hours = distance_mi / 60.0
             
-            # Calculate midpoint for marker placement
-            mid_lat = (current_stop['lat'] + next_stop['lat']) / 2
-            mid_lon = (current_stop['lon'] + next_stop['lon']) / 2
+            # Find midpoint along the actual route geometry, not straight line
+            # Find route points between these two stops
+            route_coords = route_geometry  # [lat, lon] format
+            
+            # Find indices of closest points on route to each stop
+            def find_closest_point_index(lat, lon, coords):
+                min_dist = float('inf')
+                min_idx = 0
+                for idx, coord in enumerate(coords):
+                    dist = haversine_miles(lat, lon, coord[0], coord[1])
+                    if dist < min_dist:
+                        min_dist = dist
+                        min_idx = idx
+                return min_idx
+            
+            start_idx = find_closest_point_index(current_stop['lat'], current_stop['lon'], route_coords)
+            end_idx = find_closest_point_index(next_stop['lat'], next_stop['lon'], route_coords)
+            
+            # Get the midpoint index along the route
+            mid_idx = (start_idx + end_idx) // 2
+            if mid_idx < len(route_coords):
+                mid_lat, mid_lon = route_coords[mid_idx][0], route_coords[mid_idx][1]
+            else:
+                # Fallback to geometric midpoint
+                mid_lat = (current_stop['lat'] + next_stop['lat']) / 2
+                mid_lon = (current_stop['lon'] + next_stop['lon']) / 2
             
             # Format time display
             if hours >= 1:
