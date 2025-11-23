@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-23 09:49:35",
+  "generated": "2025-11-23 10:03:08",
   "origin": "Winston, GA",
   "destination": "Montevallo, AL",
   "via_cities": [
@@ -405,6 +405,16 @@
         "lon": -86.86137389999999
       },
       {
+        "name": "The Old Fourth Street Filling Station",
+        "address": "871 W 4th St, Winston-Salem, NC 27101, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 1871,
+        "lat": 36.0971958,
+        "lon": -80.25665339999999
+      },
+      {
         "name": "Butter Krisp Diner",
         "address": "1105 Business 190, Covington, LA 70433, USA",
         "location": "Covington, LA",
@@ -435,16 +445,6 @@
         "lon": -84.74993909999999
       },
       {
-        "name": "Thumbs Up Diner",
-        "address": "5935 Stewart Pkwy, Douglasville, GA 30135, USA",
-        "location": "Winston, GA",
-        "type": "restaurant",
-        "rating": 4.2,
-        "user_ratings_total": 1909,
-        "lat": 33.7169422,
-        "lon": -84.772486
-      },
-      {
         "name": "Abita Roasting Co. Covington",
         "address": "1011 Village Walk, Covington, LA 70433, USA",
         "location": "Covington, LA",
@@ -455,16 +455,6 @@
         "lon": -90.0922038
       },
       {
-        "name": "Cafe Du Monde Covington",
-        "address": "70437 LA-21 STE 100, Covington, LA 70433, USA",
-        "location": "Covington, LA",
-        "type": "restaurant",
-        "rating": 4.4,
-        "user_ratings_total": 1071,
-        "lat": 30.454139800000004,
-        "lon": -90.1356018
-      },
-      {
         "name": "Mattina Bella Restaurant",
         "address": "421 E Gibson St, Covington, LA 70433, USA",
         "location": "Covington, LA",
@@ -473,6 +463,16 @@
         "user_ratings_total": 628,
         "lat": 30.476665500000003,
         "lon": -90.0951335
+      },
+      {
+        "name": "Mugshots Grill and Bar - Covington, LA",
+        "address": "300 River Highland Blvd, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 1437,
+        "lat": 30.4588336,
+        "lon": -90.0838345
       },
       {
         "name": "Adventurer's Coffee Co.",
@@ -517,16 +517,6 @@
     ],
     "dog_parks": [
       {
-        "name": "Hunter Memorial Park",
-        "address": "8830 Gurley Rd, Douglasville, GA 30134, USA",
-        "location": "Winston, GA",
-        "type": "dog_park",
-        "rating": 4.6,
-        "user_ratings_total": 1948,
-        "lat": 33.7398239,
-        "lon": -84.7706408
-      },
-      {
         "name": "Veterans Park",
         "address": "7305 Hwy 119, Alabaster, AL 35007, USA",
         "location": "Montevallo, AL",
@@ -557,14 +547,24 @@
         "lon": -90.0761265
       },
       {
-        "name": "Winston Park Baseball Inc.",
-        "address": "13727 Veterans Memorial Hwy, Winston, GA 30187, USA",
+        "name": "Deer Lick Dog Park",
+        "address": "2105 Mack Rd, Douglasville, GA 30135, USA",
         "location": "Winston, GA",
         "type": "dog_park",
         "rating": 4.6,
-        "user_ratings_total": 61,
-        "lat": 33.7267542,
-        "lon": -84.82113179999999
+        "user_ratings_total": 34,
+        "lat": 33.7474467,
+        "lon": -84.6834391
+      },
+      {
+        "name": "Dog River Trails",
+        "address": "Unnamed Road, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "dog_park",
+        "rating": 4.5,
+        "user_ratings_total": 34,
+        "lat": 33.637754099999995,
+        "lon": -84.8273509
       }
     ],
     "viewpoints": [

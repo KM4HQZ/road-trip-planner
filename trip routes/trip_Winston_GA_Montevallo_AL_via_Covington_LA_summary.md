@@ -1,6 +1,6 @@
 # Road Trip: Winston, GA → Montevallo, AL → Covington, LA → Winston, GA
 
-*Generated: 2025-11-23 09:49:35*
+*Generated: 2025-11-23 10:03:08*
 
 ## Trip Overview
 
@@ -108,13 +108,13 @@
 - **The Chimes Covington** (4.4⭐, 3,987 reviews) - Covington, LA
 - **Fin & Feathers Restaurants** (4.5⭐, 2,200 reviews) - Winston, GA
 - **Main Street Tavern** (4.7⭐, 1,283 reviews) - Montevallo, AL
+- **The Old Fourth Street Filling Station** (4.4⭐, 1,871 reviews) - Winston, GA
 - **Butter Krisp Diner** (4.4⭐, 1,846 reviews) - Covington, LA
 - **The Bagel Meister** (4.7⭐, 1,137 reviews) - Winston, GA
 - **High Noon Brunchery** (4.6⭐, 1,285 reviews) - Winston, GA
-- **Thumbs Up Diner** (4.2⭐, 1,909 reviews) - Winston, GA
 - **Abita Roasting Co. Covington** (4.4⭐, 1,117 reviews) - Covington, LA
-- **Cafe Du Monde Covington** (4.4⭐, 1,071 reviews) - Covington, LA
 - **Mattina Bella Restaurant** (4.7⭐, 628 reviews) - Covington, LA
+- **Mugshots Grill and Bar - Covington, LA** (4.1⭐, 1,437 reviews) - Covington, LA
 - **Adventurer's Coffee Co.** (4.7⭐, 322 reviews) - Montevallo, AL
 - **Huddle House** (4⭐, 852 reviews) - Montevallo, AL
 - **Sage Bar & Grill** (4.1⭐, 514 reviews) - Montevallo, AL
@@ -122,11 +122,11 @@
 
 ## 🐾 Dog Parks (5 found)
 
-- **Hunter Memorial Park** (4.6⭐, 1,948 reviews) - Winston, GA
 - **Veterans Park** (4.7⭐, 1,190 reviews) - Montevallo, AL
 - **Orr Park** (4.8⭐, 567 reviews) - Montevallo, AL
 - **Pretty Acres Dog Park** (4.2⭐, 166 reviews) - Covington, LA
-- **Winston Park Baseball Inc.** (4.6⭐, 61 reviews) - Winston, GA
+- **Deer Lick Dog Park** (4.6⭐, 34 reviews) - Winston, GA
+- **Dog River Trails** (4.5⭐, 34 reviews) - Winston, GA
 
 ## 📸 Scenic Viewpoints (1 found)
 
