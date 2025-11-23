@@ -923,7 +923,8 @@ class GooglePlacesFinder:
             List of NationalPark objects
         """
         # Search for all types of National Park Service sites
-        search_query = f"National Park Service {state_name}"
+        # Use a broader search to catch all variations
+        search_query = f"national historic OR national park OR national monument {state_name}"
         
         request_body = {
             "textQuery": search_query,
