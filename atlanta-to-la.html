@@ -1,554 +1,278 @@
-<!DOCTYPE html><!DOCTYPE html>
-
-<html lang="en"><html>
-
-<head><head>
-
-    <meta charset="UTF-8">    
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
-    <title>Road Trip Planner - Example Trips</title>    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-
-    <style>    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-        * {    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
-            margin: 0;    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-
-            padding: 0;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-
-            box-sizing: border-box;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-
-        }    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
-
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-
-        body {    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    
-
-            min-height: 100vh;            <meta name="viewport" content="width=device-width,
-
-            padding: 20px;                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-        }            <style>
-
-                        #map_999332ce2b592126fe37469fbd890ab3 {
-
-        .container {                    position: relative;
-
-            max-width: 1000px;                    width: 100.0%;
-
-            margin: 0 auto;                    height: 100.0%;
-
-        }                    left: 0.0%;
-
-                            top: 0.0%;
-
-        header {                }
-
-            text-align: center;                .leaflet-container { font-size: 1rem; }
-
-            color: white;            </style>
-
-            margin-bottom: 40px;
-
-            padding: 40px 20px;            <style>html, body {
-
-        }                width: 100%;
-
-                        height: 100%;
-
-        h1 {                margin: 0;
-
-            font-size: 3em;                padding: 0;
-
-            margin-bottom: 10px;            }
-
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);            </style>
-
-        }
-
-                    <style>#map {
-
-        .subtitle {                position:absolute;
-
-            font-size: 1.2em;                top:0;
-
-            opacity: 0.9;                bottom:0;
-
-        }                right:0;
-
-                        left:0;
-
-        .trips-grid {                }
-
-            display: grid;            </style>
-
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-            gap: 30px;            <script>
-
-            margin-bottom: 40px;                L_NO_TOUCH = false;
-
-        }                L_DISABLE_3D = false;
-
-                    </script>
-
-        .trip-card {
-
-            background: white;        
-
-            border-radius: 12px;    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
-
-            padding: 30px;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
-
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
-
-            transition: transform 0.3s ease, box-shadow 0.3s ease;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
-
-        }</head>
-
-        <body>
-
-        .trip-card:hover {    
-
-            transform: translateY(-5px);    
-
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);    <script>
-
-        }    // Wait for map to load
-
-            window.addEventListener('load', function() {
-
-        .trip-card h2 {        // Find the layer control
-
-            color: #2E86AB;        var layerControl = document.querySelector('.leaflet-control-layers');
-
-            font-size: 1.5em;        if (layerControl) {
-
-            margin-bottom: 15px;            // Create button container
-
-        }            var buttonDiv = document.createElement('div');
-
-                    buttonDiv.style.padding = '6px 10px';
-
-        .route {            buttonDiv.style.backgroundColor = '#fff';
-
-            background: #f0f4f8;            buttonDiv.style.borderTop = '1px solid #ddd';
-
-            padding: 15px;            buttonDiv.style.marginTop = '5px';
-
-            border-radius: 8px;            
-
-            margin: 15px 0;            // Create the button
-
-            font-size: 0.95em;            var toggleButton = document.createElement('button');
-
-            line-height: 1.6;            toggleButton.innerHTML = '☑️ Toggle All';
-
-        }            toggleButton.style.width = '100%';
-
-                    toggleButton.style.padding = '5px';
-
-        .route strong {            toggleButton.style.cursor = 'pointer';
-
-            color: #2E86AB;            toggleButton.style.backgroundColor = '#f4f4f4';
-
-        }            toggleButton.style.border = '1px solid #ccc';
-
-                    toggleButton.style.borderRadius = '3px';
-
-        .stats {            toggleButton.style.fontSize = '12px';
-
-            display: flex;            toggleButton.style.fontWeight = 'bold';
-
-            justify-content: space-between;            
-
-            margin: 15px 0;            // Add hover effect
-
-            padding: 15px;            toggleButton.onmouseover = function() {
-
-            background: #fff8e1;                this.style.backgroundColor = '#e0e0e0';
-
-            border-radius: 8px;            };
-
-        }            toggleButton.onmouseout = function() {
-
-                        this.style.backgroundColor = '#f4f4f4';
-
-        .stat {            };
-
-            text-align: center;            
-
-        }            // Add click handler
-
-                    toggleButton.onclick = function() {
-
-        .stat-value {                var overlayInputs = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
-
-            font-size: 1.3em;                var allChecked = true;
-
-            font-weight: bold;                
-
-            color: #2E86AB;                // Check if all are currently checked
-
-        }                overlayInputs.forEach(function(input) {
-
-                            if (!input.checked) {
-
-        .stat-label {                        allChecked = false;
-
-            font-size: 0.85em;                    }
-
-            color: #666;                });
-
-            margin-top: 5px;                
-
-        }                // Toggle all to opposite state
-
-                        overlayInputs.forEach(function(input) {
-
-        .btn {                    if (allChecked && input.checked) {
-
-            display: inline-block;                        input.click();
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);                    } else if (!allChecked && !input.checked) {
-
-            color: white;                        input.click();
-
-            padding: 15px 30px;                    }
-
-            border-radius: 8px;                });
-
-            text-decoration: none;            };
-
-            font-weight: bold;            
-
-            text-align: center;            buttonDiv.appendChild(toggleButton);
-
-            transition: opacity 0.3s ease;            
-
-            width: 100%;            // Insert button into layer control
-
-            margin-top: 15px;            var overlaysSection = document.querySelector('.leaflet-control-layers-overlays');
-
-        }            if (overlaysSection) {
-
-                        overlaysSection.parentNode.appendChild(buttonDiv);
-
-        .btn:hover {            }
-
-            opacity: 0.9;        }
-
-        }    });
-
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_999332ce2b592126fe37469fbd890ab3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
             </script>
 
-        .highlights {    
-
-            margin: 15px 0;    
-
-            padding: 15px;    <div style="position: fixed; 
-
-            background: #e8f5e9;                top: 10px; left: 50px; width: 400px; height: 60px; 
-
-            border-radius: 8px;                background-color: white; border: 2px solid grey; z-index:9999; 
-
-            font-size: 0.9em;                font-size: 18px; padding: 10px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
-
-        }        <b>Road Trip: Atlanta, GA → Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA</b><br>
-
-                <span style="font-size: 14px;">Generated: 2025-11-22</span>
-
-        .highlights ul {    </div>
-
-            list-style: none;    
-
-            padding-left: 0;    
-
-        }            <div class="folium-map" id="map_999332ce2b592126fe37469fbd890ab3" ></div>
-
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <script>
+    // Wait for map to load
+    window.addEventListener('load', function() {
+        // Find the layer control
+        var layerControl = document.querySelector('.leaflet-control-layers');
+        if (layerControl) {
+            // Create button container
+            var buttonDiv = document.createElement('div');
+            buttonDiv.style.padding = '6px 10px';
+            buttonDiv.style.backgroundColor = '#fff';
+            buttonDiv.style.borderTop = '1px solid #ddd';
+            buttonDiv.style.marginTop = '5px';
+            
+            // Create the button
+            var toggleButton = document.createElement('button');
+            toggleButton.innerHTML = '☑️ Toggle All';
+            toggleButton.style.width = '100%';
+            toggleButton.style.padding = '5px';
+            toggleButton.style.cursor = 'pointer';
+            toggleButton.style.backgroundColor = '#f4f4f4';
+            toggleButton.style.border = '1px solid #ccc';
+            toggleButton.style.borderRadius = '3px';
+            toggleButton.style.fontSize = '12px';
+            toggleButton.style.fontWeight = 'bold';
+            
+            // Add hover effect
+            toggleButton.onmouseover = function() {
+                this.style.backgroundColor = '#e0e0e0';
+            };
+            toggleButton.onmouseout = function() {
+                this.style.backgroundColor = '#f4f4f4';
+            };
+            
+            // Add click handler
+            toggleButton.onclick = function() {
+                var overlayInputs = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
+                var allChecked = true;
                 
+                // Check if all are currently checked
+                overlayInputs.forEach(function(input) {
+                    if (!input.checked) {
+                        allChecked = false;
+                    }
+                });
+                
+                // Toggle all to opposite state
+                overlayInputs.forEach(function(input) {
+                    if (allChecked && input.checked) {
+                        input.click();
+                    } else if (!allChecked && !input.checked) {
+                        input.click();
+                    }
+                });
+            };
+            
+            buttonDiv.appendChild(toggleButton);
+            
+            // Insert button into layer control
+            var overlaysSection = document.querySelector('.leaflet-control-layers-overlays');
+            if (overlaysSection) {
+                overlaysSection.parentNode.appendChild(buttonDiv);
+            }
+        }
+    });
+    </script>
+    
+    
+    <div style="position: fixed; 
+                top: 10px; left: 50px; width: 400px; height: 60px; 
+                background-color: white; border: 2px solid grey; z-index:9999; 
+                font-size: 18px; padding: 10px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
+        <b>Road Trip: Atlanta, GA → Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA</b><br>
+        <span style="font-size: 14px;">Generated: 2025-11-22</span>
+    </div>
+    
+    
+            <div class="folium-map" id="map_999332ce2b592126fe37469fbd890ab3" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_999332ce2b592126fe37469fbd890ab3 = L.map(
+                "map_999332ce2b592126fe37469fbd890ab3",
+                {
+                    center: [36.673795384970816, -100.58869671900837],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
 
-        .highlights li {</body>
-
-            padding: 5px 0;<script>
-
-        }    
+                }
+            );
 
             
 
-        .highlights li:before {            var map_999332ce2b592126fe37469fbd890ab3 = L.map(
+        
+    
+            var tile_layer_2124529ac8df3ad97d957efe182da049 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
 
-            content: "✓ ";                "map_999332ce2b592126fe37469fbd890ab3",
+            );
+        
+    
+            tile_layer_2124529ac8df3ad97d957efe182da049.addTo(map_999332ce2b592126fe37469fbd890ab3);
+        
+    
+            var tile_layer_96fe78011897f38a8dd8c6df31162d43 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
 
-            color: #4caf50;                {
+            );
+        
+    
+            tile_layer_96fe78011897f38a8dd8c6df31162d43.addTo(map_999332ce2b592126fe37469fbd890ab3);
+        
+    
+            var tile_layer_59335985353abb731b172441a50b3d8b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
 
-            font-weight: bold;                    center: [36.673795384970816, -100.58869671900837],
-
-            margin-right: 8px;                    crs: L.CRS.EPSG3857,
-
-        }                    ...{
-
-          "zoom": 5,
-
-        footer {  "zoomControl": true,
-
-            text-align: center;  "preferCanvas": false,
-
-            color: white;}
-
-            padding: 30px 20px;
-
-            margin-top: 40px;                }
-
-        }            );
+            );
+        
+    
+            tile_layer_59335985353abb731b172441a50b3d8b.addTo(map_999332ce2b592126fe37469fbd890ab3);
+        
+    
+            var feature_group_9605841e3c19e02e944e77b37cdb62f6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_6623ad5e4e4b6c1af07d1a24dab91842 = L.marker(
+                [37.752517499999996, -89.19658949999999],
+                {
+}
+            ).addTo(feature_group_9605841e3c19e02e944e77b37cdb62f6);
+        
+    
+            var div_icon_186261284cbace3b569396f348bb1b96 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"font-size: 11px; font-weight: bold; background-color: rgba(255, 255, 255, 0.95); \n                        border: 2px solid #2E86AB; border-radius: 4px; padding: 2px 5px;\n                        box-shadow: 2px 2px 6px rgba(0,0,0,0.4); white-space: nowrap;\n                        text-align: center;\"\u003e\n                245 mi\u003cbr\u003e4h 5m\n            \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_39fd74f5e769b1b857ec2790ce288f4a = L.popup({
+  "maxWidth": "100%",
+});
 
         
-
-        footer a {            
-
-            color: white;
-
-            text-decoration: none;        
-
-            font-weight: bold;    
-
-            border-bottom: 2px solid white;            var tile_layer_2124529ac8df3ad97d957efe182da049 = L.tileLayer(
-
-            transition: opacity 0.3s ease;                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-
-        }                {
-
-          "minZoom": 0,
-
-        footer a:hover {  "maxZoom": 20,
-
-            opacity: 0.8;  "maxNativeZoom": 20,
-
-        }  "noWrap": false,
-
-          "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
-
-        @media (max-width: 768px) {  "subdomains": "abcd",
-
-            h1 {  "detectRetina": false,
-
-                font-size: 2em;  "tms": false,
-
-            }  "opacity": 1,
-
-            }
-
-            .stats {
-
-                flex-direction: column;            );
-
-                gap: 10px;        
-
-            }    
-
-        }            tile_layer_2124529ac8df3ad97d957efe182da049.addTo(map_999332ce2b592126fe37469fbd890ab3);
-
-    </style>        
-
-</head>    
-
-<body>            var tile_layer_96fe78011897f38a8dd8c6df31162d43 = L.tileLayer(
-
-    <div class="container">                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-
-        <header>                {
-
-            <h1>🚗 Road Trip Planner 🗺️</h1>  "minZoom": 0,
-
-            <p class="subtitle">Automatic pet-friendly road trip planning with hotels, vets, parks & attractions</p>  "maxZoom": 20,
-
-        </header>  "maxNativeZoom": 20,
-
-          "noWrap": false,
-
-        <div class="trips-grid">  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
-
-            <!-- Trip 1: Atlanta to Los Angeles -->  "subdomains": "abcd",
-
-            <div class="trip-card">  "detectRetina": false,
-
-                <h2>🌄 Cross-Country Adventure</h2>  "tms": false,
-
-                  "opacity": 1,
-
-                <div class="route">}
-
-                    <strong>Route:</strong><br>
-
-                    Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA            );
-
-                </div>        
-
-                    
-
-                <div class="stats">            tile_layer_96fe78011897f38a8dd8c6df31162d43.addTo(map_999332ce2b592126fe37469fbd890ab3);
-
-                    <div class="stat">        
-
-                        <div class="stat-value">4,652</div>    
-
-                        <div class="stat-label">miles</div>            var tile_layer_59335985353abb731b172441a50b3d8b = L.tileLayer(
-
-                    </div>                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-
-                    <div class="stat">                {
-
-                        <div class="stat-value">82</div>  "minZoom": 0,
-
-                        <div class="stat-label">hours</div>  "maxZoom": 19,
-
-                    </div>  "maxNativeZoom": 19,
-
-                    <div class="stat">  "noWrap": false,
-
-                        <div class="stat-value">217</div>  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-
-                        <div class="stat-label">attractions</div>  "subdomains": "abc",
-
-                    </div>  "detectRetina": false,
-
-                </div>  "tms": false,
-
-                  "opacity": 1,
-
-                <div class="highlights">}
-
-                    <ul>
-
-                        <li>20 strategic stops</li>            );
-
-                        <li>16 pet-friendly hotels</li>        
-
-                        <li>129 parks & viewpoints</li>    
-
-                        <li>25 museums & cultural sites</li>            tile_layer_59335985353abb731b172441a50b3d8b.addTo(map_999332ce2b592126fe37469fbd890ab3);
-
-                    </ul>        
-
-                </div>    
-
-                            var feature_group_9605841e3c19e02e944e77b37cdb62f6 = L.featureGroup(
-
-                <a href="atlanta-to-la.html" class="btn">                {
-
-                    View Interactive Map →}
-
-                </a>            );
-
-            </div>        
-
-                
-
-            <!-- Trip 2: Winston to Covington -->            var marker_6623ad5e4e4b6c1af07d1a24dab91842 = L.marker(
-
-            <div class="trip-card">                [37.752517499999996, -89.19658949999999],
-
-                <h2>🌲 Southern States Tour</h2>                {
-
-                }
-
-                <div class="route">            ).addTo(feature_group_9605841e3c19e02e944e77b37cdb62f6);
-
-                    <strong>Route:</strong><br>        
-
-                    Winston, GA → Montevallo, AL → Covington, LA → Winston, GA    
-
-                </div>            var div_icon_186261284cbace3b569396f348bb1b96 = L.divIcon({
-
-                  "html": "\n            \u003cdiv style=\"font-size: 11px; font-weight: bold; background-color: rgba(255, 255, 255, 0.95); \n                        border: 2px solid #2E86AB; border-radius: 4px; padding: 2px 5px;\n                        box-shadow: 2px 2px 6px rgba(0,0,0,0.4); white-space: nowrap;\n                        text-align: center;\"\u003e\n                245 mi\u003cbr\u003e4h 5m\n            \u003c/div\u003e\n            ",
-
-                <div class="stats">  "className": "empty",
-
-                    <div class="stat">});
-
-                        <div class="stat-value">926</div>        
-
-                        <div class="stat-label">miles</div>    
-
-                    </div>        var popup_39fd74f5e769b1b857ec2790ce288f4a = L.popup({
-
-                    <div class="stat">  "maxWidth": "100%",
-
-                        <div class="stat-value">17</div>});
-
-                        <div class="stat-label">hours</div>
-
-                    </div>        
-
-                    <div class="stat">            
-
-                        <div class="stat-value">67</div>                var html_0f6cd9c77bae531440e0b1ef11d40e2e = $(`<div id="html_0f6cd9c77bae531440e0b1ef11d40e2e" style="width: 100.0%; height: 100.0%;"><b>Oak Grove, KY → Wright City, MO</b><br>245.4 miles<br>~4h 5m driving</div>`)[0];
-
-                        <div class="stat-label">attractions</div>                popup_39fd74f5e769b1b857ec2790ce288f4a.setContent(html_0f6cd9c77bae531440e0b1ef11d40e2e);
-
-                    </div>            
-
-                </div>        
-
-                
-
-                <div class="highlights">        marker_6623ad5e4e4b6c1af07d1a24dab91842.bindPopup(popup_39fd74f5e769b1b857ec2790ce288f4a)
-
-                    <ul>        ;
-
-                        <li>6 strategic stops</li>
-
-                        <li>5 pet-friendly hotels</li>        
-
-                        <li>19 parks & viewpoints</li>    
-
-                        <li>25 dog-friendly restaurants</li>    
-
-                    </ul>                marker_6623ad5e4e4b6c1af07d1a24dab91842.setIcon(div_icon_186261284cbace3b569396f348bb1b96);
-
-                </div>            
-
-                    
-
-                <a href="trip routes/trip_Winston_GA_Montevallo_AL_via_Covington_LA.html" class="btn">            var marker_1c265bae96501c086d6dfe7520ffd8c1 = L.marker(
-
-                    View Interactive Map →                [38.9444095, -93.67964699999999],
-
-                </a>                {
-
-            </div>}
-
-        </div>            ).addTo(feature_group_9605841e3c19e02e944e77b37cdb62f6);
-
-                
-
-        <footer>    
-
-            <p>            var div_icon_ccfd5baa3a8219077faceee4875f53df = L.divIcon({
-
-                <a href="https://github.com/KM4HQZ/road-trip-planner" target="_blank">📂 View Source Code on GitHub</a>  "html": "\n            \u003cdiv style=\"font-size: 11px; font-weight: bold; background-color: rgba(255, 255, 255, 0.95); \n                        border: 2px solid #2E86AB; border-radius: 4px; padding: 2px 5px;\n                        box-shadow: 2px 2px 6px rgba(0,0,0,0.4); white-space: nowrap;\n                        text-align: center;\"\u003e\n                290 mi\u003cbr\u003e4h 49m\n            \u003c/div\u003e\n            ",
-
-            </p>  "className": "empty",
-
-            <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9em;">});
-
-                Built with Google Places API, OpenStreetMap, OSRM & Folium        
-
-            </p>    
-
-        </footer>        var popup_5709bc65c21a1b4d49dd92f90bf7d8bf = L.popup({
-
-    </div>  "maxWidth": "100%",
-
-</body>});
-
-</html>
+            
+                var html_0f6cd9c77bae531440e0b1ef11d40e2e = $(`<div id="html_0f6cd9c77bae531440e0b1ef11d40e2e" style="width: 100.0%; height: 100.0%;"><b>Oak Grove, KY → Wright City, MO</b><br>245.4 miles<br>~4h 5m driving</div>`)[0];
+                popup_39fd74f5e769b1b857ec2790ce288f4a.setContent(html_0f6cd9c77bae531440e0b1ef11d40e2e);
+            
+        
+
+        marker_6623ad5e4e4b6c1af07d1a24dab91842.bindPopup(popup_39fd74f5e769b1b857ec2790ce288f4a)
+        ;
+
+        
+    
+    
+                marker_6623ad5e4e4b6c1af07d1a24dab91842.setIcon(div_icon_186261284cbace3b569396f348bb1b96);
+            
+    
+            var marker_1c265bae96501c086d6dfe7520ffd8c1 = L.marker(
+                [38.9444095, -93.67964699999999],
+                {
+}
+            ).addTo(feature_group_9605841e3c19e02e944e77b37cdb62f6);
+        
+    
+            var div_icon_ccfd5baa3a8219077faceee4875f53df = L.divIcon({
+  "html": "\n            \u003cdiv style=\"font-size: 11px; font-weight: bold; background-color: rgba(255, 255, 255, 0.95); \n                        border: 2px solid #2E86AB; border-radius: 4px; padding: 2px 5px;\n                        box-shadow: 2px 2px 6px rgba(0,0,0,0.4); white-space: nowrap;\n                        text-align: center;\"\u003e\n                290 mi\u003cbr\u003e4h 49m\n            \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_5709bc65c21a1b4d49dd92f90bf7d8bf = L.popup({
+  "maxWidth": "100%",
+});
 
         
             

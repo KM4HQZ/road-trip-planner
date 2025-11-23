@@ -1,0 +1,883 @@
+{
+  "generated": "2025-11-22 16:35:43",
+  "origin": "Winston, GA",
+  "destination": "Montevallo, AL",
+  "via_cities": [
+    "Covington, LA"
+  ],
+  "roundtrip": false,
+  "total_distance_miles": 925.7,
+  "total_duration_hours": 17.3,
+  "stops": [
+    {
+      "name": "Winston, GA",
+      "lat": 33.725108,
+      "lon": -84.8249382,
+      "type": "start",
+      "stop_number": 0
+    },
+    {
+      "name": "Lauderdale County, MS",
+      "lat": 32.250359,
+      "lon": -88.825116,
+      "type": "stop",
+      "stop_number": 1
+    },
+    {
+      "name": "Haralson County, GA",
+      "lat": 33.687069,
+      "lon": -85.239471,
+      "type": "stop",
+      "stop_number": 2
+    },
+    {
+      "name": "Montevallo, AL",
+      "lat": 33.1006746,
+      "lon": -86.8641558,
+      "type": "destination",
+      "stop_number": 3
+    },
+    {
+      "name": "Covington, LA",
+      "lat": 30.4753525,
+      "lon": -90.1010474,
+      "type": "via",
+      "stop_number": 4
+    },
+    {
+      "name": "Winston, GA (return)",
+      "lat": 33.725108,
+      "lon": -84.8249382,
+      "type": "return",
+      "stop_number": 5
+    }
+  ],
+  "hotels": {
+    "Winston, GA": {
+      "name": "La Quinta Inn & Suites by Wyndham Atlanta Douglasville",
+      "address": "1000 Linnenkohl Dr, Douglasville, GA 30134, USA",
+      "location": "Winston, GA",
+      "rating": 4.3,
+      "user_ratings_total": 964,
+      "price_level": null,
+      "place_id": "ChIJ93QaGDMm9YgRsSTn42HuJqo",
+      "lat": 33.731432399999996,
+      "lon": -84.76047969999999,
+      "phone": "+1 770-577-3838",
+      "website": "https://www.wyndhamhotels.com/laquinta/douglasville-georgia/la-quinta-atlanta-douglasville/overview?CID=LC:6ysy27krtpcrqev:53086&iata=00093796",
+      "score": 12.833467447378307
+    },
+    "Lauderdale County, MS": {
+      "name": "Drury Inn & Suites Meridian",
+      "address": "112 US-11, Meridian, MS 39301, USA",
+      "location": "Lauderdale County, MS",
+      "rating": 4.5,
+      "user_ratings_total": 1566,
+      "price_level": null,
+      "place_id": "ChIJr5x8BRxjhIgRUcbQC2SlhC4",
+      "lat": 32.3698969,
+      "lon": -88.6717808,
+      "phone": "+1 601-483-5570",
+      "website": "https://www.druryhotels.com/locations/meridian-ms/drury-inn-and-suites-meridian?utm_campaign=gmb&utm_medium=organic&utm_source=local2",
+      "score": 14.377810484108657
+    },
+    "Haralson County, GA": {
+      "name": "Courtyard by Marriott Carrollton",
+      "address": "180 Barnes Ave, Carrollton, GA 30117, USA",
+      "location": "Haralson County, GA",
+      "rating": 4.5,
+      "user_ratings_total": 776,
+      "price_level": null,
+      "place_id": "ChIJ0X_eshAvi4gRjNJ34P9iNRQ",
+      "lat": 33.581444499999996,
+      "lon": -85.07670379999999,
+      "phone": "+1 678-664-5200",
+      "website": "https://www.marriott.com/en-us/hotels/atlll-courtyard-carrollton/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
+      "score": 13.006894584604114
+    },
+    "Montevallo, AL": {
+      "name": "Hampton Inn Calera",
+      "address": "93 Metro Dr, Calera, AL 35040, USA",
+      "location": "Montevallo, AL",
+      "rating": 4.5,
+      "user_ratings_total": 879,
+      "price_level": null,
+      "place_id": "ChIJjyfcV_AtiYgRXcWqOerbhpY",
+      "lat": 33.1482548,
+      "lon": -86.7513271,
+      "phone": "+1 205-668-6565",
+      "website": "https://www.hilton.com/en/hotels/calalhx-hampton-calera/?SEO_id=GMB-AMER-HX-CALALHX&y_source=1_MjA4NTI5Ni03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+      "score": 13.25017202467576
+    },
+    "Covington, LA": {
+      "name": "Holiday Inn Covington by IHG",
+      "address": "45 Louis Prima Dr, Covington, LA 70433, USA",
+      "location": "Covington, LA",
+      "rating": 4.6,
+      "user_ratings_total": 695,
+      "price_level": null,
+      "place_id": "ChIJ_fNP-QZcJ4YRq_JR_D92suA",
+      "lat": 30.4393871,
+      "lon": -90.08039649999999,
+      "phone": "+1 985-888-1200",
+      "website": "https://www.ihg.com/holidayinn/hotels/us/en/covington/msyvd/hoteldetail?cm_mmc=GoogleMaps-_-HI-_-US-_-MSYVD",
+      "score": 13.076002502208585
+    }
+  },
+  "vets": {
+    "Winston, GA": {
+      "name": "East Paulding Animal Hospital",
+      "address": "3041 Charles Hardy Pkwy, Dallas, GA 30157, USA",
+      "location": "Winston, GA",
+      "rating": 4.8,
+      "user_ratings_total": 919,
+      "place_id": "ChIJ9zNEBEg69YgRGufInn7JLYY",
+      "lat": 33.929403,
+      "lon": -84.741491,
+      "phone": "+1 770-445-7300",
+      "website": "https://pethospital.net/",
+      "is_24_hours": false,
+      "score": 14.226181571258664
+    },
+    "Lauderdale County, MS": {
+      "name": "Till-Newell Animal Hospital",
+      "address": "5140 Dale Dr, Marion, MS 39342, USA",
+      "location": "Lauderdale County, MS",
+      "rating": 4.8,
+      "user_ratings_total": 335,
+      "place_id": "ChIJEUX1TKR9hIgRJGoqr6OnDGk",
+      "lat": 32.413497299999996,
+      "lon": -88.6553674,
+      "phone": "+1 601-485-8049",
+      "website": "http://www.tillnewellanimalhospital.com/",
+      "is_24_hours": false,
+      "score": 12.126428531471252
+    },
+    "Haralson County, GA": {
+      "name": "Bowdon Animal Hospital",
+      "address": "145 City Hall Ave, Bowdon, GA 30108, USA",
+      "location": "Haralson County, GA",
+      "rating": 4.8,
+      "user_ratings_total": 745,
+      "place_id": "ChIJ_wzKArgii4gRE46ozTa7VFI",
+      "lat": 33.5382482,
+      "lon": -85.2500895,
+      "phone": "+1 770-258-3256",
+      "website": "http://www.bowdonanimalhospital.net/",
+      "is_24_hours": false,
+      "score": 13.789146371868808
+    },
+    "Montevallo, AL": {
+      "name": "Helena Veterinary Clinic",
+      "address": "1888 Co Rd 95, Helena, AL 35080, USA",
+      "location": "Montevallo, AL",
+      "rating": 4.8,
+      "user_ratings_total": 658,
+      "place_id": "ChIJk5w6HZAmiYgRS0L-DUPIeNc",
+      "lat": 33.276909499999995,
+      "lon": -86.8317496,
+      "phone": "+1 205-621-2021",
+      "website": "https://helenavetclinic.com/?utm_source=gmb&utm_medium=organic",
+      "is_24_hours": false,
+      "score": 13.530649990051247
+    },
+    "Covington, LA": {
+      "name": "MedVet Mandeville",
+      "address": "3561 US-190, Mandeville, LA 70471, USA",
+      "location": "Covington, LA",
+      "rating": 4.3,
+      "user_ratings_total": 454,
+      "place_id": "ChIJ89PvE4tZJ4YR5lPmW-tAXmA",
+      "lat": 30.3946714,
+      "lon": -90.0851752,
+      "phone": "+1 985-626-4862",
+      "website": "https://www.medvet.com/location/mandeville/",
+      "is_24_hours": true,
+      "score": 17.144173508438374
+    }
+  },
+  "attractions": {
+    "national_parks": [],
+    "monuments": [],
+    "parks": [
+      {
+        "name": "Georgia Aquarium",
+        "address": "225 Baker St NW, Atlanta, GA 30313, USA",
+        "location": "Winston, GA",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 85836,
+        "lat": 33.763382,
+        "lon": -84.3951098
+      },
+      {
+        "name": "Sweetwater Creek State Park",
+        "address": "1750 Mt Vernon Rd, Lithia Springs, GA 30122, USA",
+        "location": "Winston, GA",
+        "type": "park",
+        "rating": 4.8,
+        "user_ratings_total": 7426,
+        "lat": 33.7525384,
+        "lon": -84.628709
+      },
+      {
+        "name": "Six Flags Over Georgia",
+        "address": "275 Riverside Pkwy, Austell, GA 30168, USA",
+        "location": "Winston, GA",
+        "type": "park",
+        "rating": 4.1,
+        "user_ratings_total": 33244,
+        "lat": 33.7683499,
+        "lon": -84.5500261
+      },
+      {
+        "name": "Oak Mountain State Park",
+        "address": "200 Terrace Dr, Pelham, AL 35124, USA",
+        "location": "~125 mi from start",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 5197,
+        "lat": 33.3361069,
+        "lon": -86.7312359
+      },
+      {
+        "name": "Fontainebleau State Park",
+        "address": "62883 LA-1089, Mandeville, LA 70448, USA",
+        "location": "Covington, LA",
+        "type": "park",
+        "rating": 4.6,
+        "user_ratings_total": 3861,
+        "lat": 30.3412412,
+        "lon": -90.0250626
+      },
+      {
+        "name": "Global Wildlife Center",
+        "address": "26389 LA-40, Folsom, LA 70437, USA",
+        "location": "Covington, LA",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 3111,
+        "lat": 30.628613199999997,
+        "lon": -90.2864946
+      },
+      {
+        "name": "K1 Speed - Indoor Go Karts, Corporate Event Venue, Team Building Activities",
+        "address": "5960 Greenwood Pkwy, Bessemer, AL 35022, USA",
+        "location": "Montevallo, AL",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 2311,
+        "lat": 33.346052,
+        "lon": -86.9224768
+      },
+      {
+        "name": "Moss Rock Preserve",
+        "address": "617 Preserve Wy, Hoover, AL 35226, USA",
+        "location": "Montevallo, AL",
+        "type": "park",
+        "rating": 4.8,
+        "user_ratings_total": 1835,
+        "lat": 33.38171700000001,
+        "lon": -86.84009189999999
+      },
+      {
+        "name": "Historic Banning Mills",
+        "address": "205 Horseshoe Dam Rd, Whitesburg, GA 30185, USA",
+        "location": "Haralson County, GA",
+        "type": "park",
+        "rating": 4.8,
+        "user_ratings_total": 1624,
+        "lat": 33.5315894,
+        "lon": -84.9222168
+      },
+      {
+        "name": "John Tanner Park (Carroll County Park)",
+        "address": "354 Tanners Beach Rd, Carrollton, GA 30117, USA",
+        "location": "Haralson County, GA",
+        "type": "park",
+        "rating": 4.6,
+        "user_ratings_total": 1530,
+        "lat": 33.5993328,
+        "lon": -85.1684435
+      },
+      {
+        "name": "Bonita Lakes Park",
+        "address": "Bonita Reservoir Rd, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "park",
+        "rating": 4.6,
+        "user_ratings_total": 1420,
+        "lat": 32.363196,
+        "lon": -88.6657961
+      },
+      {
+        "name": "Bogue Chitto State Park",
+        "address": "17049 State Park Blvd, Franklinton, LA 70438, USA",
+        "location": "Covington, LA",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 1172,
+        "lat": 30.7668518,
+        "lon": -90.1448046
+      },
+      {
+        "name": "Chattahoochee Bend State Park",
+        "address": "425 Bobwhite Way, Newnan, GA 30263, USA",
+        "location": "Haralson County, GA",
+        "type": "park",
+        "rating": 4.7,
+        "user_ratings_total": 1095,
+        "lat": 33.4301174,
+        "lon": -84.98382149999999
+      },
+      {
+        "name": "Aldridge Gardens",
+        "address": "3530 Lorna Rd, Hoover, AL 35216, USA",
+        "location": "~125 mi from start",
+        "type": "park",
+        "rating": 4.8,
+        "user_ratings_total": 621,
+        "lat": 33.387200299999996,
+        "lon": -86.7921315
+      },
+      {
+        "name": "Government Plaza",
+        "address": "618 Almon Ave, Tuscaloosa, AL 35401, USA",
+        "location": "~753 mi from start",
+        "type": "park",
+        "rating": 4.8,
+        "user_ratings_total": 532,
+        "lat": 33.2092853,
+        "lon": -87.564505
+      },
+      {
+        "name": "Clarkco State Park",
+        "address": "386 Clark County Rd, Quitman, MS 39355, USA",
+        "location": "Lauderdale County, MS",
+        "type": "park",
+        "rating": 4.6,
+        "user_ratings_total": 626,
+        "lat": 32.1040764,
+        "lon": -88.7033397
+      },
+      {
+        "name": "Hoover Dog Park",
+        "address": "3469 Loch Haven Dr, Hoover, AL 35216, USA",
+        "location": "~803 mi from start",
+        "type": "park",
+        "rating": 4.6,
+        "user_ratings_total": 555,
+        "lat": 33.4059331,
+        "lon": -86.77745449999999
+      },
+      {
+        "name": "Dunn's Falls Park",
+        "address": "6890 Dunns Falls Rd A, Enterprise, MS 39330, USA",
+        "location": "~301 mi from start",
+        "type": "park",
+        "rating": 4.5,
+        "user_ratings_total": 607,
+        "lat": 32.2290996,
+        "lon": -88.82089119999999
+      },
+      {
+        "name": "Meridian East / Toomsuba KOA Journey",
+        "address": "3953 KOA Campground Rd, Toomsuba, MS 39364, USA",
+        "location": "~275 mi from start",
+        "type": "park",
+        "rating": 4.5,
+        "user_ratings_total": 521,
+        "lat": 32.392859,
+        "lon": -88.504592
+      }
+    ],
+    "museums": [
+      {
+        "name": "Kennesaw Mountain National Battlefield Park",
+        "address": "900 Kennesaw Mountain Dr, Kennesaw, GA 30152, USA",
+        "location": "Winston, GA",
+        "type": "museum",
+        "rating": 4.8,
+        "user_ratings_total": 6988,
+        "lat": 33.9513354,
+        "lon": -84.59639930000002
+      },
+      {
+        "name": "Delta Flight Museum",
+        "address": "1060 Delta Blvd, Atlanta, GA 30354, USA",
+        "location": "Winston, GA",
+        "type": "museum",
+        "rating": 4.7,
+        "user_ratings_total": 3484,
+        "lat": 33.656076999999996,
+        "lon": -84.4223542
+      },
+      {
+        "name": "College Football Hall of Fame",
+        "address": "250 Marietta St NW, Atlanta, GA 30313, USA",
+        "location": "Winston, GA",
+        "type": "museum",
+        "rating": 4.6,
+        "user_ratings_total": 3633,
+        "lat": 33.760276,
+        "lon": -84.39537330000002
+      },
+      {
+        "name": "Heart of Dixie Railroad Museum",
+        "address": "1919 9th St, Calera, AL 35040, USA",
+        "location": "Montevallo, AL",
+        "type": "museum",
+        "rating": 4.5,
+        "user_ratings_total": 1048,
+        "lat": 33.0992639,
+        "lon": -86.7499083
+      },
+      {
+        "name": "Abita Mystery House / UCM Museum",
+        "address": "22275 LA-36, Abita Springs, LA 70420, USA",
+        "location": "Covington, LA",
+        "type": "museum",
+        "rating": 4.6,
+        "user_ratings_total": 810,
+        "lat": 30.4774275,
+        "lon": -90.0362433
+      },
+      {
+        "name": "Mississippi Children's Museum - Meridian",
+        "address": "403 22nd Ave, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "museum",
+        "rating": 4.8,
+        "user_ratings_total": 324,
+        "lat": 32.3590104,
+        "lon": -88.6939299
+      },
+      {
+        "name": "Pine Mountain Gold Museum",
+        "address": "1881 Stockmar Rd, Villa Rica, GA 30180, USA",
+        "location": "Haralson County, GA",
+        "type": "museum",
+        "rating": 4.3,
+        "user_ratings_total": 604,
+        "lat": 33.752539,
+        "lon": -84.88503
+      },
+      {
+        "name": "Louisiana Children's Discovery Center",
+        "address": "113 N Cypress St #3309, Hammond, LA 70401, USA",
+        "location": "Covington, LA",
+        "type": "museum",
+        "rating": 4.5,
+        "user_ratings_total": 354,
+        "lat": 30.5050514,
+        "lon": -90.46011709999999
+      },
+      {
+        "name": "Mississippi Arts + Entertainment Experience (The MAX)",
+        "address": "2155 Front St, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "museum",
+        "rating": 4.8,
+        "user_ratings_total": 237,
+        "lat": 32.3628412,
+        "lon": -88.6985988
+      },
+      {
+        "name": "Abita Springs Trailhead Museum",
+        "address": "22044 Main St, Abita Springs, LA 70420, USA",
+        "location": "Covington, LA",
+        "type": "museum",
+        "rating": 4.7,
+        "user_ratings_total": 256,
+        "lat": 30.4790487,
+        "lon": -90.0391709
+      },
+      {
+        "name": "American Village",
+        "address": "3727 Hwy 119, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "museum",
+        "rating": 4.7,
+        "user_ratings_total": 207,
+        "lat": 33.1379698,
+        "lon": -86.8298952
+      },
+      {
+        "name": "Tannehill Grist Mill",
+        "address": "8001 Tannehill Rd, McCalla, AL 35111, USA",
+        "location": "Montevallo, AL",
+        "type": "museum",
+        "rating": 4.7,
+        "user_ratings_total": 123,
+        "lat": 33.257711,
+        "lon": -87.0629328
+      },
+      {
+        "name": "Soul\u00e9 Steam Museum - Mississippi Industrial Heritage Museum",
+        "address": "1808 4th St, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "museum",
+        "rating": 4.7,
+        "user_ratings_total": 121,
+        "lat": 32.365520499999995,
+        "lon": -88.6961444
+      }
+    ],
+    "restaurants": [
+      {
+        "name": "The Shed Barbeque & Blues Joint",
+        "address": "7501 MS-57, Ocean Springs, MS 39565, USA",
+        "location": "Lauderdale County, MS",
+        "type": "restaurant",
+        "rating": 4.5,
+        "user_ratings_total": 7480,
+        "lat": 30.446882799999997,
+        "lon": -88.71876139999999
+      },
+      {
+        "name": "Gumbeaux's, A Cajun Cafe",
+        "address": "12407 Veterans Memorial Hwy, Douglasville, GA 30134, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 4889,
+        "lat": 33.750674,
+        "lon": -84.74932
+      },
+      {
+        "name": "The Chimes Covington",
+        "address": "19130 W Front St, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 3987,
+        "lat": 30.4735482,
+        "lon": -90.0887137
+      },
+      {
+        "name": "Weidmann's",
+        "address": "210 22nd Ave, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 2219,
+        "lat": 32.3632016,
+        "lon": -88.69910759999999
+      },
+      {
+        "name": "Brown Dog Eatery",
+        "address": "202 Bradley St A, Carrollton, GA 30117, USA",
+        "location": "Haralson County, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 1901,
+        "lat": 33.5790034,
+        "lon": -85.0751334
+      },
+      {
+        "name": "Fin & Feathers Restaurants",
+        "address": "7430 Douglas Blvd, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.5,
+        "user_ratings_total": 2200,
+        "lat": 33.7253974,
+        "lon": -84.76823449999999
+      },
+      {
+        "name": "Main Street Tavern",
+        "address": "710 N Boundary St, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "restaurant",
+        "rating": 4.7,
+        "user_ratings_total": 1283,
+        "lat": 33.1020126,
+        "lon": -86.86137389999999
+      },
+      {
+        "name": "Butter Krisp Diner",
+        "address": "1105 Business 190, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 1846,
+        "lat": 30.4758911,
+        "lon": -90.0859832
+      },
+      {
+        "name": "High Noon Brunchery",
+        "address": "8440 Courthouse Square E, Douglasville, GA 30134, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 1284,
+        "lat": 33.750505,
+        "lon": -84.74993909999999
+      },
+      {
+        "name": "Taco Mac Douglasville",
+        "address": "7397 Douglas Blvd, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 2818,
+        "lat": 33.7243989,
+        "lon": -84.7652162
+      },
+      {
+        "name": "Thumbs Up Diner",
+        "address": "5935 Stewart Pkwy, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "restaurant",
+        "rating": 4.2,
+        "user_ratings_total": 1909,
+        "lat": 33.7169422,
+        "lon": -84.772486
+      },
+      {
+        "name": "Walk-On's Sports Bistreaux - Covington Restaurant",
+        "address": "69796 Stirling Blvd, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.2,
+        "user_ratings_total": 1652,
+        "lat": 30.440893799999998,
+        "lon": -90.1337267
+      },
+      {
+        "name": "Abita Roasting Co. Covington",
+        "address": "1011 Village Walk, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 1117,
+        "lat": 30.4781361,
+        "lon": -90.0922038
+      },
+      {
+        "name": "Dogmud Tavern",
+        "address": "681 S Pear Orchard Rd, Ridgeland, MS 39157, USA",
+        "location": "Lauderdale County, MS",
+        "type": "restaurant",
+        "rating": 4.7,
+        "user_ratings_total": 614,
+        "lat": 32.4066531,
+        "lon": -90.12410919999999
+      },
+      {
+        "name": "La Pinata",
+        "address": "814 18th Ave S, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 909,
+        "lat": 32.3573435,
+        "lon": -88.68947879999999
+      },
+      {
+        "name": "Mugshots Grill and Bar - Covington, LA",
+        "address": "300 River Highland Blvd, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 1433,
+        "lat": 30.4588336,
+        "lon": -90.0838345
+      },
+      {
+        "name": "Pelican Cove Grill",
+        "address": "3999 Harborwalk Dr, Ridgeland, MS 39157, USA",
+        "location": "Lauderdale County, MS",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 1088,
+        "lat": 32.4222059,
+        "lon": -90.0859432
+      },
+      {
+        "name": "Smokin' Pig",
+        "address": "409 W College St, Bowdon, GA 30108, USA",
+        "location": "Haralson County, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 503,
+        "lat": 33.537081,
+        "lon": -85.25951599999999
+      },
+      {
+        "name": "Big J's Southern Cooking & Catering",
+        "address": "40 Villa Rosa Rd, Temple, GA 30179, USA",
+        "location": "Haralson County, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 480,
+        "lat": 33.720608999999996,
+        "lon": -85.0260492
+      },
+      {
+        "name": "Zapopan Mexican Restaurant",
+        "address": "4551 AL-25, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 618,
+        "lat": 33.095061,
+        "lon": -86.85603900000001
+      },
+      {
+        "name": "Gypsy Rabbit",
+        "address": "9B W Johnson St, Temple, GA 30179, USA",
+        "location": "Haralson County, GA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 453,
+        "lat": 33.7377125,
+        "lon": -85.0320042
+      },
+      {
+        "name": "Wright Way BBQ & Wings",
+        "address": "1003 Alabama Ave S, Bremen, GA 30110, USA",
+        "location": "Haralson County, GA",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 784,
+        "lat": 33.697621999999996,
+        "lon": -85.146447
+      },
+      {
+        "name": "Sage Bar & Grill",
+        "address": "4979 US-31, Calera, AL 35040, USA",
+        "location": "Montevallo, AL",
+        "type": "restaurant",
+        "rating": 4.1,
+        "user_ratings_total": 514,
+        "lat": 33.1498594,
+        "lon": -86.7490797
+      },
+      {
+        "name": "China Garden",
+        "address": "111 Railroad Ave #5, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "restaurant",
+        "rating": 4.2,
+        "user_ratings_total": 409,
+        "lat": 33.0936486,
+        "lon": -86.86504359999999
+      },
+      {
+        "name": "C's Cake & Coffee House",
+        "address": "1241 Valley St, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "restaurant",
+        "rating": 4.7,
+        "user_ratings_total": 214,
+        "lat": 33.1050433,
+        "lon": -86.858087
+      }
+    ],
+    "dog_parks": [
+      {
+        "name": "Bonita Lakes Park",
+        "address": "Bonita Reservoir Rd, Meridian, MS 39301, USA",
+        "location": "Lauderdale County, MS",
+        "type": "dog_park",
+        "rating": 4.6,
+        "user_ratings_total": 1420,
+        "lat": 32.363196,
+        "lon": -88.6657961
+      },
+      {
+        "name": "Veterans Park",
+        "address": "7305 Hwy 119, Alabaster, AL 35007, USA",
+        "location": "Montevallo, AL",
+        "type": "dog_park",
+        "rating": 4.7,
+        "user_ratings_total": 1189,
+        "lat": 33.1865441,
+        "lon": -86.82815710000001
+      },
+      {
+        "name": "Orr Park",
+        "address": "277 Park Dr, Montevallo, AL 35115, USA",
+        "location": "Montevallo, AL",
+        "type": "dog_park",
+        "rating": 4.8,
+        "user_ratings_total": 567,
+        "lat": 33.097782099999996,
+        "lon": -86.8565388
+      },
+      {
+        "name": "Little Tallapoosa Park",
+        "address": "1930 GA-113, Carrollton, GA 30116, USA",
+        "location": "Haralson County, GA",
+        "type": "dog_park",
+        "rating": 4.6,
+        "user_ratings_total": 701,
+        "lat": 33.643719499999996,
+        "lon": -85.0455307
+      },
+      {
+        "name": "Jellystone Park West Georgia",
+        "address": "106 King St, Bremen, GA 30110, USA",
+        "location": "Haralson County, GA",
+        "type": "dog_park",
+        "rating": 4.2,
+        "user_ratings_total": 809,
+        "lat": 33.7017711,
+        "lon": -85.19422089999999
+      },
+      {
+        "name": "Pretty Acres Dog Park",
+        "address": "301 S Orchard Ln, Covington, LA 70433, USA",
+        "location": "Covington, LA",
+        "type": "dog_park",
+        "rating": 4.2,
+        "user_ratings_total": 166,
+        "lat": 30.4387107,
+        "lon": -90.0761265
+      },
+      {
+        "name": "Phil Hardin Park",
+        "address": "5100 37th Ave, Meridian, MS 39305, USA",
+        "location": "Lauderdale County, MS",
+        "type": "dog_park",
+        "rating": 4.2,
+        "user_ratings_total": 52,
+        "lat": 32.4130426,
+        "lon": -88.7166742
+      },
+      {
+        "name": "Deer Lick Dog Park",
+        "address": "2105 Mack Rd, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "dog_park",
+        "rating": 4.6,
+        "user_ratings_total": 34,
+        "lat": 33.7474467,
+        "lon": -84.6834391
+      },
+      {
+        "name": "Dog River Trails",
+        "address": "Unnamed Road, Douglasville, GA 30135, USA",
+        "location": "Winston, GA",
+        "type": "dog_park",
+        "rating": 4.5,
+        "user_ratings_total": 34,
+        "lat": 33.637754099999995,
+        "lon": -84.8273509
+      }
+    ],
+    "viewpoints": [
+      {
+        "name": "Hawk's View Overlook",
+        "address": "Overlook Trail, Birmingham, AL 35206, USA",
+        "location": "~825 mi from start",
+        "type": "viewpoint",
+        "rating": 4.8,
+        "user_ratings_total": 104,
+        "lat": 33.5456657,
+        "lon": -86.7169239
+      }
+    ]
+  }
+}
