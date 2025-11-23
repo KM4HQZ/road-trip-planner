@@ -272,9 +272,9 @@ class NominatimGeocoder:
             
             address = data.get('address', {})
             
-            # Try to get city/town name and state
+            # Try to get city/town name and state - NEVER use county
             city = (address.get('city') or address.get('town') or 
-                   address.get('village') or address.get('county'))
+                   address.get('village') or address.get('hamlet'))
             state = address.get('state')
             
             if city and state:
@@ -283,10 +283,7 @@ class NominatimGeocoder:
                 return f"{city}, {state_abbrev if state_abbrev else state}"
             elif city:
                 return city
-            elif address.get('county') and state:
-                # Use county as fallback
-                state_abbrev = self._get_state_abbrev(state)
-                return f"{address['county']}, {state_abbrev if state_abbrev else state}"
+            # Don't return county names - skip this location if no actual city found
             return None
         except Exception as e:
             print(f"Reverse geocoding error: {e}")
