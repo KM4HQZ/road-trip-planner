@@ -969,21 +969,20 @@ class GooglePlacesFinder:
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
                 
-                # Require high ratings and significant reviews
-                if rating >= 4.3 and reviews >= 1000:
-                    location_data = place.get('location', {})
-                    
-                    park = NationalPark(
-                        name=name,
-                        address=address,
-                        state=state_name,
-                        rating=rating,
-                        user_ratings_total=reviews,
-                        lat=location_data.get('latitude', 0),
-                        lon=location_data.get('longitude', 0),
-                        website=place.get('websiteUri', None)
-                    )
-                    national_parks.append(park)
+                # Accept all national parks regardless of ratings/reviews
+                location_data = place.get('location', {})
+                
+                park = NationalPark(
+                    name=name,
+                    address=address,
+                    state=state_name,
+                    rating=rating,
+                    user_ratings_total=reviews,
+                    lat=location_data.get('latitude', 0),
+                    lon=location_data.get('longitude', 0),
+                    website=place.get('websiteUri', None)
+                )
+                national_parks.append(park)
             
             # Sort by popularity (rating * log(reviews))
             national_parks.sort(
@@ -1057,21 +1056,20 @@ class GooglePlacesFinder:
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
                 
-                # Require decent ratings and reviews
-                if rating >= 4.0 and reviews >= 50:
-                    location_data = place.get('location', {})
-                    
-                    monument = Attraction(
-                        name=name,
-                        address=address,
-                        location=state_name,
-                        type='monument',
-                        rating=rating,
-                        user_ratings_total=reviews,
-                        lat=location_data.get('latitude', 0),
-                        lon=location_data.get('longitude', 0)
-                    )
-                    monuments.append(monument)
+                # Accept all monuments regardless of ratings/reviews
+                location_data = place.get('location', {})
+                
+                monument = Attraction(
+                    name=name,
+                    address=address,
+                    location=state_name,
+                    type='monument',
+                    rating=rating,
+                    user_ratings_total=reviews,
+                    lat=location_data.get('latitude', 0),
+                    lon=location_data.get('longitude', 0)
+                )
+                monuments.append(monument)
             
             # Sort by popularity (rating * log(reviews))
             monuments.sort(
