@@ -1,6 +1,6 @@
 # Road Trip: Atlanta, GA → Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA
 
-*Generated: 2025-11-22 12:35:02*
+*Generated: 2025-11-22 15:13:58*
 
 ## Trip Overview
 
@@ -31,7 +31,7 @@
 19. Los Angeles, CA
 20. Atlanta, GA (return)
 
-## Hotels (13 found)
+## Hotels (16 found)
 
 ### Atlanta, GA
 
@@ -53,30 +53,57 @@
 
 ### Wright City, MO
 
-**Hampton Inn St. Louis Wentzville**
+**Super 8 by Wyndham Troy**
 
-- Rating: 4.4⭐ (794 reviews)
-- Address: 150 Wentzville Bluffs Dr, Wentzville, MO 63385, USA
-- Phone: +1 636-445-3780
-- Website: https://www.hilton.com/en/hotels/stlwzhx-hampton-st-louis-wentzville/?SEO_id=GMB-AMER-HX-STLWZHX&y_source=1_NjAxNzY3OS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D
+- Rating: 4.4⭐ (837 reviews)
+- Address: 28 Turnbull Trail, Troy, MO 63379, USA
+- Phone: +1 636-528-6888
+- Website: https://www.wyndhamhotels.com/super-8/troy-missouri/super-8-troy-mo/overview?CID=LC:yytq4fvvehxh7se:13715&iata=00093796
+
+### Wabaunsee County, KS
+
+**Hilton Garden Inn Manhattan**
+
+- Rating: 4.4⭐ (1,106 reviews)
+- Address: 410 S 3rd St, Manhattan, KS 66502, USA
+- Phone: +1 785-532-9116
+- Website: https://www.hilton.com/en/hotels/mangigi-hilton-garden-inn-manhattan/?SEO_id=GMB-AMER-GI-MANGIGI&y_source=1_MjA4NDAzNi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D
 
 ### Sherman County, KS
 
-**Super 8 by Wyndham Goodland**
+**Holiday Inn Express & Suites Goodland, an IHG Hotel**
 
-- Rating: 4.2⭐ (552 reviews)
-- Address: 2520 Commerce Rd, Goodland, KS 67735, USA
-- Phone: +1 785-890-7566
-- Website: https://www.wyndhamhotels.com/super-8/goodland-kansas/super-8-goodland/overview?CID=LC:yytq4fvvehxh7se:3450&iata=00093796
+- Rating: 4.3⭐ (638 reviews)
+- Address: 2725 Enterprise Rd, Goodland, KS 67735, USA
+- Phone: +1 785-728-4090
+- Website: https://www.ihg.com/holidayinnexpress/hotels/us/en/goodland/gldgl/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-GLDGL
 
 ### Clear Creek County, CO
 
-**Microtel Inn & Suites by Wyndham Georgetown Lake**
+**Best Western Ptarmigan Lodge**
 
-- Rating: 4.4⭐ (556 reviews)
-- Address: 2190 Argentine St, Georgetown, CO 80444, USA
-- Phone: +1 720-679-3754
-- Website: https://www.wyndhamhotels.com/microtel/georgetown-colorado/microtel-inn-and-suites-georgetown-lake/overview?CID=LC:5b3ss9kd80xe5ox:50464&iata=00093796
+- Rating: 4.3⭐ (1,242 reviews)
+- Address: 652 Lake Dillon Drive, Dillon, CO 80435, USA
+- Phone: +1 970-468-2341
+- Website: https://www.bestwestern.com/en_US/book/hotel-rooms.06098.html?iata=00171880&ssob=BLBWI0004G&cid=BLBWI0004G:google:gmb:06098
+
+### Emery County, UT
+
+**Holiday Inn Express & Suites ​green River​ by IHG**
+
+- Rating: 4.7⭐ (657 reviews)
+- Address: 1050 Main St, Green River, UT 84525, USA
+- Phone: +1 435-564-8444
+- Website: https://www.ihg.com/holidayinnexpress/hotels/us/en/green-river/rvrgr/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-RVRGR
+
+### Mohave County, AZ
+
+**Hampton Inn & Suites St. George SunRiver**
+
+- Rating: 4.7⭐ (1,151 reviews)
+- Address: 1250 Sun River Pkwy, St. George, UT 84790, USA
+- Phone: +1 435-656-9900
+- Website: https://www.hilton.com/en/hotels/sguhxhx-hampton-suites-st-george/?SEO_id=GMB-AMER-HX-SGUHXHX&y_source=1_ODc0MjAyNy03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D
 
 ### Upland, CA
 
@@ -134,12 +161,12 @@
 
 ### Colorado Springs, CO
 
-**Colorado Springs Marriott**
+**Drury Inn & Suites Colorado Springs Near The Air Force Academy**
 
-- Rating: 4.3⭐ (3,386 reviews)
-- Address: 5580 Tech Center Dr, Colorado Springs, CO 80919, USA
-- Phone: +1 719-260-1800
-- Website: https://www.marriott.com/en-us/hotels/cosmc-colorado-springs-marriott/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0
+- Rating: 4.7⭐ (1,728 reviews)
+- Address: 1170 Interquest Pkwy, Colorado Springs, CO 80920, USA
+- Phone: +1 719-598-2500
+- Website: https://www.druryhotels.com/locations/colorado-springs-co/drury-inn-and-suites-colorado-springs-near-the-air-force-academy?utm_campaign=gmb&utm_medium=organic&utm_source=local2
 
 ### Los Angeles, CA
 
@@ -236,7 +263,7 @@
 
 **Neel Veterinary Hospital** ⏰ **24/7**
 
-- Rating: 3.8⭐ (1,730 reviews)
+- Rating: 3.8⭐ (1,731 reviews)
 - Address: 2700 N MacArthur Blvd, Oklahoma City, OK 73127, USA
 - Phone: +1 405-947-8387
 - Website: https://neel.vet/
@@ -287,13 +314,13 @@
 
 ## 🏞️ Major National Parks (33 found)
 
-- **Grand Canyon National Park** (4.8⭐, 62,556 reviews) - Arizona
+- **Grand Canyon National Park** (4.8⭐, 62,553 reviews) - Arizona
   - Website: https://www.nps.gov/grca/index.htm
-- **Yosemite National Park** (4.8⭐, 53,932 reviews) - California
+- **Yosemite National Park** (4.8⭐, 53,930 reviews) - California
   - Website: https://www.nps.gov/yose/index.htm
-- **Zion National Park** (4.8⭐, 45,315 reviews) - Utah
+- **Zion National Park** (4.8⭐, 45,313 reviews) - Utah
   - Website: https://www.nps.gov/zion/index.htm
-- **Bryce Canyon National Park** (4.9⭐, 31,075 reviews) - Utah
+- **Bryce Canyon National Park** (4.9⭐, 31,076 reviews) - Utah
   - Website: https://www.nps.gov/brca/index.htm
 - **Rocky Mountain National Park** (4.9⭐, 26,996 reviews) - Colorado
   - Website: https://www.nps.gov/romo/index.htm
@@ -301,7 +328,7 @@
   - Website: https://www.nps.gov/arch/index.htm
 - **Joshua Tree National Park** (4.8⭐, 21,811 reviews) - California
   - Website: https://www.nps.gov/jotr/index.htm
-- **Sequoia National Park** (4.8⭐, 17,859 reviews) - California
+- **Sequoia National Park** (4.8⭐, 17,857 reviews) - California
   - Website: https://www.nps.gov/seki/index.htm
 - **White Sands National Park** (4.8⭐, 17,500 reviews) - New Mexico
   - Website: https://www.nps.gov/whsa/index.htm
@@ -317,7 +344,7 @@
   - Website: https://www.nps.gov/meve/index.htm
 - **Mammoth Cave National Park** (4.7⭐, 12,035 reviews) - Kentucky
   - Website: https://www.nps.gov/maca/index.htm
-- **Canyonlands National Park** (4.8⭐, 8,830 reviews) - Utah
+- **Canyonlands National Park** (4.8⭐, 8,829 reviews) - Utah
   - Website: https://www.nps.gov/cany/index.htm
 - **Saguaro National Park** (4.8⭐, 8,235 reviews) - Arizona
   - Website: https://www.nps.gov/sagu/index.htm
@@ -354,46 +381,61 @@
 - **Río Grande del Norte National Monument** (4.7⭐, 1,412 reviews) - New Mexico
   - Website: https://www.blm.gov/visit/rgdnnm
 
+## 🗿 Monuments & Memorials (12 found)
+
+- **Oklahoma City National Memorial & Museum** (4.9⭐, 12,550 reviews) - Oklahoma
+- **National WWI Museum and Memorial** (4.9⭐, 8,448 reviews) - Kansas
+- **Walnut Canyon National Monument** (4.8⭐, 5,091 reviews) - Arizona
+- **Grand Staircase-Escalante National Monument** (4.7⭐, 4,548 reviews) - Utah
+- **Bandelier National Monument** (4.8⭐, 3,386 reviews) - New Mexico
+- **Canyon de Chelly National Monument** (4.8⭐, 2,903 reviews) - Arizona
+- **Wupatki National Monument** (4.8⭐, 1,808 reviews) - Arizona
+- **Natural Bridges National Monument** (4.8⭐, 1,301 reviews) - Utah
+- **Río Grande del Norte National Monument** (4.7⭐, 1,412 reviews) - New Mexico
+- **Memorial Hall** (4.4⭐, 785 reviews) - Kansas
+- **Liberty Memorial Tower** (5⭐, 72 reviews) - Kansas
+- **Gold Butte National Monument** (4.6⭐, 97 reviews) - Nevada
+
 ## 🌲 Parks (126 found)
 
-- **Universal Studios Hollywood** (4.6⭐, 169,695 reviews) - Los Angeles, CA
-- **Fremont Street Experience** (4.6⭐, 143,975 reviews) - Las Vegas, NV
-- **Santa Monica Pier** (4.6⭐, 129,066 reviews) - Los Angeles, CA
-- **Disneyland Park** (4.6⭐, 122,555 reviews) - Upland, CA
-- **Garden of the Gods** (4.9⭐, 56,403 reviews) - Colorado Springs, CO
-- **Georgia Aquarium** (4.7⭐, 85,832 reviews) - Atlanta, GA
-- **Caesars Palace** (4.5⭐, 134,868 reviews) - Las Vegas, NV
-- **Fountains of Bellagio** (4.8⭐, 57,374 reviews) - Las Vegas, NV
+- **Universal Studios Hollywood** (4.6⭐, 169,696 reviews) - Los Angeles, CA
+- **Fremont Street Experience** (4.6⭐, 143,978 reviews) - Las Vegas, NV
+- **Santa Monica Pier** (4.6⭐, 129,068 reviews) - Los Angeles, CA
+- **Disneyland Park** (4.6⭐, 122,563 reviews) - Upland, CA
+- **Garden of the Gods** (4.9⭐, 56,404 reviews) - Colorado Springs, CO
+- **Georgia Aquarium** (4.7⭐, 85,835 reviews) - Atlanta, GA
+- **Caesars Palace** (4.5⭐, 134,871 reviews) - Las Vegas, NV
+- **Fountains of Bellagio** (4.8⭐, 57,376 reviews) - Las Vegas, NV
 - **Knott's Berry Farm** (4.6⭐, 66,377 reviews) - Los Angeles, CA
 - **Stone Mountain Park** (4.6⭐, 41,829 reviews) - Atlanta, GA
 - **Downtown Disney District** (4.6⭐, 38,211 reviews) - Upland, CA
 - **Cheyenne Mountain Zoo** (4.8⭐, 24,177 reviews) - Colorado Springs, CO
 - **Atlanta Botanical Garden** (4.7⭐, 22,089 reviews) - Atlanta, GA
 - **Oklahoma City National Memorial & Museum** (4.9⭐, 12,550 reviews) - ~3802 mi from start
-- **Cave of the Winds Mountain Park** (4.7⭐, 17,493 reviews) - Colorado Springs, CO
+- **Cave of the Winds Mountain Park** (4.7⭐, 17,495 reviews) - Colorado Springs, CO
 - **Breckenridge Ski Resort** (4.7⭐, 16,156 reviews) - Clear Creek County, CO
-- **Yaamava' Resort & Casino** (4.2⭐, 49,335 reviews) - Upland, CA
+- **Yaamava' Resort & Casino** (4.2⭐, 49,336 reviews) - Upland, CA
 - **Gateway Arch National Park** (4.7⭐, 14,636 reviews) - ~551 mi from start
-- **Bearizona Wildlife Park** (4.7⭐, 14,524 reviews) - Williams, AZ
+- **Bearizona Wildlife Park** (4.7⭐, 14,525 reviews) - Williams, AZ
 - **Myriad Botanical Gardens** (4.7⭐, 10,734 reviews) - ~3802 mi from start
 
 ## 🏛️ Museums & Cultural Attractions (47 found)
 
-- **Santa Monica Pier** (4.6⭐, 129,066 reviews) - Los Angeles, CA
+- **Santa Monica Pier** (4.6⭐, 129,068 reviews) - Los Angeles, CA
 - **The Getty** (4.8⭐, 35,327 reviews) - Los Angeles, CA
 - **California Science Center** (4.7⭐, 19,617 reviews) - Los Angeles, CA
 - **Oklahoma City National Memorial & Museum** (4.9⭐, 12,550 reviews) - Midwest City, OK
 - **World of Coca-Cola** (4.4⭐, 34,569 reviews) - Atlanta, GA
-- **The Mob Museum** (4.6⭐, 19,001 reviews) - Las Vegas, NV
-- **Martin Luther King, Jr. National Historical Park** (4.8⭐, 11,477 reviews) - Atlanta, GA
+- **The Mob Museum** (4.6⭐, 19,002 reviews) - Las Vegas, NV
+- **Martin Luther King, Jr. National Historical Park** (4.8⭐, 11,478 reviews) - Atlanta, GA
 - **Ponce City Market** (4.6⭐, 15,686 reviews) - Atlanta, GA
 - **AREA15** (4.4⭐, 21,387 reviews) - Las Vegas, NV
-- **Museum of Illusions - Las Vegas** (4.8⭐, 8,457 reviews) - Las Vegas, NV
+- **Museum of Illusions - Las Vegas** (4.8⭐, 8,458 reviews) - Las Vegas, NV
 - **Garden of the Gods Trading Post** (4.7⭐, 8,023 reviews) - Colorado Springs, CO
 - **National Cowboy & Western Heritage Museum** (4.8⭐, 6,031 reviews) - Midwest City, OK
 - **Manitou Cliff Dwellings** (4.4⭐, 9,531 reviews) - Colorado Springs, CO
 - **Tom's Farms** (4.5⭐, 7,589 reviews) - Upland, CA
-- **Georgetown Loop Railroad** (4.6⭐, 5,900 reviews) - Clear Creek County, CO
+- **Georgetown Loop Railroad** (4.6⭐, 5,901 reviews) - Clear Creek County, CO
 - **The Old Mill** (4.8⭐, 4,016 reviews) - Conway, AR
 - **The Broadmoor Manitou and Pikes Peak Cog Railway** (4.5⭐, 5,914 reviews) - Colorado Springs, CO
 - **Museum of Osteology** (4.8⭐, 3,164 reviews) - Midwest City, OK
@@ -401,7 +443,7 @@
 - **OZ Museum** (4.7⭐, 2,776 reviews) - Wabaunsee County, KS
 - **Planes of Fame Air Museum** (4.8⭐, 1,628 reviews) - Upland, CA
 - **Historic Original McDonald's Museum** (4.5⭐, 2,588 reviews) - Upland, CA
-- **Hidee Gold Mine Tours and Panning** (4.9⭐, 1,271 reviews) - Clear Creek County, CO
+- **Hidee Gold Mine Tours and Panning** (4.9⭐, 1,272 reviews) - Clear Creek County, CO
 - **St. George Children’s Museum** (4.7⭐, 1,384 reviews) - Mohave County, AZ
 - **Brigham and Amelia Young Home** (4.8⭐, 1,032 reviews) - Mohave County, AZ
 - **The Historic Daniel Boone Home** (4.8⭐, 736 reviews) - Wright City, MO
@@ -427,37 +469,40 @@
 - **ELECTRIC PANTHER TATTOO GALLERY** (4.6⭐, 233 reviews) - Conway, AR
 - **Milburn-Price Culture Museum** (4.9⭐, 127 reviews) - Oldham County, TX
 
-## 🍽️ Dog-Friendly Restaurants (85 found)
+## 🍽️ Dog-Friendly Restaurants (86 found)
 
-- **Peppermill and Fireside Lounge** (4.5⭐, 19,116 reviews) - Las Vegas, NV
-- **BrewDog Las Vegas** (4.7⭐, 11,806 reviews) - Las Vegas, NV
-- **Rainforest Cafe** (4.6⭐, 10,544 reviews) - Las Vegas, NV
+- **Beau Jo's Idaho Springs** (4.6⭐, 11,171 reviews) - Clear Creek County, CO
 - **Brewdog Atlanta** (4.7⭐, 6,513 reviews) - Atlanta, GA
 - **Mr D'z Route 66 Diner** (4.4⭐, 9,029 reviews) - Mohave County, AZ
 - **ViewHouse** (4.4⭐, 8,317 reviews) - Colorado Springs, CO
 - **Dirt Dog Fremont** (4.9⭐, 3,192 reviews) - Las Vegas, NV
 - **Pine Country Restaurant** (4.4⭐, 7,796 reviews) - Williams, AZ
 - **Wurstküche** (4.6⭐, 5,246 reviews) - Los Angeles, CA
-- **The Rabbit Hole** (4.5⭐, 5,676 reviews) - Colorado Springs, CO
+- **The Rabbit Hole** (4.5⭐, 5,677 reviews) - Colorado Springs, CO
 - **Smokin Yard's BBQ** (4.7⭐, 3,430 reviews) - Clear Creek County, CO
 - **Blackhorse Pub & Brewery Clarksville** (4.6⭐, 4,060 reviews) - Oak Grove, KY
-- **Shuga's** (4.6⭐, 3,872 reviews) - Colorado Springs, CO
+- **Shuga's** (4.6⭐, 3,873 reviews) - Colorado Springs, CO
 - **Tamarisk Restaurant** (4.5⭐, 4,480 reviews) - Emery County, UT
+- **Carson Kitchen** (4.6⭐, 3,681 reviews) - Las Vegas, NV
+- **AmeriBrunch Cafe** (4.8⭐, 2,566 reviews) - Las Vegas, NV
 - **Whiskey Bird** (4.8⭐, 2,550 reviews) - Atlanta, GA
+- **Twin Peaks Amarillo** (4.6⭐, 3,507 reviews) - Oldham County, TX
 - **Tommyknocker Brewery & Pub** (4.4⭐, 5,078 reviews) - Clear Creek County, CO
+- **Hash House A Go Go** (4.5⭐, 4,120 reviews) - Las Vegas, NV
+- **Bubba's 33** (4.5⭐, 4,010 reviews) - Oldham County, TX
 - **MarketPlace Grill** (4.6⭐, 3,330 reviews) - Conway, AR
-- **Urban Egg** (4.6⭐, 3,242 reviews) - Colorado Springs, CO
-- **Home Restaurant** (4.6⭐, 3,069 reviews) - Los Angeles, CA
+- **Urban Egg** (4.6⭐, 3,243 reviews) - Colorado Springs, CO
+- **Arts District Brewing Company** (4.5⭐, 3,693 reviews) - Los Angeles, CA
 - **Stoby's Restaurant** (4.6⭐, 3,065 reviews) - Conway, AR
 - **Lazy Dog Restaurant & Bar** (4.5⭐, 3,642 reviews) - Atlanta, GA
 - **Cypress Street Pint & Plate** (4.5⭐, 3,588 reviews) - Atlanta, GA
 - **Mike's Place** (4.7⭐, 2,411 reviews) - Conway, AR
 - **Molly's Souper** (4.6⭐, 2,717 reviews) - Upland, CA
+- **Picasso Cafe** (4.6⭐, 2,667 reviews) - Midwest City, OK
 - **Monterey Jack's Cafe Y Cantina** (4.6⭐, 2,557 reviews) - Midwest City, OK
 - **Ray's Tavern** (4.6⭐, 2,554 reviews) - Emery County, UT
-- **Marinia's Country Cafe** (4.8⭐, 1,783 reviews) - Emery County, UT
+- **Marinia's Country Cafe** (4.8⭐, 1,782 reviews) - Emery County, UT
 - **The Big Biscuit** (4.7⭐, 2,024 reviews) - Midwest City, OK
-- **Rutherford's 66 Family Diner** (4.5⭐, 2,825 reviews) - Mohave County, AZ
 - **Rattlesnake Saloon** (4.5⭐, 2,771 reviews) - Marion County, AL
 - **The Morrison** (4.6⭐, 2,328 reviews) - Los Angeles, CA
 - **JP’s Hot Chicken** (4.7⭐, 1,968 reviews) - Oak Grove, KY
@@ -468,66 +513,64 @@
 - **Anna's Canyon Cafe** (4.6⭐, 1,862 reviews) - Williams, AZ
 - **Hideaway Pizza** (4.6⭐, 1,838 reviews) - Conway, AR
 - **Walk-On's Sports Bistreaux - Conway Restaurant** (4.6⭐, 1,764 reviews) - Conway, AR
-- **The Front Yard** (4.4⭐, 2,395 reviews) - Los Angeles, CA
+- **The Front Yard** (4.4⭐, 2,396 reviews) - Los Angeles, CA
+- **La Boheme** (4.6⭐, 1,699 reviews) - Los Angeles, CA
 - **Balance Rock Eatery & Pub** (4.6⭐, 1,601 reviews) - Emery County, UT
 - **Cruiser's Route 66 Cafe** (4⭐, 4,799 reviews) - Williams, AZ
-- **Trailhead Public House and Eatery** (4.5⭐, 1,763 reviews) - Emery County, UT
+- **The Corner Grill** (4.8⭐, 1,110 reviews) - Oldham County, TX
 - **Oak Grove Racing, Gaming & Hotel** (4.1⭐, 3,621 reviews) - Oak Grove, KY
+- **Scooter's Smokehouse & Grill** (4.9⭐, 947 reviews) - Clear Creek County, CO
 - **The Tattooed Dog** (4.4⭐, 1,976 reviews) - Wright City, MO
 - **Cooper's on the Creek** (4.4⭐, 1,943 reviews) - Clear Creek County, CO
 - **Red Raven Restaurant** (4.5⭐, 1,607 reviews) - Williams, AZ
-- **Blackbird Cafe - Mountain Brunch & Lunch** (4.7⭐, 1,173 reviews) - Clear Creek County, CO
+- **Duke's Slickrock Grill** (4.7⭐, 1,163 reviews) - Emery County, UT
 - **Granny’s Soul Food** (4.7⭐, 1,134 reviews) - Oak Grove, KY
-- **Clear Creek Cidery & Eatery** (4.5⭐, 1,422 reviews) - Clear Creek County, CO
+- **Lazy Gator** (4.6⭐, 1,183 reviews) - Oldham County, TX
+- **All American Diner** (4.3⭐, 1,824 reviews) - Midwest City, OK
 - **Rickety Cricket Brewing** (4.4⭐, 1,325 reviews) - Mohave County, AZ
-- **Fuzzy's Taco Shop** (4.4⭐, 1,276 reviews) - Midwest City, OK
 - **Blue Moose** (4.2⭐, 1,780 reviews) - Wabaunsee County, KS
-- **Bonanza Cafe** (4.5⭐, 1,056 reviews) - Mohave County, AZ
 - **El Cafecito** (4.3⭐, 1,437 reviews) - Cibola County, NM
+- **Burgers by the Bridge** (4.5⭐, 1,018 reviews) - Mohave County, AZ
 - **4th & Elm Bar & Grill** (4.6⭐, 850 reviews) - Wabaunsee County, KS
 - **Wicked Cow Burgers and Brews - Upland** (4.4⭐, 1,146 reviews) - Upland, CA
-- **Swadley’s Bar-B-Q** (4.3⭐, 1,277 reviews) - Midwest City, OK
 - **Dog Haus Biergarten** (4.4⭐, 1,079 reviews) - Upland, CA
 - **The River Dog Grill** (4.5⭐, 839 reviews) - Mohave County, AZ
 - **Tequilas Mexican Grilll** (4.5⭐, 830 reviews) - Sherman County, KS
+- **Canyon Cafe** (4.4⭐, 919 reviews) - Mohave County, AZ
 - **Willie's Hideout** (4.7⭐, 572 reviews) - Wabaunsee County, KS
 - **Friendship House** (4.8⭐, 498 reviews) - Wabaunsee County, KS
 - **Great American Diner** (4⭐, 1,688 reviews) - Cibola County, NM
-- **Goodland KOA Journey** (4.6⭐, 596 reviews) - Sherman County, KS
 - **Cedar Lake Cellars** (4.2⭐, 1,005 reviews) - Wright City, MO
 - **Gabbys Diner** (4.3⭐, 834 reviews) - Cibola County, NM
 - **The Quarry** (4.3⭐, 825 reviews) - Wright City, MO
+- **The Cove** (4.2⭐, 940 reviews) - Wabaunsee County, KS
 - **Mom's Kitchen** (4.9⭐, 340 reviews) - Sherman County, KS
 - **Junkyard on 66 Brewery** (4.7⭐, 436 reviews) - Cibola County, NM
-- **World's Largest Easel** (4.6⭐, 485 reviews) - Sherman County, KS
-- **Hays House 1857 Restaurant & Tavern** (4.2⭐, 867 reviews) - Wabaunsee County, KS
 - **Good Grounds Coffee & Bistro** (4.7⭐, 419 reviews) - Sherman County, KS
-- **Rooster's Mexican Restaraunt & Cantina** (4.4⭐, 562 reviews) - Oldham County, TX
 - **El Ranchero Cafe** (4.4⭐, 556 reviews) - Cibola County, NM
 - **bombdiggity Dogs Burgers & Brew** (4.6⭐, 411 reviews) - Upland, CA
+- **L & T Family Restaurant LLC** (4.6⭐, 402 reviews) - Sherman County, KS
 - **Two Dudes Barbeque LLC** (4.4⭐, 528 reviews) - Wright City, MO
+- **The Cafe in Winona** (4.9⭐, 269 reviews) - Sherman County, KS
 - **Homestead Cafe** (4.4⭐, 500 reviews) - Marion County, AL
 - **Mikey's Pour House Pub and Grill** (4.3⭐, 567 reviews) - Wright City, MO
-- **Hickory Inn Cafe** (4.6⭐, 355 reviews) - Oldham County, TX
-- **The Red Roof Grill** (4.7⭐, 269 reviews) - Oldham County, TX
 - **Lakeshore Inn Restaurant** (4.1⭐, 601 reviews) - Marion County, AL
-- **The Grill** (4.6⭐, 299 reviews) - Oldham County, TX
 - **Lottie's Restaurant** (4.6⭐, 276 reviews) - Marion County, AL
 - **The Shack** (4.6⭐, 264 reviews) - Marion County, AL
 
 ## 🐾 Dog Parks (31 found)
 
-- **Bearizona Wildlife Park** (4.7⭐, 14,524 reviews) - Williams, AZ
-- **Gloria Molina Grand Park** (4.5⭐, 8,905 reviews) - Los Angeles, CA
-- **Bear Creek Dog Park** (4.8⭐, 4,031 reviews) - Colorado Springs, CO
+- **Bearizona Wildlife Park** (4.7⭐, 14,525 reviews) - Williams, AZ
+- **Gloria Molina Grand Park** (4.5⭐, 8,906 reviews) - Los Angeles, CA
+- **Bear Creek Dog Park** (4.8⭐, 4,032 reviews) - Colorado Springs, CO
 - **Grand Canyon Deer Farm** (4.7⭐, 2,743 reviews) - Williams, AZ
 - **Bear Creek Regional Park East** (4.7⭐, 2,508 reviews) - Colorado Springs, CO
 - **Hermon Park (Arroyo Seco Park)** (4.4⭐, 3,566 reviews) - Los Angeles, CA
 - **Big Joel's Safari Petting Zoo & Educational Park** (4.8⭐, 1,529 reviews) - Wright City, MO
 - **St Mary's Glacier** (4.8⭐, 1,140 reviews) - Clear Creek County, CO
 - **Sunset Dog Park** (4.6⭐, 1,509 reviews) - Las Vegas, NV
+- **Lone Mountain Regional Park** (4.7⭐, 1,161 reviews) - Las Vegas, NV
 - **Clear Creek Canyon Park Big Easy Trailhead** (4.8⭐, 953 reviews) - Clear Creek County, CO
-- **Clark County Dog Fancier's Park** (4.5⭐, 1,481 reviews) - Las Vegas, NV
 - **Wamego City Park** (4.7⭐, 961 reviews) - Wabaunsee County, KS
 - **Heartland Park** (4.8⭐, 810 reviews) - Wright City, MO
 - **Lions Dog Park** (4.7⭐, 918 reviews) - Mohave County, AZ
@@ -549,9 +592,10 @@
 - **MWC Welcome Center Dog Park** (4.5⭐, 14 reviews) - Midwest City, OK
 - **Dog Park at Love's Travel Stops** (5⭐, 2 reviews) - Oak Grove, KY
 
-## 📸 Scenic Viewpoints (10 found)
+## 📸 Scenic Viewpoints (11 found)
 
 - **Oak Creek Vista** (4.8⭐, 3,208 reviews) - ~2931 mi from start
+- **Black Dragon Canyon Viewpoint** (4.8⭐, 1,220 reviews) - ~1803 mi from start
 - **Silverwood Lake Vista Point** (4.7⭐, 449 reviews) - ~2406 mi from start
 - **Konza Prairie Kansas Valley lookout point** (4.8⭐, 363 reviews) - ~901 mi from start
 - **Scenic View, East Bound I-70** (4.7⭐, 327 reviews) - ~1503 mi from start

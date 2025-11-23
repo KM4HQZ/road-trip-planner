@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-22 12:35:02",
+  "generated": "2025-11-22 15:13:58",
   "origin": "Atlanta, GA",
   "destination": "Atlanta, GA",
   "via_cities": [
@@ -182,46 +182,88 @@
       "score": 13.355890848012013
     },
     "Wright City, MO": {
-      "name": "Hampton Inn St. Louis Wentzville",
-      "address": "150 Wentzville Bluffs Dr, Wentzville, MO 63385, USA",
+      "name": "Super 8 by Wyndham Troy",
+      "address": "28 Turnbull Trail, Troy, MO 63379, USA",
       "location": "Wright City, MO",
       "rating": 4.4,
-      "user_ratings_total": 794,
+      "user_ratings_total": 837,
       "price_level": null,
-      "place_id": "ChIJ_WJ9Oo7I3ocRNYEQaPRMvRw",
-      "lat": 38.8033694,
-      "lon": -90.8584431,
-      "phone": "+1 636-445-3780",
-      "website": "https://www.hilton.com/en/hotels/stlwzhx-hampton-st-louis-wentzville/?SEO_id=GMB-AMER-HX-STLWZHX&y_source=1_NjAxNzY3OS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
-      "score": 12.76161536608847
+      "place_id": "ChIJK5oGEfSV3ocRVEDV_KkSj-A",
+      "lat": 38.9878905,
+      "lon": -90.9671688,
+      "phone": "+1 636-528-6888",
+      "website": "https://www.wyndhamhotels.com/super-8/troy-missouri/super-8-troy-mo/overview?CID=LC:yytq4fvvehxh7se:13715&iata=00093796",
+      "score": 12.862273681973218
+    },
+    "Wabaunsee County, KS": {
+      "name": "Hilton Garden Inn Manhattan",
+      "address": "410 S 3rd St, Manhattan, KS 66502, USA",
+      "location": "Wabaunsee County, KS",
+      "rating": 4.4,
+      "user_ratings_total": 1106,
+      "price_level": null,
+      "place_id": "ChIJVVVVVfTNvYcR3Peie9MomBE",
+      "lat": 39.1753922,
+      "lon": -96.5606528,
+      "phone": "+1 785-532-9116",
+      "website": "https://www.hilton.com/en/hotels/mangigi-hilton-garden-inn-manhattan/?SEO_id=GMB-AMER-GI-MANGIGI&y_source=1_MjA4NDAzNi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+      "score": 13.394249531866382
     },
     "Sherman County, KS": {
-      "name": "Super 8 by Wyndham Goodland",
-      "address": "2520 Commerce Rd, Goodland, KS 67735, USA",
+      "name": "Holiday Inn Express & Suites Goodland, an IHG Hotel",
+      "address": "2725 Enterprise Rd, Goodland, KS 67735, USA",
       "location": "Sherman County, KS",
-      "rating": 4.2,
-      "user_ratings_total": 552,
+      "rating": 4.3,
+      "user_ratings_total": 638,
       "price_level": null,
-      "place_id": "ChIJAdAzCmlKC4cRAvWvrz6nrFc",
-      "lat": 39.3297202,
-      "lon": -101.7271581,
-      "phone": "+1 785-890-7566",
-      "website": "https://www.wyndhamhotels.com/super-8/goodland-kansas/super-8-goodland/overview?CID=LC:yytq4fvvehxh7se:3450&iata=00093796",
-      "score": 11.519445551479734
+      "place_id": "ChIJwdXWD5pLC4cRlAq7Scrpi50",
+      "lat": 39.325083299999996,
+      "lon": -101.7254102,
+      "phone": "+1 785-728-4090",
+      "website": "https://www.ihg.com/holidayinnexpress/hotels/us/en/goodland/gldgl/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-GLDGL",
+      "score": 12.06365369008112
     },
     "Clear Creek County, CO": {
-      "name": "Microtel Inn & Suites by Wyndham Georgetown Lake",
-      "address": "2190 Argentine St, Georgetown, CO 80444, USA",
+      "name": "Best Western Ptarmigan Lodge",
+      "address": "652 Lake Dillon Drive, Dillon, CO 80435, USA",
       "location": "Clear Creek County, CO",
-      "rating": 4.4,
-      "user_ratings_total": 556,
+      "rating": 4.3,
+      "user_ratings_total": 1242,
       "price_level": null,
-      "place_id": "ChIJNZrRWJSta4cRcuF5j2QKWPw",
-      "lat": 39.7248454,
-      "lon": -105.69391739999999,
-      "phone": "+1 720-679-3754",
-      "website": "https://www.wyndhamhotels.com/microtel/georgetown-colorado/microtel-inn-and-suites-georgetown-lake/overview?CID=LC:5b3ss9kd80xe5ox:50464&iata=00093796",
-      "score": 12.081762858764408
+      "place_id": "ChIJO1KQ0ZtbaocRkq_FW-YFLbw",
+      "lat": 39.626984,
+      "lon": -106.047575,
+      "phone": "+1 970-468-2341",
+      "website": "https://www.bestwestern.com/en_US/book/hotel-rooms.06098.html?iata=00171880&ssob=BLBWI0004G&cid=BLBWI0004G:google:gmb:06098",
+      "score": 13.306225853159072
+    },
+    "Emery County, UT": {
+      "name": "Holiday Inn Express & Suites \u200bgreen River\u200b by IHG",
+      "address": "1050 Main St, Green River, UT 84525, USA",
+      "location": "Emery County, UT",
+      "rating": 4.7,
+      "user_ratings_total": 657,
+      "price_level": null,
+      "place_id": "ChIJ_eTI9pj6SIcROJf2lCAaYgs",
+      "lat": 38.996551499999995,
+      "lon": -110.1757659,
+      "phone": "+1 435-564-8444",
+      "website": "https://www.ihg.com/holidayinnexpress/hotels/us/en/green-river/rvrgr/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-RVRGR",
+      "score": 13.245661699985593
+    },
+    "Mohave County, AZ": {
+      "name": "Hampton Inn & Suites St. George SunRiver",
+      "address": "1250 Sun River Pkwy, St. George, UT 84790, USA",
+      "location": "Mohave County, AZ",
+      "rating": 4.7,
+      "user_ratings_total": 1151,
+      "price_level": null,
+      "place_id": "ChIJlZNnzqJPyoAR-ozi6HPD-lI",
+      "lat": 37.0303883,
+      "lon": -113.609573,
+      "phone": "+1 435-656-9900",
+      "website": "https://www.hilton.com/en/hotels/sguhxhx-hampton-suites-st-george/?SEO_id=GMB-AMER-HX-SGUHXHX&y_source=1_ODc0MjAyNy03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
+      "score": 14.388826651709808
     },
     "Upland, CA": {
       "name": "DoubleTree by Hilton Hotel Ontario Airport",
@@ -308,18 +350,18 @@
       "score": 11.209397074807386
     },
     "Colorado Springs, CO": {
-      "name": "Colorado Springs Marriott",
-      "address": "5580 Tech Center Dr, Colorado Springs, CO 80919, USA",
+      "name": "Drury Inn & Suites Colorado Springs Near The Air Force Academy",
+      "address": "1170 Interquest Pkwy, Colorado Springs, CO 80920, USA",
       "location": "Colorado Springs, CO",
-      "rating": 4.3,
-      "user_ratings_total": 3386,
+      "rating": 4.7,
+      "user_ratings_total": 1728,
       "price_level": null,
-      "place_id": "ChIJgcYTDhhFE4cRqoqccLrFxe0",
-      "lat": 38.9134295,
-      "lon": -104.8298447,
-      "phone": "+1 719-260-1800",
-      "website": "https://www.marriott.com/en-us/hotels/cosmc-colorado-springs-marriott/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
-      "score": 15.17820534557191
+      "place_id": "ChIJSXwo8AdNE4cRrWR24XL2SZw",
+      "lat": 38.9926684,
+      "lon": -104.80866510000001,
+      "phone": "+1 719-598-2500",
+      "website": "https://www.druryhotels.com/locations/colorado-springs-co/drury-inn-and-suites-colorado-springs-near-the-air-force-academy?utm_campaign=gmb&utm_medium=organic&utm_source=local2",
+      "score": 15.217636468387438
     },
     "Los Angeles, CA": {
       "name": "The Westin Bonaventure Hotel & Suites, Los Angeles",
@@ -468,14 +510,14 @@
       "address": "2700 N MacArthur Blvd, Oklahoma City, OK 73127, USA",
       "location": "Midwest City, OK",
       "rating": 3.8,
-      "user_ratings_total": 1730,
+      "user_ratings_total": 1731,
       "place_id": "ChIJYV66BPkPsocRSe6SHTFvWjk",
       "lat": 35.497270799999995,
       "lon": -97.6183664,
       "phone": "+1 405-947-8387",
       "website": "https://neel.vet/",
       "is_24_hours": true,
-      "score": 18.458293286889745
+      "score": 18.45972295978357
     },
     "Conway, AR": {
       "name": "Companions Spay & Neuter Clinic",
@@ -555,7 +597,7 @@
         "address": "Arizona, USA",
         "state": "Arizona",
         "rating": 4.8,
-        "user_ratings_total": 62556,
+        "user_ratings_total": 62553,
         "lat": 36.2678855,
         "lon": -112.35352530000002,
         "website": "https://www.nps.gov/grca/index.htm"
@@ -565,7 +607,7 @@
         "address": "California, USA",
         "state": "California",
         "rating": 4.8,
-        "user_ratings_total": 53932,
+        "user_ratings_total": 53930,
         "lat": 37.8651011,
         "lon": -119.5383294,
         "website": "https://www.nps.gov/yose/index.htm"
@@ -575,7 +617,7 @@
         "address": "Utah, USA",
         "state": "Utah",
         "rating": 4.8,
-        "user_ratings_total": 45315,
+        "user_ratings_total": 45313,
         "lat": 37.2982022,
         "lon": -113.02630049999999,
         "website": "https://www.nps.gov/zion/index.htm"
@@ -585,7 +627,7 @@
         "address": "Utah, USA",
         "state": "Utah",
         "rating": 4.9,
-        "user_ratings_total": 31075,
+        "user_ratings_total": 31076,
         "lat": 37.5930377,
         "lon": -112.1870895,
         "website": "https://www.nps.gov/brca/index.htm"
@@ -625,7 +667,7 @@
         "address": "California, USA",
         "state": "California",
         "rating": 4.8,
-        "user_ratings_total": 17859,
+        "user_ratings_total": 17857,
         "lat": 36.4863668,
         "lon": -118.56575160000001,
         "website": "https://www.nps.gov/seki/index.htm"
@@ -705,7 +747,7 @@
         "address": "Utah, USA",
         "state": "Utah",
         "rating": 4.8,
-        "user_ratings_total": 8830,
+        "user_ratings_total": 8829,
         "lat": 38.2135733,
         "lon": -109.9025345,
         "website": "https://www.nps.gov/cany/index.htm"
@@ -881,6 +923,128 @@
         "website": "https://www.blm.gov/visit/rgdnnm"
       }
     ],
+    "monuments": [
+      {
+        "name": "Oklahoma City National Memorial & Museum",
+        "address": "620 N Harvey Ave, Oklahoma City, OK 73102, USA",
+        "location": "Oklahoma",
+        "type": "monument",
+        "rating": 4.9,
+        "user_ratings_total": 12550,
+        "lat": 35.4731496,
+        "lon": -97.5170593
+      },
+      {
+        "name": "National WWI Museum and Memorial",
+        "address": "2 Memorial Dr, Kansas City, MO 64108, USA",
+        "location": "Kansas",
+        "type": "monument",
+        "rating": 4.9,
+        "user_ratings_total": 8448,
+        "lat": 39.080663,
+        "lon": -94.5860835
+      },
+      {
+        "name": "Walnut Canyon National Monument",
+        "address": "Arizona, USA",
+        "location": "Arizona",
+        "type": "monument",
+        "rating": 4.8,
+        "user_ratings_total": 5091,
+        "lat": 35.1690189,
+        "lon": -111.5043369
+      },
+      {
+        "name": "Grand Staircase-Escalante National Monument",
+        "address": "Utah, USA",
+        "location": "Utah",
+        "type": "monument",
+        "rating": 4.7,
+        "user_ratings_total": 4548,
+        "lat": 37.4608765,
+        "lon": -111.5943485
+      },
+      {
+        "name": "Bandelier National Monument",
+        "address": "New Mexico, USA",
+        "location": "New Mexico",
+        "type": "monument",
+        "rating": 4.8,
+        "user_ratings_total": 3386,
+        "lat": 35.7875796,
+        "lon": -106.3301132
+      },
+      {
+        "name": "Canyon de Chelly National Monument",
+        "address": "Arizona, USA",
+        "location": "Arizona",
+        "type": "monument",
+        "rating": 4.8,
+        "user_ratings_total": 2903,
+        "lat": 36.119073400000005,
+        "lon": -109.3197052
+      },
+      {
+        "name": "Wupatki National Monument",
+        "address": "Arizona, USA",
+        "location": "Arizona",
+        "type": "monument",
+        "rating": 4.8,
+        "user_ratings_total": 1808,
+        "lat": 35.5599835,
+        "lon": -111.3935271
+      },
+      {
+        "name": "Natural Bridges National Monument",
+        "address": "Utah 84533, USA",
+        "location": "Utah",
+        "type": "monument",
+        "rating": 4.8,
+        "user_ratings_total": 1301,
+        "lat": 37.603200699999995,
+        "lon": -110.005769
+      },
+      {
+        "name": "R\u00edo Grande del Norte National Monument",
+        "address": "New Mexico 68, Embudo, NM 87531, USA",
+        "location": "New Mexico",
+        "type": "monument",
+        "rating": 4.7,
+        "user_ratings_total": 1412,
+        "lat": 36.7834241,
+        "lon": -105.8290298
+      },
+      {
+        "name": "Memorial Hall",
+        "address": "600 N 7th St Trfy, Kansas City, KS 66101, USA",
+        "location": "Kansas",
+        "type": "monument",
+        "rating": 4.4,
+        "user_ratings_total": 785,
+        "lat": 39.1121852,
+        "lon": -94.62764109999999
+      },
+      {
+        "name": "Liberty Memorial Tower",
+        "address": "Unnamed Road, Kansas City, MO 64108, USA",
+        "location": "Kansas",
+        "type": "monument",
+        "rating": 5,
+        "user_ratings_total": 72,
+        "lat": 39.0810667,
+        "lon": -94.58593499999999
+      },
+      {
+        "name": "Gold Butte National Monument",
+        "address": "Nevada, USA",
+        "location": "Nevada",
+        "type": "monument",
+        "rating": 4.6,
+        "user_ratings_total": 97,
+        "lat": 36.3778334,
+        "lon": -114.1651794
+      }
+    ],
     "parks": [
       {
         "name": "Universal Studios Hollywood",
@@ -888,7 +1052,7 @@
         "location": "Los Angeles, CA",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 169695,
+        "user_ratings_total": 169696,
         "lat": 34.137071299999995,
         "lon": -118.35330610000001
       },
@@ -898,7 +1062,7 @@
         "location": "Las Vegas, NV",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 143975,
+        "user_ratings_total": 143978,
         "lat": 36.1707275,
         "lon": -115.14382289999999
       },
@@ -908,7 +1072,7 @@
         "location": "Los Angeles, CA",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 129066,
+        "user_ratings_total": 129068,
         "lat": 34.008282099999995,
         "lon": -118.4987585
       },
@@ -918,7 +1082,7 @@
         "location": "Upland, CA",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 122555,
+        "user_ratings_total": 122563,
         "lat": 33.8120918,
         "lon": -117.91897420000001
       },
@@ -928,7 +1092,7 @@
         "location": "Colorado Springs, CO",
         "type": "park",
         "rating": 4.9,
-        "user_ratings_total": 56403,
+        "user_ratings_total": 56404,
         "lat": 38.8717933,
         "lon": -104.8861757
       },
@@ -938,7 +1102,7 @@
         "location": "Atlanta, GA",
         "type": "park",
         "rating": 4.7,
-        "user_ratings_total": 85832,
+        "user_ratings_total": 85835,
         "lat": 33.763382,
         "lon": -84.3951098
       },
@@ -948,7 +1112,7 @@
         "location": "Las Vegas, NV",
         "type": "park",
         "rating": 4.5,
-        "user_ratings_total": 134868,
+        "user_ratings_total": 134871,
         "lat": 36.1172612,
         "lon": -115.17614099999999
       },
@@ -958,7 +1122,7 @@
         "location": "Las Vegas, NV",
         "type": "park",
         "rating": 4.8,
-        "user_ratings_total": 57374,
+        "user_ratings_total": 57376,
         "lat": 36.112718699999995,
         "lon": -115.17391090000001
       },
@@ -1028,7 +1192,7 @@
         "location": "Colorado Springs, CO",
         "type": "park",
         "rating": 4.7,
-        "user_ratings_total": 17493,
+        "user_ratings_total": 17495,
         "lat": 38.8725916,
         "lon": -104.9201269
       },
@@ -1048,7 +1212,7 @@
         "location": "Upland, CA",
         "type": "park",
         "rating": 4.2,
-        "user_ratings_total": 49335,
+        "user_ratings_total": 49336,
         "lat": 34.150117699999996,
         "lon": -117.22828690000001
       },
@@ -1068,7 +1232,7 @@
         "location": "Williams, AZ",
         "type": "park",
         "rating": 4.7,
-        "user_ratings_total": 14524,
+        "user_ratings_total": 14525,
         "lat": 35.2518376,
         "lon": -112.14776099999999
       },
@@ -1138,7 +1302,7 @@
         "location": "~2466 mi from start",
         "type": "park",
         "rating": 4.5,
-        "user_ratings_total": 8905,
+        "user_ratings_total": 8906,
         "lat": 34.0563289,
         "lon": -118.24677129999999
       },
@@ -1148,7 +1312,7 @@
         "location": "Clear Creek County, CO",
         "type": "park",
         "rating": 4.7,
-        "user_ratings_total": 5792,
+        "user_ratings_total": 5793,
         "lat": 39.6800625,
         "lon": -105.8979531
       },
@@ -1198,7 +1362,7 @@
         "location": "~1384 mi from start",
         "type": "park",
         "rating": 4.8,
-        "user_ratings_total": 4031,
+        "user_ratings_total": 4032,
         "lat": 38.8266516,
         "lon": -104.8615476
       },
@@ -1428,7 +1592,7 @@
         "location": "Oak Grove, KY",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 1797,
+        "user_ratings_total": 1798,
         "lat": 36.596959399999996,
         "lon": -87.27776329999999
       },
@@ -1438,7 +1602,7 @@
         "location": "Wright City, MO",
         "type": "park",
         "rating": 4.6,
-        "user_ratings_total": 1785,
+        "user_ratings_total": 1786,
         "lat": 39.0343728,
         "lon": -90.93118439999999
       },
@@ -2038,7 +2202,7 @@
         "location": "~4128 mi from start",
         "type": "park",
         "rating": 4.5,
-        "user_ratings_total": 567,
+        "user_ratings_total": 568,
         "lat": 34.7856017,
         "lon": -92.33510559999999
       },
@@ -2150,7 +2314,7 @@
         "location": "Los Angeles, CA",
         "type": "museum",
         "rating": 4.6,
-        "user_ratings_total": 129066,
+        "user_ratings_total": 129068,
         "lat": 34.008282099999995,
         "lon": -118.4987585
       },
@@ -2200,7 +2364,7 @@
         "location": "Las Vegas, NV",
         "type": "museum",
         "rating": 4.6,
-        "user_ratings_total": 19001,
+        "user_ratings_total": 19002,
         "lat": 36.1728198,
         "lon": -115.1412395
       },
@@ -2210,7 +2374,7 @@
         "location": "Atlanta, GA",
         "type": "museum",
         "rating": 4.8,
-        "user_ratings_total": 11477,
+        "user_ratings_total": 11478,
         "lat": 33.756673899999996,
         "lon": -84.3731798
       },
@@ -2240,7 +2404,7 @@
         "location": "Las Vegas, NV",
         "type": "museum",
         "rating": 4.8,
-        "user_ratings_total": 8457,
+        "user_ratings_total": 8458,
         "lat": 36.1088439,
         "lon": -115.17409509999999
       },
@@ -2290,7 +2454,7 @@
         "location": "Clear Creek County, CO",
         "type": "museum",
         "rating": 4.6,
-        "user_ratings_total": 5900,
+        "user_ratings_total": 5901,
         "lat": 39.701026,
         "lon": -105.7067799
       },
@@ -2370,7 +2534,7 @@
         "location": "Clear Creek County, CO",
         "type": "museum",
         "rating": 4.9,
-        "user_ratings_total": 1271,
+        "user_ratings_total": 1272,
         "lat": 39.78712,
         "lon": -105.50054999999999
       },
@@ -2617,34 +2781,14 @@
     ],
     "restaurants": [
       {
-        "name": "Peppermill and Fireside Lounge",
-        "address": "2985 Las Vegas Blvd S, Las Vegas, NV 89109, USA",
-        "location": "Las Vegas, NV",
-        "type": "restaurant",
-        "rating": 4.5,
-        "user_ratings_total": 19116,
-        "lat": 36.1336884,
-        "lon": -115.16328329999999
-      },
-      {
-        "name": "BrewDog Las Vegas",
-        "address": "3767 Las Vegas Blvd S, Las Vegas, NV 89109, USA",
-        "location": "Las Vegas, NV",
-        "type": "restaurant",
-        "rating": 4.7,
-        "user_ratings_total": 11806,
-        "lat": 36.1046674,
-        "lon": -115.17236559999999
-      },
-      {
-        "name": "Rainforest Cafe",
-        "address": "3717 S Las Vegas Blvd, Las Vegas, NV 89109, USA",
-        "location": "Las Vegas, NV",
+        "name": "Beau Jo's Idaho Springs",
+        "address": "1517 Miner St, Idaho Springs, CO 80452, USA",
+        "location": "Clear Creek County, CO",
         "type": "restaurant",
         "rating": 4.6,
-        "user_ratings_total": 10544,
-        "lat": 36.1087852,
-        "lon": -115.17213599999998
+        "user_ratings_total": 11171,
+        "lat": 39.741714699999996,
+        "lon": -105.51652639999999
       },
       {
         "name": "Brewdog Atlanta",
@@ -2712,7 +2856,7 @@
         "location": "Colorado Springs, CO",
         "type": "restaurant",
         "rating": 4.5,
-        "user_ratings_total": 5676,
+        "user_ratings_total": 5677,
         "lat": 38.8354621,
         "lon": -104.8229839
       },
@@ -2742,7 +2886,7 @@
         "location": "Colorado Springs, CO",
         "type": "restaurant",
         "rating": 4.6,
-        "user_ratings_total": 3872,
+        "user_ratings_total": 3873,
         "lat": 38.824317199999996,
         "lon": -104.82622429999999
       },
@@ -2757,6 +2901,26 @@
         "lon": -110.14210729999999
       },
       {
+        "name": "Carson Kitchen",
+        "address": "124 S 6th St #100, Las Vegas, NV 89101, USA",
+        "location": "Las Vegas, NV",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 3681,
+        "lat": 36.1679008,
+        "lon": -115.14070720000001
+      },
+      {
+        "name": "AmeriBrunch Cafe",
+        "address": "316 E Bridger Ave, Las Vegas, NV 89101, USA",
+        "location": "Las Vegas, NV",
+        "type": "restaurant",
+        "rating": 4.8,
+        "user_ratings_total": 2566,
+        "lat": 36.1677517,
+        "lon": -115.14366120000001
+      },
+      {
         "name": "Whiskey Bird",
         "address": "1409 N Highland Ave NE, Atlanta, GA 30306, USA",
         "location": "Atlanta, GA",
@@ -2767,6 +2931,16 @@
         "lon": -84.351852
       },
       {
+        "name": "Twin Peaks Amarillo",
+        "address": "2401 S Soncy Rd, Amarillo, TX 79121, USA",
+        "location": "Oldham County, TX",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 3507,
+        "lat": 35.1863332,
+        "lon": -101.9367724
+      },
+      {
         "name": "Tommyknocker Brewery & Pub",
         "address": "1401 Miner St, Idaho Springs, CO 80452, USA",
         "location": "Clear Creek County, CO",
@@ -2775,6 +2949,26 @@
         "user_ratings_total": 5078,
         "lat": 39.7415583,
         "lon": -105.5176472
+      },
+      {
+        "name": "Hash House A Go Go",
+        "address": "1 S Main St, Las Vegas, NV 89101, USA",
+        "location": "Las Vegas, NV",
+        "type": "restaurant",
+        "rating": 4.5,
+        "user_ratings_total": 4120,
+        "lat": 36.171906,
+        "lon": -115.14688029999998
+      },
+      {
+        "name": "Bubba's 33",
+        "address": "2813 I-40, Amarillo, TX 79109, USA",
+        "location": "Oldham County, TX",
+        "type": "restaurant",
+        "rating": 4.5,
+        "user_ratings_total": 4010,
+        "lat": 35.1937663,
+        "lon": -101.86916149999999
       },
       {
         "name": "MarketPlace Grill",
@@ -2792,19 +2986,19 @@
         "location": "Colorado Springs, CO",
         "type": "restaurant",
         "rating": 4.6,
-        "user_ratings_total": 3242,
+        "user_ratings_total": 3243,
         "lat": 38.8327986,
         "lon": -104.82401840000001
       },
       {
-        "name": "Home Restaurant",
-        "address": "1760 Hillhurst Ave, Los Angeles, CA 90027, USA",
+        "name": "Arts District Brewing Company",
+        "address": "828 Traction Ave, Los Angeles, CA 90013, USA",
         "location": "Los Angeles, CA",
         "type": "restaurant",
-        "rating": 4.6,
-        "user_ratings_total": 3069,
-        "lat": 34.1030809,
-        "lon": -118.2871875
+        "rating": 4.5,
+        "user_ratings_total": 3693,
+        "lat": 34.044711299999996,
+        "lon": -118.2352851
       },
       {
         "name": "Stoby's Restaurant",
@@ -2857,6 +3051,16 @@
         "lon": -117.64939439999999
       },
       {
+        "name": "Picasso Cafe",
+        "address": "3009 Paseo, Oklahoma City, OK 73103, USA",
+        "location": "Midwest City, OK",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 2667,
+        "lat": 35.4999537,
+        "lon": -97.52347069999999
+      },
+      {
         "name": "Monterey Jack's Cafe Y Cantina",
         "address": "801 S Air Depot Blvd, Midwest City, OK 73110, USA",
         "location": "Midwest City, OK",
@@ -2882,7 +3086,7 @@
         "location": "Emery County, UT",
         "type": "restaurant",
         "rating": 4.8,
-        "user_ratings_total": 1783,
+        "user_ratings_total": 1782,
         "lat": 38.407131299999996,
         "lon": -111.6430048
       },
@@ -2895,16 +3099,6 @@
         "user_ratings_total": 2024,
         "lat": 35.4361657,
         "lon": -97.4009637
-      },
-      {
-        "name": "Rutherford's 66 Family Diner",
-        "address": "2011 E Andy Devine Ave, Kingman, AZ 86401, USA",
-        "location": "Mohave County, AZ",
-        "type": "restaurant",
-        "rating": 4.5,
-        "user_ratings_total": 2825,
-        "lat": 35.1961441,
-        "lon": -114.0305252
       },
       {
         "name": "Rattlesnake Saloon",
@@ -3012,9 +3206,19 @@
         "location": "Los Angeles, CA",
         "type": "restaurant",
         "rating": 4.4,
-        "user_ratings_total": 2395,
+        "user_ratings_total": 2396,
         "lat": 34.1453744,
         "lon": -118.3697784
+      },
+      {
+        "name": "La Boheme",
+        "address": "8400 Santa Monica Blvd, West Hollywood, CA 90069, USA",
+        "location": "Los Angeles, CA",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 1699,
+        "lat": 34.0904141,
+        "lon": -118.37365
       },
       {
         "name": "Balance Rock Eatery & Pub",
@@ -3037,14 +3241,14 @@
         "lon": -112.189146
       },
       {
-        "name": "Trailhead Public House and Eatery",
-        "address": "11 E 100 N, Moab, UT 84532, USA",
-        "location": "Emery County, UT",
+        "name": "The Corner Grill",
+        "address": "14588 FM 2590, Amarillo, TX 79119, USA",
+        "location": "Oldham County, TX",
         "type": "restaurant",
-        "rating": 4.5,
-        "user_ratings_total": 1763,
-        "lat": 38.5750075,
-        "lon": -109.5505489
+        "rating": 4.8,
+        "user_ratings_total": 1110,
+        "lat": 35.059739,
+        "lon": -101.93679039999999
       },
       {
         "name": "Oak Grove Racing, Gaming & Hotel",
@@ -3055,6 +3259,16 @@
         "user_ratings_total": 3621,
         "lat": 36.6585617,
         "lon": -87.4392776
+      },
+      {
+        "name": "Scooter's Smokehouse & Grill",
+        "address": "1416 Argentine St, Georgetown, CO 80444, USA",
+        "location": "Clear Creek County, CO",
+        "type": "restaurant",
+        "rating": 4.9,
+        "user_ratings_total": 947,
+        "lat": 39.7146945,
+        "lon": -105.69493179999999
       },
       {
         "name": "The Tattooed Dog",
@@ -3087,14 +3301,14 @@
         "lon": -112.1879877
       },
       {
-        "name": "Blackbird Cafe - Mountain Brunch & Lunch",
-        "address": "25940 CO-74, Evergreen, CO 80439, USA",
-        "location": "Clear Creek County, CO",
+        "name": "Duke's Slickrock Grill",
+        "address": "275 UT-24, Hanksville, UT 84734, USA",
+        "location": "Emery County, UT",
         "type": "restaurant",
         "rating": 4.7,
-        "user_ratings_total": 1173,
-        "lat": 39.6561454,
-        "lon": -105.292582
+        "user_ratings_total": 1163,
+        "lat": 38.3747368,
+        "lon": -110.7087485
       },
       {
         "name": "Granny\u2019s Soul Food",
@@ -3107,14 +3321,24 @@
         "lon": -87.4341669
       },
       {
-        "name": "Clear Creek Cidery & Eatery",
-        "address": "1446 Miner St, Idaho Springs, CO 80452, USA",
-        "location": "Clear Creek County, CO",
+        "name": "Lazy Gator",
+        "address": "6103 Hillside Rd, Amarillo, TX 79119, USA",
+        "location": "Oldham County, TX",
         "type": "restaurant",
-        "rating": 4.5,
-        "user_ratings_total": 1422,
-        "lat": 39.7419922,
-        "lon": -105.51715860000002
+        "rating": 4.6,
+        "user_ratings_total": 1183,
+        "lat": 35.146276799999995,
+        "lon": -101.9037187
+      },
+      {
+        "name": "All American Diner",
+        "address": "212 S Air Depot Blvd, Midwest City, OK 73110, USA",
+        "location": "Midwest City, OK",
+        "type": "restaurant",
+        "rating": 4.3,
+        "user_ratings_total": 1824,
+        "lat": 35.462503,
+        "lon": -97.4055226
       },
       {
         "name": "Rickety Cricket Brewing",
@@ -3127,16 +3351,6 @@
         "lon": -114.04996679999999
       },
       {
-        "name": "Fuzzy's Taco Shop",
-        "address": "5835 SE 15th St, Midwest City, OK 73110, USA",
-        "location": "Midwest City, OK",
-        "type": "restaurant",
-        "rating": 4.4,
-        "user_ratings_total": 1276,
-        "lat": 35.4516936,
-        "lon": -97.41982399999999
-      },
-      {
         "name": "Blue Moose",
         "address": "3030 SW Wanamaker Rd, Topeka, KS 66614, USA",
         "location": "Wabaunsee County, KS",
@@ -3147,16 +3361,6 @@
         "lon": -95.76195349999999
       },
       {
-        "name": "Bonanza Cafe",
-        "address": "4610 AZ-95, Fort Mohave, AZ 86426, USA",
-        "location": "Mohave County, AZ",
-        "type": "restaurant",
-        "rating": 4.5,
-        "user_ratings_total": 1056,
-        "lat": 35.022832099999995,
-        "lon": -114.5975788
-      },
-      {
         "name": "El Cafecito",
         "address": "820 E Santa Fe Ave, Grants, NM 87020, USA",
         "location": "Cibola County, NM",
@@ -3165,6 +3369,16 @@
         "user_ratings_total": 1437,
         "lat": 35.146232,
         "lon": -107.840755
+      },
+      {
+        "name": "Burgers by the Bridge",
+        "address": "410 English Village, Lake Havasu City, AZ 86403, USA",
+        "location": "Mohave County, AZ",
+        "type": "restaurant",
+        "rating": 4.5,
+        "user_ratings_total": 1018,
+        "lat": 34.4725187,
+        "lon": -114.34671829999999
       },
       {
         "name": "4th & Elm Bar & Grill",
@@ -3185,16 +3399,6 @@
         "user_ratings_total": 1146,
         "lat": 34.107388,
         "lon": -117.6541042
-      },
-      {
-        "name": "Swadley\u2019s Bar-B-Q",
-        "address": "6905 SE 29th St, Midwest City, OK 73110, USA",
-        "location": "Midwest City, OK",
-        "type": "restaurant",
-        "rating": 4.3,
-        "user_ratings_total": 1277,
-        "lat": 35.435727,
-        "lon": -97.4080128
       },
       {
         "name": "Dog Haus Biergarten",
@@ -3227,6 +3431,16 @@
         "lon": -101.7108418
       },
       {
+        "name": "Canyon Cafe",
+        "address": "16064 Pierce Ferry Rd, Dolan Springs, AZ 86441, USA",
+        "location": "Mohave County, AZ",
+        "type": "restaurant",
+        "rating": 4.4,
+        "user_ratings_total": 919,
+        "lat": 35.5916318,
+        "lon": -114.27146379999999
+      },
+      {
         "name": "Willie's Hideout",
         "address": "208 1st St Suite A, St George, KS 66535, USA",
         "location": "Wabaunsee County, KS",
@@ -3255,16 +3469,6 @@
         "user_ratings_total": 1688,
         "lat": 35.0311546,
         "lon": -107.473587
-      },
-      {
-        "name": "Goodland KOA Journey",
-        "address": "1114 US-24, Goodland, KS 67735, USA",
-        "location": "Sherman County, KS",
-        "type": "restaurant",
-        "rating": 4.6,
-        "user_ratings_total": 596,
-        "lat": 39.337882199999996,
-        "lon": -101.6975655
       },
       {
         "name": "Cedar Lake Cellars",
@@ -3297,6 +3501,16 @@
         "lon": -90.87760920000001
       },
       {
+        "name": "The Cove",
+        "address": "3710 Farnum Crk Rd, Milford, KS 66514, USA",
+        "location": "Wabaunsee County, KS",
+        "type": "restaurant",
+        "rating": 4.2,
+        "user_ratings_total": 940,
+        "lat": 39.1586265,
+        "lon": -96.89742269999999
+      },
+      {
         "name": "Mom's Kitchen",
         "address": "910 US-24, Goodland, KS 67735, USA",
         "location": "Sherman County, KS",
@@ -3317,26 +3531,6 @@
         "lon": -107.82414949999999
       },
       {
-        "name": "World's Largest Easel",
-        "address": "1901-1917 Cherry Ave, Goodland, KS 67735, USA",
-        "location": "Sherman County, KS",
-        "type": "restaurant",
-        "rating": 4.6,
-        "user_ratings_total": 485,
-        "lat": 39.3379373,
-        "lon": -101.7048227
-      },
-      {
-        "name": "Hays House 1857 Restaurant & Tavern",
-        "address": "112 W Main St, Council Grove, KS 66846, USA",
-        "location": "Wabaunsee County, KS",
-        "type": "restaurant",
-        "rating": 4.2,
-        "user_ratings_total": 867,
-        "lat": 38.661467099999996,
-        "lon": -96.4898537
-      },
-      {
         "name": "Good Grounds Coffee & Bistro",
         "address": "2402 Commerce Rd, Goodland, KS 67735, USA",
         "location": "Sherman County, KS",
@@ -3345,16 +3539,6 @@
         "user_ratings_total": 419,
         "lat": 39.331300999999996,
         "lon": -101.726964
-      },
-      {
-        "name": "Rooster's Mexican Restaraunt & Cantina",
-        "address": "1300 Vega Blvd, Vega, TX 79092, USA",
-        "location": "Oldham County, TX",
-        "type": "restaurant",
-        "rating": 4.4,
-        "user_ratings_total": 562,
-        "lat": 35.243338,
-        "lon": -102.4326345
       },
       {
         "name": "El Ranchero Cafe",
@@ -3377,6 +3561,16 @@
         "lon": -117.67075279999999
       },
       {
+        "name": "L & T Family Restaurant LLC",
+        "address": "1016 Main St, Goodland, KS 67735, USA",
+        "location": "Sherman County, KS",
+        "type": "restaurant",
+        "rating": 4.6,
+        "user_ratings_total": 402,
+        "lat": 39.348368799999996,
+        "lon": -101.7120796
+      },
+      {
         "name": "Two Dudes Barbeque LLC",
         "address": "612 State Hwy 47, Warrenton, MO 63383, USA",
         "location": "Wright City, MO",
@@ -3385,6 +3579,16 @@
         "user_ratings_total": 528,
         "lat": 38.8176956,
         "lon": -91.14154049999999
+      },
+      {
+        "name": "The Cafe in Winona",
+        "address": "1383 US-40, Winona, KS 67764, USA",
+        "location": "Sherman County, KS",
+        "type": "restaurant",
+        "rating": 4.9,
+        "user_ratings_total": 269,
+        "lat": 39.0583351,
+        "lon": -101.2431865
       },
       {
         "name": "Homestead Cafe",
@@ -3407,26 +3611,6 @@
         "lon": -91.0415185
       },
       {
-        "name": "Hickory Inn Cafe",
-        "address": "1004 Vega Blvd, Vega, TX 79092, USA",
-        "location": "Oldham County, TX",
-        "type": "restaurant",
-        "rating": 4.6,
-        "user_ratings_total": 355,
-        "lat": 35.2433404,
-        "lon": -102.4293941
-      },
-      {
-        "name": "The Red Roof Grill",
-        "address": "102 Parks St, Claude, TX 79019, USA",
-        "location": "Oldham County, TX",
-        "type": "restaurant",
-        "rating": 4.7,
-        "user_ratings_total": 269,
-        "lat": 35.110368099999995,
-        "lon": -101.3608704
-      },
-      {
         "name": "Lakeshore Inn Restaurant",
         "address": "364 Lakeshore Dr, Double Springs, AL 35553, USA",
         "location": "Marion County, AL",
@@ -3435,16 +3619,6 @@
         "user_ratings_total": 601,
         "lat": 34.1409194,
         "lon": -87.3137214
-      },
-      {
-        "name": "The Grill",
-        "address": "407 Front St, Groom, TX 79039, USA",
-        "location": "Oldham County, TX",
-        "type": "restaurant",
-        "rating": 4.6,
-        "user_ratings_total": 299,
-        "lat": 35.2000846,
-        "lon": -101.1032714
       },
       {
         "name": "Lottie's Restaurant",
@@ -3474,7 +3648,7 @@
         "location": "Williams, AZ",
         "type": "dog_park",
         "rating": 4.7,
-        "user_ratings_total": 14524,
+        "user_ratings_total": 14525,
         "lat": 35.2518376,
         "lon": -112.14776099999999
       },
@@ -3484,7 +3658,7 @@
         "location": "Los Angeles, CA",
         "type": "dog_park",
         "rating": 4.5,
-        "user_ratings_total": 8905,
+        "user_ratings_total": 8906,
         "lat": 34.0563289,
         "lon": -118.24677129999999
       },
@@ -3494,7 +3668,7 @@
         "location": "Colorado Springs, CO",
         "type": "dog_park",
         "rating": 4.8,
-        "user_ratings_total": 4031,
+        "user_ratings_total": 4032,
         "lat": 38.8266516,
         "lon": -104.8615476
       },
@@ -3559,6 +3733,16 @@
         "lon": -115.1148363
       },
       {
+        "name": "Lone Mountain Regional Park",
+        "address": "9825 W Lone Mountain Rd, Las Vegas, NV 89129, USA",
+        "location": "Las Vegas, NV",
+        "type": "dog_park",
+        "rating": 4.7,
+        "user_ratings_total": 1161,
+        "lat": 36.2470977,
+        "lon": -115.31161999999999
+      },
+      {
         "name": "Clear Creek Canyon Park Big Easy Trailhead",
         "address": "32088 US-6, Golden, CO 80403, USA",
         "location": "Clear Creek County, CO",
@@ -3567,16 +3751,6 @@
         "user_ratings_total": 953,
         "lat": 39.7346882,
         "lon": -105.3667096
-      },
-      {
-        "name": "Clark County Dog Fancier's Park",
-        "address": "5800 E Flamingo Rd, Las Vegas, NV 89122, USA",
-        "location": "Las Vegas, NV",
-        "type": "dog_park",
-        "rating": 4.5,
-        "user_ratings_total": 1481,
-        "lat": 36.1089063,
-        "lon": -115.04790609999998
       },
       {
         "name": "Wamego City Park",
@@ -3789,6 +3963,16 @@
         "user_ratings_total": 3208,
         "lat": 35.0296526,
         "lon": -111.7336297
+      },
+      {
+        "name": "Black Dragon Canyon Viewpoint",
+        "address": "Green River, UT 84525, USA",
+        "location": "~1803 mi from start",
+        "type": "viewpoint",
+        "rating": 4.8,
+        "user_ratings_total": 1220,
+        "lat": 38.940155399999995,
+        "lon": -110.4819388
       },
       {
         "name": "Silverwood Lake Vista Point",
