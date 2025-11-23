@@ -103,6 +103,79 @@ class NationalPark:
     wikipedia_summary: Optional[str] = None
 
 
+# ============================================================================
+# UTILITY FUNCTIONS
+# ============================================================================
+
+# State abbreviation mapping (used in multiple places)
+STATE_ABBREV_TO_NAME = {
+    'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
+    'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware',
+    'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho',
+    'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas',
+    'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
+    'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
+    'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada',
+    'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York',
+    'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma',
+    'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
+    'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah',
+    'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia',
+    'WI': 'Wisconsin', 'WY': 'Wyoming'
+}
+
+# Reverse mapping for state name -> abbreviation
+STATE_NAME_TO_ABBREV = {v.lower(): k for k, v in STATE_ABBREV_TO_NAME.items()}
+
+
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float, unit: str = 'miles') -> float:
+    """
+    Calculate distance between two coordinate points using Haversine formula.
+    
+    Args:
+        lat1, lon1: First coordinate
+        lat2, lon2: Second coordinate
+        unit: 'miles', 'km', or 'meters' (default: 'miles')
+        
+    Returns:
+        Distance in specified unit
+    """
+    R_MILES = 3959
+    R_KM = 6371
+    R_METERS = 6371000
+    
+    radius = {'miles': R_MILES, 'km': R_KM, 'meters': R_METERS}.get(unit, R_MILES)
+    
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    delta_lat = math.radians(lat2 - lat1)
+    delta_lon = math.radians(lon2 - lon1)
+    
+    a = math.sin(delta_lat/2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon/2)**2
+    c = 2 * math.asin(math.sqrt(a))
+    
+    return radius * c
+
+
+def calculate_popularity_score(rating: float, review_count: int) -> float:
+    """
+    Calculate popularity score based on rating and review count.
+    Uses logarithmic scaling for reviews to prevent over-weighting popular places.
+    
+    Args:
+        rating: Rating out of 5.0
+        review_count: Number of reviews
+        
+    Returns:
+        Popularity score (higher is better)
+    """
+    return rating * math.log10(review_count + 1) if review_count > 0 else rating
+
+
+# ============================================================================
+# MAIN CLASSES
+# ============================================================================
+
 class WikipediaHelper:
     """Fetches Wikipedia and Wikivoyage content."""
     
@@ -328,20 +401,7 @@ class OSRMRouter:
     
     def _haversine_distance(self, coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float:
         """Calculate distance between two coordinates in miles."""
-        lat1, lon1 = coord1
-        lat2, lon2 = coord2
-        
-        R = 3959  # Earth's radius in miles
-        
-        lat1_rad = math.radians(lat1)
-        lat2_rad = math.radians(lat2)
-        delta_lat = math.radians(lat2 - lat1)
-        delta_lon = math.radians(lon2 - lon1)
-        
-        a = math.sin(delta_lat/2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon/2)**2
-        c = 2 * math.asin(math.sqrt(a))
-        
-        return R * c
+        return haversine_distance(coord1[0], coord1[1], coord2[0], coord2[1], 'miles')
 
 
 class NominatimGeocoder:
@@ -416,22 +476,7 @@ class NominatimGeocoder:
     
     def _get_state_abbrev(self, state_name: str) -> Optional[str]:
         """Convert state name to abbreviation."""
-        states = {
-            'alabama': 'AL', 'alaska': 'AK', 'arizona': 'AZ', 'arkansas': 'AR',
-            'california': 'CA', 'colorado': 'CO', 'connecticut': 'CT', 'delaware': 'DE',
-            'florida': 'FL', 'georgia': 'GA', 'hawaii': 'HI', 'idaho': 'ID',
-            'illinois': 'IL', 'indiana': 'IN', 'iowa': 'IA', 'kansas': 'KS',
-            'kentucky': 'KY', 'louisiana': 'LA', 'maine': 'ME', 'maryland': 'MD',
-            'massachusetts': 'MA', 'michigan': 'MI', 'minnesota': 'MN', 'mississippi': 'MS',
-            'missouri': 'MO', 'montana': 'MT', 'nebraska': 'NE', 'nevada': 'NV',
-            'new hampshire': 'NH', 'new jersey': 'NJ', 'new mexico': 'NM', 'new york': 'NY',
-            'north carolina': 'NC', 'north dakota': 'ND', 'ohio': 'OH', 'oklahoma': 'OK',
-            'oregon': 'OR', 'pennsylvania': 'PA', 'rhode island': 'RI', 'south carolina': 'SC',
-            'south dakota': 'SD', 'tennessee': 'TN', 'texas': 'TX', 'utah': 'UT',
-            'vermont': 'VT', 'virginia': 'VA', 'washington': 'WA', 'west virginia': 'WV',
-            'wisconsin': 'WI', 'wyoming': 'WY'
-        }
-        return states.get(state_name.lower())
+        return STATE_NAME_TO_ABBREV.get(state_name.lower())
 
 
 class GooglePlacesFinder:
@@ -508,7 +553,7 @@ class GooglePlacesFinder:
                         phone=place.get('internationalPhoneNumber', None),
                         website=place.get('websiteUri', None)
                     )
-                    hotel.score = rating * math.log10(reviews + 1)
+                    hotel.score = calculate_popularity_score(rating, reviews)
                     hotels.append(hotel)
             
             if hotels:
@@ -594,7 +639,7 @@ class GooglePlacesFinder:
                     website=place.get('websiteUri', None),
                     is_24_hours=is_24_hours
                 )
-                vet.score = rating * math.log10(reviews + 1)
+                vet.score = calculate_popularity_score(rating, reviews)
                 # Boost score for 24-hour vets
                 if vet.is_24_hours:
                     vet.score *= 1.5
@@ -634,22 +679,12 @@ class GooglePlacesFinder:
         
         print(f"  Scanning route for parks (every {sample_interval_miles} miles, 5km radius)...")
         
-        # Simple haversine function
-        def haversine(lat1, lon1, lat2, lon2):
-            import math
-            R = 6371000  # Earth's radius in meters
-            phi1, phi2 = math.radians(lat1), math.radians(lat2)
-            dphi = math.radians(lat2 - lat1)
-            dlambda = math.radians(lon2 - lon1)
-            a = math.sin(dphi/2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda/2)**2
-            return 2 * R * math.asin(math.sqrt(a))
-        
         for i in range(len(route_geometry) - 1):
             coord1 = route_geometry[i]
             coord2 = route_geometry[i + 1]
             
             # Calculate distance (coordinates are [lon, lat] in GeoJSON format)
-            segment_dist = haversine(coord1[1], coord1[0], coord2[1], coord2[0])
+            segment_dist = haversine_distance(coord1[1], coord1[0], coord2[1], coord2[0], 'meters')
             
             cumulative_distance += segment_dist
             
@@ -717,7 +752,7 @@ class GooglePlacesFinder:
                 last_check_distance = cumulative_distance
         
         # Sort by rating * log(reviews) and return unique parks
-        all_parks.sort(key=lambda p: p.rating * math.log10(p.user_ratings_total + 1), reverse=True)
+        all_parks.sort(key=lambda p: calculate_popularity_score(p.rating, p.user_ratings_total), reverse=True)
         return all_parks
     
     def find_parks_nearby(self, city_name: str, lat: float, lon: float, limit: int = 3) -> List[Attraction]:
@@ -766,7 +801,7 @@ class GooglePlacesFinder:
                 attractions.append(attraction)
             
             # Sort by rating * log(reviews) and return top N
-            attractions.sort(key=lambda a: a.rating * math.log10(a.user_ratings_total + 1), reverse=True)
+            attractions.sort(key=lambda a: calculate_popularity_score(a.rating, a.user_ratings_total), reverse=True)
             return attractions[:limit]
             
         except Exception as e:
@@ -823,7 +858,7 @@ class GooglePlacesFinder:
                 )
                 museums.append(museum)
             
-            museums.sort(key=lambda m: m.rating * math.log10(m.user_ratings_total + 1), reverse=True)
+            museums.sort(key=lambda m: calculate_popularity_score(m.rating, m.user_ratings_total), reverse=True)
             return museums[:limit]
             
         except Exception as e:
@@ -875,7 +910,7 @@ class GooglePlacesFinder:
                 )
                 restaurants.append(restaurant)
             
-            restaurants.sort(key=lambda r: r.rating * math.log10(r.user_ratings_total + 1), reverse=True)
+            restaurants.sort(key=lambda r: calculate_popularity_score(r.rating, r.user_ratings_total), reverse=True)
             return restaurants[:limit]
             
         except Exception as e:
@@ -927,7 +962,7 @@ class GooglePlacesFinder:
                 )
                 dog_parks.append(dog_park)
             
-            dog_parks.sort(key=lambda d: d.rating * math.log10(d.user_ratings_total + 1), reverse=True)
+            dog_parks.sort(key=lambda d: calculate_popularity_score(d.rating, d.user_ratings_total), reverse=True)
             return dog_parks[:limit]
             
         except Exception as e:
@@ -946,19 +981,11 @@ class GooglePlacesFinder:
         last_check_distance = 0
         check_interval_m = sample_interval_miles * 1609.34
         
-        def haversine(lat1, lon1, lat2, lon2):
-            import math
-            R = 6371000
-            phi1, phi2 = math.radians(lat1), math.radians(lat2)
-            dphi = math.radians(lat2 - lat1)
-            dlambda = math.radians(lon2 - lon1)
-            a = math.sin(dphi/2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda/2)**2
-            return 2 * R * math.asin(math.sqrt(a))
         
         for i in range(len(route_geometry) - 1):
             coord1 = route_geometry[i]
             coord2 = route_geometry[i + 1]
-            segment_dist = haversine(coord1[1], coord1[0], coord2[1], coord2[0])
+            segment_dist = haversine_distance(coord1[1], coord1[0], coord2[1], coord2[0], 'meters')
             cumulative_distance += segment_dist
             
             if cumulative_distance - last_check_distance >= check_interval_m:
@@ -998,7 +1025,7 @@ class GooglePlacesFinder:
                                 continue
                             
                             # Verify the viewpoint is actually within 25km of the route point
-                            distance_to_route = haversine(lat, lon, place_lat, place_lon)
+                            distance_to_route = haversine_distance(lat, lon, place_lat, place_lon, 'meters')
                             if distance_to_route > 25000:  # Skip if more than 25km away
                                 continue
                             
@@ -1043,7 +1070,7 @@ class GooglePlacesFinder:
                 
                 last_check_distance = cumulative_distance
         
-        viewpoints.sort(key=lambda v: v.rating * math.log10(v.user_ratings_total + 1) if v.user_ratings_total > 0 else v.rating, reverse=True)
+        viewpoints.sort(key=lambda v: calculate_popularity_score(v.rating, v.user_ratings_total), reverse=True)
         return viewpoints
     
     def find_national_parks_by_state(self, state_name: str, limit: int = None) -> List[NationalPark]:
@@ -1140,7 +1167,7 @@ class GooglePlacesFinder:
             
             # Sort by popularity (rating * log(reviews))
             national_parks.sort(
-                key=lambda p: p.rating * math.log10(p.user_ratings_total + 1),
+                key=lambda p: calculate_popularity_score(p.rating, p.user_ratings_total),
                 reverse=True
             )
             
@@ -1233,7 +1260,7 @@ class GooglePlacesFinder:
             
             # Sort by popularity (rating * log(reviews))
             monuments.sort(
-                key=lambda m: m.rating * math.log10(m.user_ratings_total + 1),
+                key=lambda m: calculate_popularity_score(m.rating, m.user_ratings_total),
                 reverse=True
             )
             
@@ -1346,18 +1373,8 @@ def create_trip_map(
             current_stop = stop_cities[i]
             next_stop = stop_cities[i + 1]
             
-            import math
-            
-            def haversine_miles(lat1, lon1, lat2, lon2):
-                R = 3959  # Earth's radius in miles
-                phi1, phi2 = math.radians(lat1), math.radians(lat2)
-                dphi = math.radians(lat2 - lat1)
-                dlambda = math.radians(lon2 - lon1)
-                a = math.sin(dphi/2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda/2)**2
-                return 2 * R * math.asin(math.sqrt(a))
-            
-            distance_mi = haversine_miles(current_stop['lat'], current_stop['lon'], 
-                                          next_stop['lat'], next_stop['lon'])
+            distance_mi = haversine_distance(current_stop['lat'], current_stop['lon'], 
+                                           next_stop['lat'], next_stop['lon'], 'miles')
             
             # Estimate driving time at 60 mph average
             hours = distance_mi / 60.0
@@ -1371,7 +1388,7 @@ def create_trip_map(
                 min_dist = float('inf')
                 min_idx = 0
                 for idx, coord in enumerate(coords):
-                    dist = haversine_miles(lat, lon, coord[0], coord[1])
+                    dist = haversine_distance(lat, lon, coord[0], coord[1], 'miles')
                     if dist < min_dist:
                         min_dist = dist
                         min_idx = idx
@@ -1875,25 +1892,9 @@ def main():
             state_abbrev = city['name'].split(', ')[-1]
             states_visited.add(state_abbrev)
     
-    # Convert state abbreviations to full names
-    state_abbrev_to_name = {
-        'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
-        'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware',
-        'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho',
-        'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas',
-        'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
-        'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
-        'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada',
-        'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York',
-        'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma',
-        'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
-        'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah',
-        'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia',
-        'WI': 'Wisconsin', 'WY': 'Wyoming'
-    }
-    
+    # Use module-level state mapping
     for state_abbrev in sorted(states_visited):
-        state_name = state_abbrev_to_name.get(state_abbrev, state_abbrev)
+        state_name = STATE_ABBREV_TO_NAME.get(state_abbrev, state_abbrev)
         print(f"    Searching {state_name}...")
         national_parks = places_finder.find_national_parks_by_state(state_name)  # No limit - get all
         all_attractions['national_parks'].extend(national_parks)
@@ -1946,7 +1947,7 @@ def main():
                 unique_attractions.append(attraction)
                 seen_names.add(attraction.name)
         # Re-sort by score
-        unique_attractions.sort(key=lambda a: a.rating * math.log10(a.user_ratings_total + 1) if a.user_ratings_total > 0 else a.rating, reverse=True)
+        unique_attractions.sort(key=lambda a: calculate_popularity_score(a.rating, a.user_ratings_total), reverse=True)
         all_attractions[category] = unique_attractions
     
     # Print summary
