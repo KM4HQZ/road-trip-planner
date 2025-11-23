@@ -1169,14 +1169,13 @@ def create_trip_map(
             icon=folium.Icon(color='red', icon='bed', prefix='fa')
         ).add_to(hotel_group)
     
-    # Add distance/time markers between consecutive hotel stops
-    if hotels and route_data:
+    # Add distance/time markers between consecutive stops
+    if route_data and len(stops) > 1:
         # Create a distance/time group
         distance_group = folium.FeatureGroup(name='📏 Distances & Times', show=True)
         
-        # Get ordered list of ALL stops (not just those with hotels), maintaining route order
-        # Filter for 'stop' type to get the regular interval stops along the route
-        stop_cities = [stop for stop in stops if stop['type'] == 'stop']
+        # Use ALL stops in order, excluding the return stop to avoid duplicate markers
+        stop_cities = [stop for stop in stops if stop['type'] != 'return']
         
         # Calculate distances between consecutive stops
         for i in range(len(stop_cities) - 1):
