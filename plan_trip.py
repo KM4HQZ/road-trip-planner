@@ -924,7 +924,7 @@ class GooglePlacesFinder:
         """
         # Search for all types of National Park Service sites
         # Use a broader search to catch all variations
-        search_query = f"national historic OR national park OR national monument {state_name}"
+        search_query = f"national forest OR national park OR national historic OR national monument {state_name}"
         
         request_body = {
             "textQuery": search_query,
@@ -954,7 +954,7 @@ class GooglePlacesFinder:
                 if state_name not in address:
                     continue
                 
-                # Include all National Park Service site types
+                # Include all National Park Service site types AND National Forests
                 if not any(keyword in name_lower for keyword in [
                     'national park',
                     'national monument', 
@@ -970,7 +970,8 @@ class GooglePlacesFinder:
                     'national parkway',
                     'national river',
                     'national wild',
-                    'national scenic'
+                    'national scenic',
+                    'national forest'
                 ]):
                     continue
                 
