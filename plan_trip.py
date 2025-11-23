@@ -912,8 +912,8 @@ class GooglePlacesFinder:
     
     def find_national_parks_by_state(self, state_name: str, limit: int = None) -> List[NationalPark]:
         """
-        Find major national parks in a given state.
-        Only searches for official National Parks and major monuments.
+        Find all National Park Service sites in a given state.
+        Includes all NPS site types: parks, monuments, historic sites, etc.
         
         Args:
             state_name: Full state name (e.g., "Colorado", "California")
@@ -922,8 +922,8 @@ class GooglePlacesFinder:
         Returns:
             List of NationalPark objects
         """
-        # Major keywords for national parks
-        search_query = f"National Park {state_name}"
+        # Search for all types of National Park Service sites
+        search_query = f"National Park Service {state_name}"
         
         request_body = {
             "textQuery": search_query,
@@ -953,12 +953,23 @@ class GooglePlacesFinder:
                 if state_name not in address:
                     continue
                 
-                # Only include official National Parks, National Monuments, or very famous parks
+                # Include all National Park Service site types
                 if not any(keyword in name_lower for keyword in [
                     'national park',
                     'national monument', 
                     'national recreation area',
-                    'national memorial'
+                    'national memorial',
+                    'national historic',
+                    'national historical',
+                    'national military park',
+                    'national battlefield',
+                    'national seashore',
+                    'national lakeshore',
+                    'national preserve',
+                    'national parkway',
+                    'national river',
+                    'national wild',
+                    'national scenic'
                 ]):
                     continue
                 
