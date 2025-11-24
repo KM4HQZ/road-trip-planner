@@ -106,7 +106,9 @@ pip install -r requirements.txt
 
 For Linux users who want a single-file executable without installing Python:
 
-1. Download `RoadTripPlanner` from [GitHub Releases](https://github.com/KM4HQZ/road-trip-planner/releases)
+**Download pre-built executable:**
+1. Download `RoadTripPlanner` from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
+   - Direct download: [RoadTripPlanner v1.0.0](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.0.0/RoadTripPlanner)
 2. Make executable: `chmod +x RoadTripPlanner`
 3. Run: `./RoadTripPlanner`
 4. Create a `.env` file in the same directory with your API key
@@ -117,7 +119,7 @@ source venv/bin/activate
 ./build_pyinstaller.sh
 ```
 
-The executable will be created in `dist/RoadTripPlanner` (~163MB, includes Python and all dependencies).
+The executable will be created in `dist/RoadTripPlanner` (~271MB, includes Python and all dependencies).
 
 > **Note:** Cross-platform installers (.msi, .dmg, .AppImage) may be added in future releases.
 
