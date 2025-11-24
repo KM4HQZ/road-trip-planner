@@ -158,7 +158,17 @@ class ResultsPanel(QWidget):
         map_file = self.trip_data.get('output_files', {}).get('map')
         if map_file and Path(map_file).exists():
             import webbrowser
-            webbrowser.open(f'file://{Path(map_file).absolute()}')
+            import platform
+            import subprocess
+            
+            # On macOS, use 'open' command directly to avoid PATH issues
+            if platform.system() == 'Darwin':
+                try:
+                    subprocess.run(['/usr/bin/open', str(Path(map_file).absolute())], check=True)
+                except Exception as e:
+                    QMessageBox.warning(self, 'Error', f'Could not open browser: {e}')
+            else:
+                webbrowser.open(f'file://{Path(map_file).absolute()}')
         else:
             QMessageBox.warning(self, 'File Not Found', 'Map file not found.')
     

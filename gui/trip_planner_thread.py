@@ -33,9 +33,19 @@ class TripPlannerThread(QThread):
         try:
             self.progress.emit('Initializing services...')
             
-            # Load API key
+            # Load API key from the proper location
             from dotenv import load_dotenv
-            load_dotenv()
+            
+            # Check if running as bundled app (PyInstaller sets sys.frozen)
+            if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                # Running as bundled app - load from Documents/RoadTripPlanner
+                env_file = Path.home() / 'Documents' / 'RoadTripPlanner' / '.env'
+                if env_file.exists():
+                    load_dotenv(env_file)
+            else:
+                # Running from source - use current directory
+                load_dotenv()
+            
             api_key = os.getenv('GOOGLE_PLACES_API_KEY')
             
             # Initialize services
@@ -316,8 +326,16 @@ class TripPlannerThread(QThread):
             
             # Save outputs
             self.progress.emit('Saving files...')
-            output_dir = Path("trip routes")
-            output_dir.mkdir(exist_ok=True)
+            
+            # Check if running as bundled app (PyInstaller sets sys.frozen)
+            if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                # Running as bundled app - save to Documents/RoadTripPlanner/trip routes
+                output_dir = Path.home() / 'Documents' / 'RoadTripPlanner' / 'trip routes'
+            else:
+                # Running from source - use current directory
+                output_dir = Path("trip routes")
+            
+            output_dir.mkdir(parents=True, exist_ok=True)
             
             if via_cities:
                 via_names = '_'.join([v[2].replace(', ', '_').replace(' ', '_') for v in via_cities])

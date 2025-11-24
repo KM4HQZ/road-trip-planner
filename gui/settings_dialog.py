@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt
 from pathlib import Path
 import os
+import sys
 
 
 class SettingsDialog(QDialog):
@@ -73,7 +74,7 @@ class SettingsDialog(QDialog):
     def load_settings(self):
         """Load current settings."""
         # Try to load from .env file
-        env_file = Path('.env')
+        env_file = self.get_env_file_path()
         if env_file.exists():
             from dotenv import dotenv_values
             config = dotenv_values(env_file)
@@ -83,6 +84,23 @@ class SettingsDialog(QDialog):
             # Check environment variable
             api_key = os.getenv('GOOGLE_PLACES_API_KEY', '')
             self.api_key_input.setText(api_key)
+    
+    def get_env_file_path(self):
+        """Get the path to the .env file.
+        
+        When running as a bundled app, save to user's Documents folder.
+        Otherwise, save to current directory.
+        """
+        # Check if we're running as a bundled app
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+            # Running as bundled app - save to Documents/RoadTripPlanner
+            docs_dir = Path.home() / 'Documents' / 'RoadTripPlanner'
+            docs_dir.mkdir(parents=True, exist_ok=True)
+            return docs_dir / '.env'
+        else:
+            # Running from source - use current directory
+            return Path('.env')
     
     def save_settings(self):
         """Save settings to .env file."""
@@ -99,7 +117,7 @@ class SettingsDialog(QDialog):
                 return
         
         # Save to .env file
-        env_file = Path('.env')
+        env_file = self.get_env_file_path()
         env_content = []
         
         # Read existing content
@@ -113,15 +131,28 @@ class SettingsDialog(QDialog):
         env_content.append(f'GOOGLE_PLACES_API_KEY={api_key}')
         
         # Write back
-        with open(env_file, 'w') as f:
-            f.write('\n'.join(env_content))
-            if env_content and not env_content[-1].endswith('\n'):
-                f.write('\n')
-        
-        # Update environment variable for current session
-        os.environ['GOOGLE_PLACES_API_KEY'] = api_key
-        
-        self.accept()
+        try:
+            with open(env_file, 'w') as f:
+                f.write('\n'.join(env_content))
+                if env_content and not env_content[-1].endswith('\n'):
+                    f.write('\n')
+            
+            # Update environment variable for current session
+            os.environ['GOOGLE_PLACES_API_KEY'] = api_key
+            
+            QMessageBox.information(
+                self,
+                'Settings Saved',
+                f'Settings saved to:\n{env_file}'
+            )
+            self.accept()
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                'Error Saving Settings',
+                f'Could not save settings:\n{e}'
+            )
+    
     
     def toggle_api_key_visibility(self):
         """Toggle API key visibility."""
