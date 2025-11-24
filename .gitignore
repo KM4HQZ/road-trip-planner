@@ -25,6 +25,9 @@ location_cache_backup.json
 *_backup.py
 *_backup.json
 
+# Helper scripts (one-off utilities)
+generate_gpx_from_data.py
+
 # IDE
 .vscode/
 .idea/
