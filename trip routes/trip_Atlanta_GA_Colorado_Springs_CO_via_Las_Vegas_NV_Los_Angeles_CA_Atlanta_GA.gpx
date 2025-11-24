@@ -1,0 +1,571 @@
+<?xml version="1.0" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="Road Trip Planner" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Road Trip: Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA → Atlanta, GA</name>
+    <desc>Pet-friendly road trip generated on 2025-11-24</desc>
+    <time>2025-11-24T13:23:29.198811</time>
+  </metadata>
+  <wpt lat="33.7544657" lon="-84.3898151">
+    <name>Stop 0: Atlanta, GA</name>
+    <desc>Major stop on your road trip | Hotel: Omni Atlanta Hotel at Centennial Park (4.2⭐) | Vet: VEG ER for Pets (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Atlanta</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="38.649058" lon="-90.162025">
+    <name>Stop 1: Fairmont City, IL</name>
+    <desc>Major stop on your road trip | Hotel: Drury Inn St. Louis At Union Station (4.6⭐) | Vet: Veterinary Emergency Group (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Fairmont_City</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="39.074531" lon="-104.858316">
+    <name>Stop 2: Monument, CO</name>
+    <desc>Major stop on your road trip | Hotel: Drury Inn &amp; Suites Colorado Springs Near The Air Force Academy (4.7⭐) | Vet: Animal ER Care, LLC (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Monument</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="34.068081" lon="-118.033733">
+    <name>Stop 3: El Monte, CA</name>
+    <desc>Major stop on your road trip | Hotel: InterContinental Los Angeles Downtown by IHG (4.5⭐) | Vet: ACCESS Pasadena (24/7) | Travel guide: https://en.wikivoyage.org/wiki/El_Monte</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="35.105187" lon="-106.640894">
+    <name>Stop 4: Albuquerque, NM</name>
+    <desc>Major stop on your road trip | Hotel: Hotel Chaco (4.5⭐) | Vet: Roadrunner Veterinary Emergency &amp; Specialty Hospital (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Albuquerque</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="35.415526" lon="-97.32111">
+    <name>Stop 5: Oklahoma City, OK</name>
+    <desc>Major stop on your road trip | Hotel: Wyndham Grand Oklahoma City Downtown (4.3⭐) | Vet: Animal Emergency &amp; Surgical Center (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Oklahoma_City</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="34.308768" lon="-88.771997">
+    <name>Stop 6: Tupelo, MS</name>
+    <desc>Major stop on your road trip | Hotel: Campground At Barnes Crossing (4.6⭐) | Vet: All Animal Hospital (Regular hours) | Travel guide: https://en.wikivoyage.org/wiki/Tupelo</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="38.8339578" lon="-104.825348">
+    <name>Stop 7: Colorado Springs, CO</name>
+    <desc>Major stop on your road trip | Hotel: Drury Inn &amp; Suites Colorado Springs Near The Air Force Academy (4.7⭐) | Vet: Animal ER Care, LLC (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Colorado_Springs</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="36.1674263" lon="-115.1484131">
+    <name>Stop 8: Las Vegas, NV</name>
+    <desc>Major stop on your road trip | Hotel: The Venetian Las Vegas (4.6⭐) | Vet: Veterinary Emergency Group (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Las_Vegas</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="34.0536909" lon="-118.242766">
+    <name>Stop 9: Los Angeles, CA</name>
+    <desc>Major stop on your road trip | Hotel: InterContinental Los Angeles Downtown by IHG (4.5⭐) | Vet: Metropolitan Animal Specialty Hospital (MASH) (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Los_Angeles</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="33.7544657" lon="-84.3898151">
+    <name>Stop 10: Atlanta, GA</name>
+    <desc>Major stop on your road trip | Hotel: Omni Atlanta Hotel at Centennial Park (4.2⭐) | Vet: VEG ER for Pets (24/7) | Travel guide: https://en.wikivoyage.org/wiki/Atlanta</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="33.7544657" lon="-84.3898151">
+    <name>Stop 11: Atlanta, GA (return)</name>
+    <desc>Major stop on your road trip | Hotel: Omni Atlanta Hotel at Centennial Park (4.2⭐) | Travel guide: https://en.wikivoyage.org/wiki/Tupelo</desc>
+    <type>Major Stop</type>
+  </wpt>
+  <wpt lat="34.909211" lon="-85.120992">
+    <name>Waypoint: Ringgold, GA</name>
+    <desc>Optional stop with hotel available | Hotel: The Edwin Hotel, Autograph Collection (4.6⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="36.226026" lon="-86.776579">
+    <name>Waypoint: Nashville, TN</name>
+    <desc>Optional stop with hotel available | Hotel: Sheraton Music City Nashville Airport (4.3⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="39.099785" lon="-94.622505">
+    <name>Waypoint: Kansas City, KS</name>
+    <desc>Optional stop with hotel available | Hotel: Harrah's Kansas City - A Caesars Rewards Destination (3.9⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="39.148158" lon="-108.721362">
+    <name>Waypoint: Fruita, CO</name>
+    <desc>Optional stop with hotel available | Hotel: Clarion Inn Grand Junction Airport (4.3⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="35.263904" lon="-112.16815">
+    <name>Waypoint: Williams, AZ</name>
+    <desc>Optional stop with hotel available | Hotel: Best Western Plus Inn of Williams (4.6⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="35.295888" lon="-93.119879">
+    <name>Waypoint: Russellville, AR</name>
+    <desc>Optional stop with hotel available | Hotel: Piney Bay Campground (4.6⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="34.800241" lon="-91.750417">
+    <name>Waypoint: Carlisle, AR</name>
+    <desc>Optional stop with hotel available | Hotel: Holiday Inn Express &amp; Suites Lonoke I-40 (Exit 175), an IHG Hotel (4.5⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="33.544068" lon="-86.596085">
+    <name>Waypoint: Leeds, AL</name>
+    <desc>Optional stop with hotel available | Hotel: Drury Inn &amp; Suites Birmingham Grandview (4.5⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="33.724232" lon="-84.912805">
+    <name>Waypoint: Villa Rica, GA</name>
+    <desc>Optional stop with hotel available | Hotel: Foxhall Resort (4.4⭐)</desc>
+    <type>Waypoint</type>
+  </wpt>
+  <wpt lat="33.7583402" lon="-84.3942979">
+    <name>🏨 Omni Atlanta Hotel at Centennial Park</name>
+    <desc>Pet-friendly hotel | 4.2⭐ (12414 reviews) | 190 Marietta St NW, Atlanta, GA 30303, USA | Phone: +1 404-659-0000</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="38.6277884" lon="-90.20998449999999">
+    <name>🏨 Drury Inn St. Louis At Union Station</name>
+    <desc>Pet-friendly hotel | 4.6⭐ (1998 reviews) | 201 S 20th St, St. Louis, MO 63103, USA | Phone: +1 314-231-3900</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="38.9926684" lon="-104.80866510000001">
+    <name>🏨 Drury Inn &amp; Suites Colorado Springs Near The Air Force Academy</name>
+    <desc>Pet-friendly hotel | 4.7⭐ (1729 reviews) | 1170 Interquest Pkwy, Colorado Springs, CO 80920, USA | Phone: +1 719-598-2500</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="34.049723" lon="-118.2605551">
+    <name>🏨 InterContinental Los Angeles Downtown by IHG</name>
+    <desc>Pet-friendly hotel | 4.5⭐ (6896 reviews) | 900 Wilshire Blvd, Los Angeles, CA 90017, USA | Phone: +1 213-688-7777</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="35.1008078" lon="-106.6680423">
+    <name>🏨 Hotel Chaco</name>
+    <desc>Pet-friendly hotel | 4.5⭐ (1360 reviews) | 2000 Bellamah Ave NW, Albuquerque, NM 87104, USA | Phone: +1 505-246-9989</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="35.4669253" lon="-97.5142877">
+    <name>🏨 Wyndham Grand Oklahoma City Downtown</name>
+    <desc>Pet-friendly hotel | 4.3⭐ (5746 reviews) | 10 N Broadway Ave, Oklahoma City, OK 73102, USA | Phone: +1 405-228-8000</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="34.3223592" lon="-88.7031627">
+    <name>🏨 Campground At Barnes Crossing</name>
+    <desc>Pet-friendly hotel | 4.6⭐ (436 reviews) | 125 Campground Rd, Tupelo, MS 38804, USA | Phone: +1 662-844-6063</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="38.9926684" lon="-104.80866510000001">
+    <name>🏨 Drury Inn &amp; Suites Colorado Springs Near The Air Force Academy</name>
+    <desc>Pet-friendly hotel | 4.7⭐ (1729 reviews) | 1170 Interquest Pkwy, Colorado Springs, CO 80920, USA | Phone: +1 719-598-2500</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="36.121173999999996" lon="-115.16965259999999">
+    <name>🏨 The Venetian Las Vegas</name>
+    <desc>Pet-friendly hotel | 4.6⭐ (119309 reviews) | 3355 S Las Vegas Blvd, Las Vegas, NV 89109, USA | Phone: +1 702-414-1000</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="34.049723" lon="-118.2605551">
+    <name>🏨 InterContinental Los Angeles Downtown by IHG</name>
+    <desc>Pet-friendly hotel | 4.5⭐ (6896 reviews) | 900 Wilshire Blvd, Los Angeles, CA 90017, USA | Phone: +1 213-688-7777</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="33.7583402" lon="-84.3942979">
+    <name>🏨 Omni Atlanta Hotel at Centennial Park</name>
+    <desc>Pet-friendly hotel | 4.2⭐ (12414 reviews) | 190 Marietta St NW, Atlanta, GA 30303, USA | Phone: +1 404-659-0000</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="35.0551896" lon="-85.3074786">
+    <name>🏨 The Edwin Hotel, Autograph Collection (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.6⭐ | 102 Walnut St, Chattanooga, TN 37403, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="36.1444816" lon="-86.6831588">
+    <name>🏨 Sheraton Music City Nashville Airport (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.3⭐ | 777 McGavock Pk, Nashville, TN 37214, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="39.142238400000004" lon="-94.5440163">
+    <name>🏨 Harrah's Kansas City - A Caesars Rewards Destination (Waypoint)</name>
+    <desc>Pet-friendly hotel | 3.9⭐ | 1 Riverboat Dr, North Kansas City, MO 64116, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="39.1136918" lon="-108.5383694">
+    <name>🏨 Clarion Inn Grand Junction Airport (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.3⭐ | 755 Horizon Dr, Grand Junction, CO 81506, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="35.244025" lon="-112.210671">
+    <name>🏨 Best Western Plus Inn of Williams (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.6⭐ | 2600 Rte 66, Williams, AZ 86046, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="35.3973079" lon="-93.3138905">
+    <name>🏨 Piney Bay Campground (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.6⭐ | Private Rd 2720, London, AR 72847, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="34.8077594" lon="-91.88861">
+    <name>🏨 Holiday Inn Express &amp; Suites Lonoke I-40 (Exit 175), an IHG Hotel (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.5⭐ | 104 Dee Dee Ln, Lonoke, AR 72086, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="33.4409311" lon="-86.72445840000002">
+    <name>🏨 Drury Inn &amp; Suites Birmingham Grandview (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.5⭐ | 3510 Grandview Pkwy, Birmingham, AL 35243, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="33.584992899999996" lon="-84.81476909999999">
+    <name>🏨 Foxhall Resort (Waypoint)</name>
+    <desc>Pet-friendly hotel | 4.4⭐ | 8000 Capps Ferry Rd, Douglasville, GA 30135, USA</desc>
+    <type>Lodging</type>
+  </wpt>
+  <wpt lat="33.8591895" lon="-84.3414851">
+    <name>🏥⏰ VEG ER for Pets</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.8⭐ (392 reviews) | 3964 Peachtree Rd NE, Brookhaven, GA 30319, USA | Phone: +1 404-806-0130</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="38.6223593" lon="-90.348985">
+    <name>🏥⏰ Veterinary Emergency Group</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.6⭐ (1064 reviews) | 2101 S Brentwood Blvd, Brentwood, MO 63144, USA | Phone: +1 314-970-2545</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="38.908245699999995" lon="-104.8183742">
+    <name>🏥⏰ Animal ER Care, LLC</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.2⭐ (1677 reviews) | 5520 N Nevada Ave #150, Colorado Springs, CO 80918, USA | Phone: +1 719-260-7141</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="34.149182599999996" lon="-118.09736149999999">
+    <name>🏥⏰ ACCESS Pasadena</name>
+    <desc>Veterinarian | 24/7 Emergency | 3.8⭐ (506 reviews) | 2570 E Foothill Blvd, Pasadena, CA 91107, USA | Phone: +1 626-993-9600</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="35.1508537" lon="-106.5936693">
+    <name>🏥⏰ Roadrunner Veterinary Emergency &amp; Specialty Hospital</name>
+    <desc>Veterinarian | 24/7 Emergency | 3.8⭐ (520 reviews) | 5971 Jefferson St NE Suite 101, Albuquerque, NM 87109, USA | Phone: +1 505-384-6420</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="35.3919712" lon="-97.531539">
+    <name>🏥⏰ Animal Emergency &amp; Surgical Center</name>
+    <desc>Veterinarian | 24/7 Emergency | 3.8⭐ (859 reviews) | 931 W I-240 Service Road, Oklahoma City, OK 73139, USA | Phone: +1 405-631-7828</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="34.2775663" lon="-88.77336199999999">
+    <name>🏥 All Animal Hospital</name>
+    <desc>Veterinarian | Regular hours | 4.7⭐ (298 reviews) | 1411 Coley Rd, Tupelo, MS 38801, USA | Phone: +1 662-844-4955</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="38.908245699999995" lon="-104.8183742">
+    <name>🏥⏰ Animal ER Care, LLC</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.2⭐ (1677 reviews) | 5520 N Nevada Ave #150, Colorado Springs, CO 80918, USA | Phone: +1 719-260-7141</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="36.058303099999996" lon="-115.04573859999999">
+    <name>🏥⏰ Veterinary Emergency Group</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.7⭐ (415 reviews) | 470 N Stephanie St Suite 120, Henderson, NV 89014, USA | Phone: +1 702-529-4850</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="34.0908717" lon="-118.33279639999999">
+    <name>🏥⏰ Metropolitan Animal Specialty Hospital (MASH)</name>
+    <desc>Veterinarian | 24/7 Emergency | 4.1⭐ (1113 reviews) | 6565 Santa Monica Blvd, Los Angeles, CA 90038, USA | Phone: +1 855-350-7387</desc>
+    <type>Medical</type>
+  </wpt>
+  <wpt lat="36.2678855" lon="-112.35352530000002">
+    <name>🏞️ Grand Canyon National Park</name>
+    <desc>National Parks | 4.8⭐ (62540 reviews) | Arizona, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="37.8651011" lon="-119.5383294">
+    <name>🏞️ Yosemite National Park</name>
+    <desc>National Parks | 4.8⭐ (53922 reviews) | California, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="40.342793199999996" lon="-105.68363889999999">
+    <name>🏞️ Rocky Mountain National Park</name>
+    <desc>National Parks | 4.9⭐ (26995 reviews) | Colorado, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="33.873415" lon="-115.90099229999998">
+    <name>🏞️ Joshua Tree National Park</name>
+    <desc>National Parks | 4.8⭐ (21821 reviews) | California, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="36.4863668" lon="-118.56575160000001">
+    <name>🏞️ Sequoia National Park</name>
+    <desc>National Parks | 4.8⭐ (17855 reviews) | California, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="32.7872403" lon="-106.3256816">
+    <name>🏞️ White Sands National Park</name>
+    <desc>National Parks | 4.8⭐ (17501 reviews) | New Mexico, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="35.4731496" lon="-97.5170593">
+    <name>🏞️ Oklahoma City National Memorial &amp; Museum</name>
+    <desc>National Parks | 4.9⭐ (12553 reviews) | 620 N Harvey Ave, Oklahoma City, OK 73102, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="34.526909499999995" lon="-93.0690934">
+    <name>🏞️ Hot Springs National Park</name>
+    <desc>National Parks | 4.7⭐ (15574 reviews) | Arkansas, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="37.765849100000004" lon="-105.6235976">
+    <name>🏞️ Great Sand Dunes National Park and Preserve</name>
+    <desc>National Parks | 4.8⭐ (11432 reviews) | Colorado, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="34.9583248" lon="-109.7593953">
+    <name>🏞️ Petrified Forest National Park</name>
+    <desc>National Parks | 4.7⭐ (13270 reviews) | Arizona, USA</desc>
+    <type>National Parks</type>
+  </wpt>
+  <wpt lat="35.4731496" lon="-97.5170593">
+    <name>🗿 Oklahoma City National Memorial &amp; Museum</name>
+    <desc>Monuments | 4.9⭐ (12553 reviews) | 620 N Harvey Ave, Oklahoma City, OK 73102, USA</desc>
+    <type>Monuments</type>
+  </wpt>
+  <wpt lat="39.080663" lon="-94.5860835">
+    <name>🗿 National WWI Museum and Memorial</name>
+    <desc>Monuments | 4.9⭐ (8452 reviews) | 2 Memorial Dr, Kansas City, MO 64108, USA</desc>
+    <type>Monuments</type>
+  </wpt>
+  <wpt lat="35.1690189" lon="-111.5043369">
+    <name>🗿 Walnut Canyon National Monument</name>
+    <desc>Monuments | 4.8⭐ (5090 reviews) | Arizona, USA</desc>
+    <type>Monuments</type>
+  </wpt>
+  <wpt lat="35.7875796" lon="-106.3301132">
+    <name>🗿 Bandelier National Monument</name>
+    <desc>Monuments | 4.8⭐ (3386 reviews) | New Mexico, USA</desc>
+    <type>Monuments</type>
+  </wpt>
+  <wpt lat="35.5599835" lon="-111.3935271">
+    <name>🗿 Wupatki National Monument</name>
+    <desc>Monuments | 4.8⭐ (1808 reviews) | Arizona, USA</desc>
+    <type>Monuments</type>
+  </wpt>
+  <wpt lat="34.137071299999995" lon="-118.35330610000001">
+    <name>🌲 Universal Studios Hollywood</name>
+    <desc>Parks | 4.6⭐ (169733 reviews) | 100 Universal City Plaza, Universal City, CA 91608, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="36.1707275" lon="-115.14382289999999">
+    <name>🌲 Fremont Street Experience</name>
+    <desc>Parks | 4.6⭐ (144011 reviews) | Fremont St, Las Vegas, NV 89101, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="34.008282099999995" lon="-118.4987585">
+    <name>🌲 Santa Monica Pier</name>
+    <desc>Parks | 4.6⭐ (129108 reviews) | 200 Santa Monica Pier, Santa Monica, CA 90401, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="38.8717933" lon="-104.8861757">
+    <name>🌲 Garden of the Gods</name>
+    <desc>Parks | 4.9⭐ (56418 reviews) | Colorado Springs, CO 80904, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="33.763382" lon="-84.3951098">
+    <name>🌲 Georgia Aquarium</name>
+    <desc>Parks | 4.7⭐ (85857 reviews) | 225 Baker St NW, Atlanta, GA 30313, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="36.1172612" lon="-115.17614099999999">
+    <name>🌲 Caesars Palace</name>
+    <desc>Parks | 4.5⭐ (134895 reviews) | 3570 S Las Vegas Blvd, Paradise, NV 89109, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="36.112718699999995" lon="-115.17391090000001">
+    <name>🌲 Fountains of Bellagio</name>
+    <desc>Parks | 4.8⭐ (57391 reviews) | 3600 S Las Vegas Blvd, Las Vegas, NV 89109, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="33.8443038" lon="-118.00022650000001">
+    <name>🌲 Knott's Berry Farm</name>
+    <desc>Parks | 4.6⭐ (66401 reviews) | 8039 Beach Blvd, Buena Park, CA 90620, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="33.8052096" lon="-84.1451453">
+    <name>🌲 Stone Mountain Park</name>
+    <desc>Parks | 4.6⭐ (41843 reviews) | 1000 Robert E Lee Blvd, Stone Mountain, GA 30083, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="38.7703872" lon="-104.8548688">
+    <name>🌲 Cheyenne Mountain Zoo</name>
+    <desc>Parks | 4.8⭐ (24185 reviews) | 4250 Cheyenne Mountain Zoo Rd, Colorado Springs, CO 80906, USA</desc>
+    <type>Parks</type>
+  </wpt>
+  <wpt lat="34.008282099999995" lon="-118.4987585">
+    <name>🏛️ Santa Monica Pier</name>
+    <desc>Museums | 4.6⭐ (129108 reviews) | 200 Santa Monica Pier, Santa Monica, CA 90401, USA</desc>
+    <type>Museums</type>
+  </wpt>
+  <wpt lat="34.0773438" lon="-118.4732648">
+    <name>🏛️ The Getty</name>
+    <desc>Museums | 4.8⭐ (35348 reviews) | 1200 Getty Center Dr, Los Angeles, CA 90049, USA</desc>
+    <type>Museums</type>
+  </wpt>
+  <wpt lat="34.015564" lon="-118.28611699999999">
+    <name>🏛️ California Science Center</name>
+    <desc>Museums | 4.7⭐ (19623 reviews) | 700 Exposition Park Dr, Los Angeles, CA 90037, USA</desc>
+    <type>Museums</type>
+  </wpt>
+  <wpt lat="33.7625564" lon="-84.39243599999999">
+    <name>🏛️ World of Coca-Cola</name>
+    <desc>Museums | 4.4⭐ (34584 reviews) | 121 Baker St NW, Atlanta, GA 30313, USA</desc>
+    <type>Museums</type>
+  </wpt>
+  <wpt lat="36.1728198" lon="-115.1412395">
+    <name>🏛️ The Mob Museum</name>
+    <desc>Museums | 4.6⭐ (19010 reviews) | 300 Stewart Ave, Las Vegas, NV 89101, USA</desc>
+    <type>Museums</type>
+  </wpt>
+  <wpt lat="36.1128631" lon="-115.1724846">
+    <name>🍽️ Mon Ami Gabi</name>
+    <desc>Restaurants | 4.7⭐ (25397 reviews) | 3655 S Las Vegas Blvd South, Las Vegas, NV 89109, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="36.1336884" lon="-115.16328329999999">
+    <name>🍽️ Peppermill and Fireside Lounge</name>
+    <desc>Restaurants | 4.5⭐ (19122 reviews) | 2985 Las Vegas Blvd S, Las Vegas, NV 89109, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="36.1046674" lon="-115.17236559999999">
+    <name>🍽️ BrewDog Las Vegas</name>
+    <desc>Restaurants | 4.7⭐ (11813 reviews) | 3767 Las Vegas Blvd S, Las Vegas, NV 89109, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="36.1087852" lon="-115.17213599999998">
+    <name>🍽️ Rainforest Cafe</name>
+    <desc>Restaurants | 4.6⭐ (10556 reviews) | 3717 S Las Vegas Blvd, Las Vegas, NV 89109, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="33.756209" lon="-84.36488419999999">
+    <name>🍽️ Brewdog Atlanta</name>
+    <desc>Restaurants | 4.7⭐ (6519 reviews) | 112 Krog St NE, Atlanta, GA 30307, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="38.9334285" lon="-104.8096652">
+    <name>🍽️ ViewHouse</name>
+    <desc>Restaurants | 4.4⭐ (8320 reviews) | 7114 Campus Dr, Colorado Springs, CO 80920, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="34.045507799999996" lon="-118.23603539999999">
+    <name>🍽️ Wurstküche</name>
+    <desc>Restaurants | 4.6⭐ (5246 reviews) | 800 E 3rd St, Los Angeles, CA 90013, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="38.8354621" lon="-104.8229839">
+    <name>🍽️ The Rabbit Hole</name>
+    <desc>Restaurants | 4.5⭐ (5680 reviews) | 101 N Tejon St, Colorado Springs, CO 80903, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="38.824317199999996" lon="-104.82622429999999">
+    <name>🍽️ Shuga's</name>
+    <desc>Restaurants | 4.6⭐ (3875 reviews) | 702 S Cascade Ave, Colorado Springs, CO 80903, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="33.792656" lon="-84.351852">
+    <name>🍽️ Whiskey Bird</name>
+    <desc>Restaurants | 4.8⭐ (2553 reviews) | 1409 N Highland Ave NE, Atlanta, GA 30306, USA</desc>
+    <type>Restaurants</type>
+  </wpt>
+  <wpt lat="38.8266516" lon="-104.8615476">
+    <name>🐾 Bear Creek Dog Park</name>
+    <desc>Dog Parks | 4.8⭐ (4032 reviews) | 21st St, Colorado Springs, CO 80904, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="34.1055355" lon="-118.18677570000001">
+    <name>🐾 Hermon Park (Arroyo Seco Park)</name>
+    <desc>Dog Parks | 4.4⭐ (3566 reviews) | 5566 Via Marisol, Los Angeles, CA 90042, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="36.0573917" lon="-115.1148363">
+    <name>🐾 Sunset Dog Park</name>
+    <desc>Dog Parks | 4.6⭐ (1510 reviews) | E Warm Springs Rd, Las Vegas, NV 89120, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="36.2470977" lon="-115.31161999999999">
+    <name>🐾 Lone Mountain Regional Park</name>
+    <desc>Dog Parks | 4.7⭐ (1161 reviews) | 9825 W Lone Mountain Rd, Las Vegas, NV 89129, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="38.8309339" lon="-104.8317651">
+    <name>🐾 America the Beautiful Park Fantasy Playground</name>
+    <desc>Dog Parks | 4.4⭐ (1449 reviews) | 126 Cimino Dr, Colorado Springs, CO 80903, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="33.7518214" lon="-84.3706237">
+    <name>🐾 Fetch Park O4W</name>
+    <desc>Dog Parks | 4.5⭐ (1075 reviews) | 520 Daniel St SE, Atlanta, GA 30312, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="34.0922039" lon="-118.26426869999999">
+    <name>🐾 Silver Lake Dog Park</name>
+    <desc>Dog Parks | 4.5⭐ (1002 reviews) | 1893-1899 Silver Lake Blvd, Los Angeles, CA 90026, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="33.7879898" lon="-84.37115949999999">
+    <name>🐾 Piedmont Dog Park</name>
+    <desc>Dog Parks | 4.6⭐ (827 reviews) | Park Dr NE, Atlanta, GA 30309, USA</desc>
+    <type>Dog Parks</type>
+  </wpt>
+  <wpt lat="38.8829591" lon="-104.8716829">
+    <name>📸 Mesa Overlook</name>
+    <desc>Viewpoints | 4.9⭐ (1416 reviews) | 3586-3604 Mesa Rd, Colorado Springs, CO 80904, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.8655471" lon="-104.87911059999999">
+    <name>📸 High Point Overlook</name>
+    <desc>Viewpoints | 4.9⭐ (1386 reviews) | 647 Ridge Rd, Colorado Springs, CO 80904, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.940155399999995" lon="-110.4819388">
+    <name>📸 Black Dragon Canyon Viewpoint</name>
+    <desc>Viewpoints | 4.8⭐ (1220 reviews) | Green River, UT 84525, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="35.0003532" lon="-85.3544465">
+    <name>📸 Sunset Rock</name>
+    <desc>Viewpoints | 4.8⭐ (1152 reviews) | 405 W Brow Rd, Lookout Mountain, TN 37350, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.849108" lon="-110.92562">
+    <name>📸 Devil's Canyon View Area</name>
+    <desc>Viewpoints | 4.8⭐ (752 reviews) | Utah, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.622375" lon="-90.17543409999999">
+    <name>📸 Mississippi River Overlook</name>
+    <desc>Viewpoints | 4.7⭐ (726 reviews) | 185 W Trendley Ave, St. Louis, MO 63102, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.73752210000001" lon="-109.50084679999999">
+    <name>📸 Upper Delicate Arch Viewpoint</name>
+    <desc>Viewpoints | 4.6⭐ (552 reviews) | Delicate Arch Trail, Moab, UT 84532, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="34.296943299999995" lon="-117.33738509999999">
+    <name>📸 Silverwood Lake Vista Point</name>
+    <desc>Viewpoints | 4.7⭐ (449 reviews) | Hesperia, CA 92345, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="38.873941699999996" lon="-104.7778278">
+    <name>📸 Grandview Overlook</name>
+    <desc>Viewpoints | 4.8⭐ (395 reviews) | Grandview Trail, Colorado Springs, CO 80909, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <wpt lat="37.4352346" lon="-113.2012029">
+    <name>📸 Kolob View Point</name>
+    <desc>Viewpoints | 4.9⭐ (344 reviews) | Interstate 15, New Harmony, UT 84757, USA</desc>
+    <type>Viewpoints</type>
+  </wpt>
+  <trk>
+    <name>Road Trip: Atlanta, GA → Colorado Springs, CO → Las Vegas, NV → Los Angeles, CA → Atlanta, GA → Atlanta, GA - Route</name>
+    <desc>Full driving route along actual roads</desc>
+    <trkseg>
+      <trkpt lat="33.7544657" lon="-84.3898151"/>
+      <trkpt lat="38.649058" lon="-90.162025"/>
+      <trkpt lat="39.074531" lon="-104.858316"/>
+      <trkpt lat="34.068081" lon="-118.033733"/>
+      <trkpt lat="35.105187" lon="-106.640894"/>
+      <trkpt lat="35.415526" lon="-97.32111"/>
+      <trkpt lat="34.308768" lon="-88.771997"/>
+      <trkpt lat="38.8339578" lon="-104.825348"/>
+      <trkpt lat="36.1674263" lon="-115.1484131"/>
+      <trkpt lat="34.0536909" lon="-118.242766"/>
+      <trkpt lat="33.7544657" lon="-84.3898151"/>
+      <trkpt lat="33.7544657" lon="-84.3898151"/>
+    </trkseg>
+  </trk>
+</gpx>

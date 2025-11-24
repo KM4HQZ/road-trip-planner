@@ -25,7 +25,7 @@ from models import Hotel, Veterinarian, Attraction, NationalPark
 from services import WikipediaHelper, NominatimGeocoder, OSRMRouter, GooglePlacesFinder
 
 # Import utilities
-from utils import haversine_distance, calculate_popularity_score, create_trip_map
+from utils import haversine_distance, calculate_popularity_score, create_trip_map, create_gpx_file
 
 # Import configuration
 from config import STATE_ABBREV_TO_NAME
@@ -519,6 +519,22 @@ def main():
         json.dump(trip_data, f, indent=2)
     print(f"  ✓ Trip data saved: {data_file}")
     
+    # Generate GPX file for navigation apps
+    print(f"🗺️  Generating GPX file for navigation apps...")
+    gpx_file = str(output_path).replace('.html', '.gpx')
+    create_gpx_file(
+        map_route_geometry,
+        major_stops,
+        waypoint_cities,
+        hotels,
+        waypoint_hotels,
+        vets,
+        all_attractions,
+        trip_name,
+        gpx_file
+    )
+    print()
+    
     # Generate summary
     summary_file = str(output_path).replace('.html', '_summary.md')
     with open(summary_file, 'w') as f:
@@ -633,10 +649,12 @@ def main():
     print()
     print(f"📂 Files generated:")
     print(f"   - {output_path} (interactive map)")
+    print(f"   - {gpx_file} (GPX route for Magic Earth, OsmAnd, etc.)")
     print(f"   - {data_file} (trip data)")
     print(f"   - {summary_file} (summary report)")
     print()
     print(f"🎉 Open {output_path} in your browser to explore your trip!")
+    print(f"📱 Import {gpx_file} to your navigation app on your Pixel!")
     
     return 0
 

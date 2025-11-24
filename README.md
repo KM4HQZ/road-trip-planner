@@ -2,9 +2,27 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips.
+An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips. **Now with GPX export for mobile navigation apps!** 📱
 
 > 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
+> 
+> 📱 **NEW!** Import your trip into [Magic Earth](https://www.magicearth.com/), [OsmAnd](https://osmand.net/), or any GPX-compatible navigation app!
+
+## 📑 Table of Contents
+
+- [What This Does](#-what-this-does)
+- [Key Features](#-key-features)
+- [Services Used](#️-services-used)
+- [Quick Start](#-quick-start)
+- [Usage Examples](#-usage-examples)
+- [Output Files](#-output-files)
+- [Attraction Categories](#-attraction-categories)
+- [Hotel Selection](#-hotel-selection)
+- [Emergency Vet Verification](#-emergency-vet-verification)
+- [Example Results](#-example-results)
+- [Tips](#-tips)
+- [Troubleshooting](#️-troubleshooting)
+- [License](#-license)
 
 ## 🌟 What This Does
 
@@ -21,7 +39,8 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - 📖 **Links to Wikivoyage travel guides** for all stop cities
 - 📏 **Shows distances & driving times** between each stop city
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
-- 📄 **Generates detailed reports** in Markdown and JSON formats
+- � **Exports GPX files** for Magic Earth, OsmAnd, and other navigation apps
+- �📄 **Generates detailed reports** in Markdown and JSON formats
 - 🛣️ **Uses actual road routes** with accurate distances and driving times
 
 ## 🎯 Key Features
@@ -48,6 +67,12 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - Searches explicitly for "dog friendly" restaurants
 - Finds dedicated dog parks at each stop city
 - All hotels from trusted pet-friendly chains
+
+### Mobile Navigation Ready 🆕
+- **GPX Export**: Every trip generates a `.gpx` file
+- **Universal Format**: Compatible with Magic Earth, OsmAnd, Organic Maps, Maps.me
+- **Complete Package**: Route, waypoints, hotels, vets, and attractions included
+- **📱 See [GPX Import Guide](GPX_IMPORT_GUIDE.md)** for detailed instructions
 
 ## 🛠️ Services Used
 
@@ -128,7 +153,7 @@ python plan_trip.py "Atlanta, GA" "Chicago, IL" --roundtrip
 
 ## 📂 Output Files
 
-Each trip generates three files in the `trip routes/` directory:
+Each trip generates **four files** in the `trip routes/` directory:
 
 ### 1. Interactive Map (HTML)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN.html`
@@ -150,7 +175,31 @@ Each trip generates three files in the `trip routes/` directory:
 - Layer controls to toggle each category individually
 - Fullscreen mode and measure tool
 
-### 2. Trip Data (JSON)
+### 2. GPX Route File (GPX) 🆕
+`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN.gpx`
+
+**Import into your favorite navigation app!**
+- ✅ **Magic Earth** (recommended for privacy)
+- ✅ **OsmAnd** (offline maps)
+- ✅ **Organic Maps** (lightweight)
+- ✅ **Maps.me** (offline navigation)
+- ✅ Google Maps (limited import)
+- ✅ Most GPS devices
+
+**What's included:**
+- Complete driving route along actual roads
+- Major stop waypoints with descriptions
+- Waypoint cities for flexible overnight stops
+- All hotels (pet-friendly) as POI markers
+- 24/7 emergency vets as medical POIs
+- Top attractions by category (parks, museums, restaurants, dog parks, viewpoints, etc.)
+
+**How to use on Android:**
+1. Transfer `.gpx` file to your phone (email, Drive, USB, etc.)
+2. Open with Magic Earth/OsmAnd/Organic Maps
+3. The route and all POIs will be imported!
+
+### 3. Trip Data (JSON)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_data.json`
 
 Complete structured data including:
@@ -159,7 +208,7 @@ Complete structured data including:
 - Vet details (name, rating, 24/7 status, phone)
 - All attractions by category (national parks, monuments, parks, museums, restaurants, dog parks, viewpoints) with ratings
 
-### 3. Summary Report (Markdown)
+### 4. Summary Report (Markdown)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_summary.md`
 
 Human-readable summary with:
