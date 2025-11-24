@@ -10,8 +10,10 @@ from utils.distance import haversine_distance
 
 def create_trip_map(
     route_geometry: List[List[float]],
-    stops: List[Dict],
+    major_stops: List[Dict],
+    waypoint_cities: List[Dict],
     hotels: Dict[str, Hotel],
+    waypoint_hotels: Dict[str, Hotel],
     vets: Dict[str, Veterinarian],
     attractions: Dict[str, List],
     trip_name: str,
@@ -38,9 +40,11 @@ def create_trip_map(
     
     # Create feature groups
     route_group = folium.FeatureGroup(name='Route', show=True)
-    hotel_group = folium.FeatureGroup(name='🏨 Hotels', show=True)
+    hotel_group = folium.FeatureGroup(name='🏨 Hotels (Major Stops)', show=True)
+    waypoint_hotel_group = folium.FeatureGroup(name='🏨 Hotels (Waypoints)', show=True)
     vet_group = folium.FeatureGroup(name='🏥 Emergency Vets', show=True)
-    stop_group = folium.FeatureGroup(name='📍 Stop Cities', show=True)
+    major_stop_group = folium.FeatureGroup(name='📍 Major Stops', show=True)
+    waypoint_group = folium.FeatureGroup(name='📌 Waypoint Cities', show=True)
     
     # Add route line
     folium.PolyLine(
@@ -60,24 +64,41 @@ def create_trip_map(
         interactive=False
     ).add_to(route_group)
     
-    # Add stop markers
-    for stop in stops:
-        popup_html = f"<b>{stop['name']}</b><br>Stop #{stop.get('stop_number', '?')}"
+    # Add major stop markers
+    for stop in major_stops:
+        popup_html = f"<b>{stop['name']}</b><br>Major Stop #{stop.get('stop_number', '?')}"
         if stop.get('wikivoyage_url'):
             popup_html += f'<br><br><a href="{stop["wikivoyage_url"]}" target="_blank">📚 Wikivoyage Travel Guide</a>'
         
         folium.CircleMarker(
             location=[stop['lat'], stop['lon']],
-            radius=8,
+            radius=10,
             popup=folium.Popup(popup_html, max_width=300),
             tooltip=stop['name'],
             color='blue',
             fill=True,
             fillColor='blue',
             fillOpacity=0.7
-        ).add_to(stop_group)
+        ).add_to(major_stop_group)
     
-    # Add hotels
+    # Add waypoint city markers
+    for waypoint in waypoint_cities:
+        popup_html = f"<b>{waypoint['name']}</b><br>Waypoint City"
+        if waypoint.get('wikivoyage_url'):
+            popup_html += f'<br><br><a href="{waypoint["wikivoyage_url"]}" target="_blank">📚 Wikivoyage Travel Guide</a>'
+        
+        folium.CircleMarker(
+            location=[waypoint['lat'], waypoint['lon']],
+            radius=6,
+            popup=folium.Popup(popup_html, max_width=300),
+            tooltip=waypoint['name'],
+            color='green',
+            fill=True,
+            fillColor='lightgreen',
+            fillOpacity=0.6
+        ).add_to(waypoint_group)
+    
+    # Add hotels at major stops
     for city_name, hotel in hotels.items():
         popup_html = f"<b>🏨 {hotel.name}</b><br>"
         popup_html += f"<b>⭐ {hotel.rating}/5.0</b> ({hotel.user_ratings_total:,} reviews)<br>"
@@ -95,10 +116,29 @@ def create_trip_map(
             icon=folium.Icon(color='red', icon='bed', prefix='fa')
         ).add_to(hotel_group)
     
-    # Add distance/time markers between consecutive stops
-    if route_data and len(stops) > 1:
+    # Add hotels at waypoint cities
+    for city_name, hotel in waypoint_hotels.items():
+        popup_html = f"<b>🏨 {hotel.name}</b><br>"
+        popup_html += f"<b>⭐ {hotel.rating}/5.0</b> ({hotel.user_ratings_total:,} reviews)<br>"
+        popup_html += f"Score: {hotel.score:.2f}<br><br>"
+        popup_html += f"📍 {hotel.address}<br>"
+        if hotel.phone:
+            popup_html += f"📞 {hotel.phone}<br>"
+        if hotel.website:
+            popup_html += f'<br><a href="{hotel.website}" target="_blank">Website</a>'
+        
+        folium.Marker(
+            location=[hotel.lat, hotel.lon],
+            popup=folium.Popup(popup_html, max_width=350),
+            tooltip=f"{hotel.name} - {hotel.rating}⭐",
+            icon=folium.Icon(color='orange', icon='bed', prefix='fa')
+        ).add_to(waypoint_hotel_group)
+    
+    # Add distance/time markers between consecutive major stops
+    all_stops = major_stops + waypoint_cities
+    if route_data and len(all_stops) > 1:
         distance_group = folium.FeatureGroup(name='📏 Distances & Times', show=True)
-        stop_cities = [stop for stop in stops if stop['type'] != 'return']
+        stop_cities = [stop for stop in all_stops if stop['type'] != 'return']
         
         for i in range(len(stop_cities) - 1):
             current_stop = stop_cities[i]
@@ -232,8 +272,10 @@ def create_trip_map(
     
     # Add groups to map
     route_group.add_to(m)
-    stop_group.add_to(m)
+    major_stop_group.add_to(m)
+    waypoint_group.add_to(m)
     hotel_group.add_to(m)
+    waypoint_hotel_group.add_to(m)
     vet_group.add_to(m)
     
     for group in attraction_groups.values():

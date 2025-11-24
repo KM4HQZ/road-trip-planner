@@ -43,8 +43,10 @@ def main():
     parser.add_argument('destination', help='Destination city (e.g., "Chicago, IL")')
     parser.add_argument('--via', action='append', help='Additional cities to visit (can be used multiple times). Example: --via "Nashville, TN" --via "Memphis, TN"')
     parser.add_argument('--roundtrip', action='store_true', help='Return to origin on same route (not recommended - use --via instead for variety)')
-    parser.add_argument('--stop-distance', type=int, default=250, 
-                       help='Target miles between stops (default: 250)')
+    parser.add_argument('--target-hours', type=int, default=8, 
+                       help='Target driving hours between major stops (default: 8)')
+    parser.add_argument('--waypoint-interval', type=int, default=100,
+                       help='Miles between waypoint cities for hotel options (default: 100)')
     
     args = parser.parse_args()
     
@@ -148,9 +150,11 @@ def main():
               (f" ...and {len(all_cities)-10} more" if len(all_cities) > 10 else ""))
     print()
     
-    # Select strategic stop cities based on distance
-    print(f"🎯 Selecting strategic stop cities (~{args.stop_distance} miles apart)...")
-    stops = []
+    # Select strategic stop cities based on driving hours
+    # Average highway speed ~65 mph, so 8 hours ≈ 520 miles
+    target_miles = args.target_hours * 65  # Approximate highway speed
+    print(f"🎯 Selecting major stop cities (~{args.target_hours} hours/{target_miles} miles apart)...")
+    major_stops = []
     
     # Add origin with Wikivoyage link
     city_name_only = args.origin.split(',')[0].strip()
@@ -162,52 +166,76 @@ def main():
         'lon': origin_lon,
         'type': 'start',
         'stop_number': 0,
-        'wikivoyage_url': wikivoyage_url
+        'wikivoyage_url': wikivoyage_url,
+        'is_major_stop': True
     }
-    stops.append(start_location)
+    major_stops.append(start_location)
     
-    # Select intermediate stops from cities found along route
+    # Select major stops from cities found along route
+    waypoint_cities = []
     if all_cities:
-        last_stop_lat, last_stop_lon = origin_lat, origin_lon
-        target_distance_m = args.stop_distance * 1609.34  # Convert miles to meters
+        last_major_lat, last_major_lon = origin_lat, origin_lon
+        last_waypoint_lat, last_waypoint_lon = origin_lat, origin_lon
+        target_distance_m = target_miles * 1609.34  # Convert miles to meters
+        waypoint_distance_m = args.waypoint_interval * 1609.34  # Waypoint interval
         stop_num = 1
         
         for city in all_cities:
-            # Calculate distance from last stop
-            dist = router._haversine_distance(
-                (last_stop_lat, last_stop_lon),
+            # Calculate distance from last major stop
+            dist_from_major = router._haversine_distance(
+                (last_major_lat, last_major_lon),
                 (city['lat'], city['lon'])
             ) * 1609.34  # Convert to meters
-            dist_mi = dist / 1609.34
+            dist_mi_major = dist_from_major / 1609.34
             
-            # Add city as stop if it's roughly the target distance from last stop
-            if dist >= target_distance_m * 0.8:  # At least 80% of target distance
+            # Calculate distance from last waypoint
+            dist_from_waypoint = router._haversine_distance(
+                (last_waypoint_lat, last_waypoint_lon),
+                (city['lat'], city['lon'])
+            ) * 1609.34
+            dist_mi_waypoint = dist_from_waypoint / 1609.34
+            
+            # Add city as major stop if it's roughly the target distance from last major stop
+            if dist_from_major >= target_distance_m * 0.8:  # At least 80% of target
                 city_name_only = city['name'].split(',')[0].strip()
                 wikivoyage_url = WikipediaHelper.search_wikivoyage(city_name_only)
                 
-                stops.append({
+                major_stops.append({
                     'name': city['name'],
                     'lat': city['lat'],
                     'lon': city['lon'],
-                    'type': 'stop',
+                    'type': 'major_stop',
                     'stop_number': stop_num,
-                    'wikivoyage_url': wikivoyage_url
+                    'wikivoyage_url': wikivoyage_url,
+                    'is_major_stop': True
                 })
-                print(f"  Stop {stop_num}: {city['name']} (~{dist_mi:.0f} mi from last stop)")
-                last_stop_lat, last_stop_lon = city['lat'], city['lon']
+                print(f"  Major Stop {stop_num}: {city['name']} (~{dist_mi_major:.0f} mi from last major stop)")
+                last_major_lat, last_major_lon = city['lat'], city['lon']
+                last_waypoint_lat, last_waypoint_lon = city['lat'], city['lon']  # Reset waypoint tracker
                 stop_num += 1
+            # Add as waypoint if far enough from last waypoint but not a major stop
+            elif dist_from_waypoint >= waypoint_distance_m * 0.8:
+                waypoint_cities.append({
+                    'name': city['name'],
+                    'lat': city['lat'],
+                    'lon': city['lon'],
+                    'type': 'waypoint',
+                    'is_major_stop': False
+                })
+                last_waypoint_lat, last_waypoint_lon = city['lat'], city['lon']
     
     # Add destination
     dest_city_name = args.destination.split(',')[0].strip()
     dest_wikivoyage = WikipediaHelper.search_wikivoyage(dest_city_name)
     
-    stops.append({
+    major_stops.append({
         'name': args.destination,
         'lat': dest_lat,
         'lon': dest_lon,
         'type': 'destination',
-        'stop_number': len(stops),
-        'wikivoyage_url': dest_wikivoyage
+        'stop_number': len(major_stops),
+        'wikivoyage_url': dest_wikivoyage,
+        'is_major_stop': True
     })
     print(f"  Destination: {args.destination}")
     
@@ -217,46 +245,58 @@ def main():
             via_city_name = via['name'].split(',')[0].strip()
             via_wikivoyage = WikipediaHelper.search_wikivoyage(via_city_name)
             
-            stops.append({
+            major_stops.append({
                 'name': via['name'],
                 'lat': via['lat'],
                 'lon': via['lon'],
                 'type': 'via',
-                'stop_number': len(stops),
-                'wikivoyage_url': via_wikivoyage
+                'stop_number': len(major_stops),
+                'wikivoyage_url': via_wikivoyage,
+                'is_major_stop': True
             })
             print(f"  Via: {via['name']}")
         
-        stops.append({
+        major_stops.append({
             'name': f"{args.origin} (return)",
             'lat': origin_lat,
             'lon': origin_lon,
             'type': 'return',
-            'stop_number': len(stops),
-            'wikivoyage_url': wikivoyage_url  # Reuse origin's wikivoyage
+            'stop_number': len(major_stops),
+            'wikivoyage_url': wikivoyage_url,  # Reuse origin's wikivoyage
+            'is_major_stop': True
         })
         print(f"  Return to: {args.origin}")
     elif args.roundtrip:
-        stops.append({
+        major_stops.append({
             'name': f"{args.origin} (return)",
             'lat': origin_lat,
             'lon': origin_lon,
             'type': 'return',
-            'stop_number': len(stops),
-            'wikivoyage_url': wikivoyage_url  # Reuse origin's wikivoyage
+            'stop_number': len(major_stops),
+            'wikivoyage_url': wikivoyage_url,  # Reuse origin's wikivoyage
+            'is_major_stop': True
         })
         print(f"  Return to: {args.origin}")
     
     print()
-    print(f"✓ Selected {len(stops)} strategic stops")
+    print(f"✓ Selected {len(major_stops)} major stops")
+    if waypoint_cities:
+        print(f"✓ Found {len(waypoint_cities)} waypoint cities (hotel-only options every ~{args.waypoint_interval} miles)")
     print()
     
-    # Find hotels for each stop
+    # Combine all cities that need hotels
+    all_hotel_cities = major_stops + waypoint_cities
+    
+    # Find hotels for major stops AND waypoint cities
     print(f"🏨 Finding top pet-friendly hotels...")
+    print(f"  Searching {len(major_stops)} major stops...")
     hotels = {}
-    for stop in stops:
-        if stop['type'] in ['start', 'stop', 'destination', 'via']:
-            print(f"  Searching {stop['name']}...")
+    waypoint_hotels = {}
+    
+    # Search hotels for major stops
+    for stop in major_stops:
+        if stop['type'] in ['start', 'major_stop', 'destination', 'via', 'return']:
+            print(f"  {stop['name']}...")
             hotel = places_finder.find_pet_friendly_hotel(
                 stop['name'],
                 stop['lat'],
@@ -268,13 +308,30 @@ def main():
             else:
                 print(f"    ⚠ No hotels found")
             time.sleep(1)
+    
+    # Search hotels for waypoint cities
+    if waypoint_cities:
+        print(f"  Searching {len(waypoint_cities)} waypoint cities...")
+        for waypoint in waypoint_cities:
+            print(f"  {waypoint['name']}...")
+            hotel = places_finder.find_pet_friendly_hotel(
+                waypoint['name'],
+                waypoint['lat'],
+                waypoint['lon']
+            )
+            if hotel:
+                waypoint_hotels[waypoint['name']] = hotel
+                print(f"    ✓ {hotel.name} ({hotel.rating}⭐)")
+            else:
+                print(f"    ⚠ No hotels found")
+            time.sleep(1)
     print()
     
-    # Find vets for each stop
+    # Find vets for major stops only
     print(f"🏥 Finding 24/7 emergency veterinarians...")
     vets = {}
-    for stop in stops:
-        if stop['type'] in ['start', 'stop', 'destination', 'via']:
+    for stop in major_stops:
+        if stop['type'] in ['start', 'major_stop', 'destination', 'via']:
             print(f"  Searching {stop['name']}...")
             vet = places_finder.find_emergency_vet(
                 stop['name'],
@@ -290,7 +347,7 @@ def main():
             time.sleep(1)
     print()
     
-    # Find all attractions along route and at stop cities
+    # Find all attractions along route and at major stop cities only
     print(f"🎯 Finding attractions and points of interest...")
     route_geometry = route_data['geometry']['coordinates']
     
@@ -315,7 +372,7 @@ def main():
             states_visited.add(state_abbrev)
     
     # ALSO get states from our actual stop cities (origin, destination, via cities)
-    for stop in stops:
+    for stop in major_stops:
         if ', ' in stop['name']:
             state_abbrev = stop['name'].split(', ')[-1].strip()
             # Only add if it looks like a state abbreviation (2 uppercase letters)
@@ -341,12 +398,12 @@ def main():
     
     # 2. Scenic viewpoints along the route
     print(f"  📸 Scanning for scenic viewpoints...")
-    viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=75)
+    viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=25)
     all_attractions['viewpoints'].extend(viewpoints)
     
-    # 3. Attractions at stop cities
-    print(f"  Searching near stop cities...")
-    for stop in stops:
+    # 3. Attractions at major stop cities
+    print(f"  Searching near major stop cities...")
+    for stop in major_stops:
         if stop['type'] in ['start', 'stop', 'destination', 'via']:
             print(f"    {stop['name']}...")
             
@@ -406,8 +463,10 @@ def main():
     
     trip_map = create_trip_map(
         map_route_geometry,
-        stops,
+        major_stops,
+        waypoint_cities,
         hotels,
+        waypoint_hotels,
         vets,
         all_attractions,
         trip_name,
@@ -439,8 +498,10 @@ def main():
         'roundtrip': args.roundtrip,
         'total_distance_miles': round(total_distance_mi, 1),
         'total_duration_hours': round(total_duration_h, 1),
-        'stops': stops,
+        'major_stops': major_stops,
+        'waypoint_cities': waypoint_cities,
         'hotels': {city: asdict(hotel) for city, hotel in hotels.items()},
+        'waypoint_hotels': {city: asdict(hotel) for city, hotel in waypoint_hotels.items()},
         'vets': {city: asdict(vet) for city, vet in vets.items()},
         'attractions': {
             'national_parks': [asdict(a) for a in all_attractions['national_parks']],
@@ -466,15 +527,33 @@ def main():
         f.write(f"## Trip Overview\n\n")
         f.write(f"- **Distance**: {total_distance_mi:.1f} miles\n")
         f.write(f"- **Estimated Driving Time**: {int(total_duration_h)}h {int((total_duration_h % 1) * 60)}m\n")
-        f.write(f"- **Number of Stops**: {len(stops)}\n\n")
+        f.write(f"- **Number of Major Stops**: {len(major_stops)}\n")
+        f.write(f"- **Number of Waypoint Cities**: {len(waypoint_cities)}\n\n")
         
-        f.write(f"## Stops\n\n")
-        for i, stop in enumerate(stops, 1):
+        f.write(f"## Major Stops\n\n")
+        for i, stop in enumerate(major_stops, 1):
             f.write(f"{i}. {stop['name']}\n")
         f.write("\n")
         
-        f.write(f"## Hotels ({len(hotels)} found)\n\n")
+        f.write(f"## Waypoint Cities\n\n")
+        for i, waypoint in enumerate(waypoint_cities, 1):
+            f.write(f"{i}. {waypoint['name']}\n")
+        f.write("\n")
+        
+        f.write(f"## Hotels at Major Stops ({len(hotels)} found)\n\n")
         for city, hotel in hotels.items():
+            f.write(f"### {city}\n\n")
+            f.write(f"**{hotel.name}**\n\n")
+            f.write(f"- Rating: {hotel.rating}⭐ ({hotel.user_ratings_total:,} reviews)\n")
+            f.write(f"- Address: {hotel.address}\n")
+            if hotel.phone:
+                f.write(f"- Phone: {hotel.phone}\n")
+            if hotel.website:
+                f.write(f"- Website: {hotel.website}\n")
+            f.write("\n")
+        
+        f.write(f"## Hotels at Waypoint Cities ({len(waypoint_hotels)} found)\n\n")
+        for city, hotel in waypoint_hotels.items():
             f.write(f"### {city}\n\n")
             f.write(f"**{hotel.name}**\n\n")
             f.write(f"- Rating: {hotel.rating}⭐ ({hotel.user_ratings_total:,} reviews)\n")

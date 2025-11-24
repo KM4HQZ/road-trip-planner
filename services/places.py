@@ -20,7 +20,7 @@ class GooglePlacesFinder:
         self.headers = {
             'Content-Type': 'application/json',
             'X-Goog-Api-Key': api_key,
-            'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel,places.id,places.internationalPhoneNumber,places.websiteUri,places.currentOpeningHours,places.regularOpeningHours'
+            'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel,places.id,places.internationalPhoneNumber,places.websiteUri,places.currentOpeningHours,places.regularOpeningHours,places.allowsDogs'
         }
     
     def find_pet_friendly_hotel(self, city_name: str, lat: float, lon: float) -> Optional[Hotel]:
@@ -47,37 +47,48 @@ class GooglePlacesFinder:
             response.raise_for_status()
             data = response.json()
             
-            hotels = []
+            pet_friendly_hotels = []
+            chain_hotels = []
             
             for place in data.get('places', []):
                 name = place.get('displayName', {}).get('text', '')
                 rating = place.get('rating', 0.0)
                 reviews = place.get('userRatingCount', 0)
+                allows_dogs = place.get('allowsDogs', False)
                 
                 # Keep good quality standards - pet-friendly doesn't mean low quality!
                 if rating < 3.5 or reviews < 50:
                     continue
                 
-                if any(chain in name.lower() for chain in PET_FRIENDLY_CHAINS):
-                    hotel = Hotel(
-                        name=name,
-                        address=place.get('formattedAddress', ''),
-                        location=city_name,
-                        rating=rating,
-                        user_ratings_total=reviews,
-                        price_level=place.get('priceLevel', None),
-                        place_id=place.get('id', ''),
-                        lat=place.get('location', {}).get('latitude', lat),
-                        lon=place.get('location', {}).get('longitude', lon),
-                        phone=place.get('internationalPhoneNumber', None),
-                        website=place.get('websiteUri', None)
-                    )
-                    hotel.score = calculate_popularity_score(rating, reviews)
-                    hotels.append(hotel)
+                hotel = Hotel(
+                    name=name,
+                    address=place.get('formattedAddress', ''),
+                    location=city_name,
+                    rating=rating,
+                    user_ratings_total=reviews,
+                    price_level=place.get('priceLevel', None),
+                    place_id=place.get('id', ''),
+                    lat=place.get('location', {}).get('latitude', lat),
+                    lon=place.get('location', {}).get('longitude', lon),
+                    phone=place.get('internationalPhoneNumber', None),
+                    website=place.get('websiteUri', None)
+                )
+                hotel.score = calculate_popularity_score(rating, reviews)
+                
+                # Prioritize hotels that explicitly allow dogs
+                if allows_dogs:
+                    pet_friendly_hotels.append(hotel)
+                # Fallback to known pet-friendly chains
+                elif any(chain in name.lower() for chain in PET_FRIENDLY_CHAINS):
+                    chain_hotels.append(hotel)
             
-            if hotels:
-                hotels.sort(key=lambda h: h.score, reverse=True)
-                return hotels[0]
+            # Return best pet-friendly hotel, or best chain hotel if no explicit pet-friendly found
+            if pet_friendly_hotels:
+                pet_friendly_hotels.sort(key=lambda h: h.score, reverse=True)
+                return pet_friendly_hotels[0]
+            elif chain_hotels:
+                chain_hotels.sort(key=lambda h: h.score, reverse=True)
+                return chain_hotels[0]
             return None
             
         except Exception as e:
@@ -731,12 +742,12 @@ class GooglePlacesFinder:
             return []
     
     def find_monuments_by_state(self, state_name: str, limit: int = None) -> List[Attraction]:
-        """Find monuments and memorials in a given state."""
+        """Find monuments and memorials in a given state - returns ALL monuments."""
         search_query = f"monument OR memorial {state_name}"
         
         request_body = {
-            "textQuery": search_query,
-            "maxResultCount": 20
+            "textQuery": search_query
+            # No maxResultCount - get ALL monuments in the state
         }
         
         try:
