@@ -1,5 +1,8 @@
 # GPX Export Feature - Implementation Summary
 
+> **Back to main README:** [README.md](README.md)  
+> **User Guide:** [GPX_IMPORT_GUIDE.md](GPX_IMPORT_GUIDE.md)
+
 ## What Was Added
 
 ### New Files

@@ -1,5 +1,8 @@
 # 📱 Quick Start: GPX on Your Google Pixel
 
+> **Need more detail?** See the full [GPX Import Guide](GPX_IMPORT_GUIDE.md) for comprehensive instructions.  
+> **Back to main README:** [README.md](README.md)
+
 ## Fastest Method for Your Pixel
 
 ### Step 1: Install Magic Earth

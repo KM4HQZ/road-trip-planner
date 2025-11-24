@@ -2,19 +2,23 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips. **Now with GPX export for mobile navigation apps!** 📱
+An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips. **Available as both a GUI application and command-line tool!** 🖥️ **Now with GPX export for mobile navigation apps!** 📱
 
 > 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
 > 
 > 📱 **NEW!** Import your trip into [Magic Earth](https://www.magicearth.com/), [OsmAnd](https://osmand.net/), or any GPX-compatible navigation app!
+> 
+> 🖥️ **NEW!** Desktop GUI with embedded maps and one-click exports!
 
 ## 📑 Table of Contents
 
 - [What This Does](#-what-this-does)
 - [Key Features](#-key-features)
 - [Services Used](#️-services-used)
+- [Installation](#-installation)
 - [Quick Start](#-quick-start)
-- [Usage Examples](#-usage-examples)
+- [GUI Usage](#️-gui-usage)
+- [Command Line Usage Examples](#-command-line-usage-examples)
 - [Output Files](#-output-files)
 - [Attraction Categories](#-attraction-categories)
 - [Hotel Selection](#-hotel-selection)
@@ -22,6 +26,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - [Example Results](#-example-results)
 - [Tips](#-tips)
 - [Troubleshooting](#️-troubleshooting)
+- [Documentation](#-documentation)
 - [License](#-license)
 
 ## 🌟 What This Does
@@ -39,8 +44,8 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - 📖 **Links to Wikivoyage travel guides** for all stop cities
 - 📏 **Shows distances & driving times** between each stop city
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
-- � **Exports GPX files** for Magic Earth, OsmAnd, and other navigation apps
-- �📄 **Generates detailed reports** in Markdown and JSON formats
+- 📱 **Exports GPX files** for Magic Earth, OsmAnd, and other navigation apps
+- 📄 **Generates detailed reports** in Markdown and JSON formats
 - 🛣️ **Uses actual road routes** with accurate distances and driving times
 
 ## 🎯 Key Features
@@ -83,18 +88,42 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 5. **Wikivoyage API** - Travel guides and city information
 6. **Folium** - Interactive map generation with layers
 
-## 🚀 Quick Start
+## 📥 Installation
 
-### 1. Install Dependencies
+### Option A: From Source (Recommended)
+
+Clone the repository and install dependencies:
 
 ```bash
-cd /home/mort/Documents/road-trip
+git clone https://github.com/KM4HQZ/road-trip-planner.git
+cd road-trip-planner
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Set Up Google Places API
+### Option B: Linux Executable (PyInstaller)
+
+For Linux users who want a single-file executable without installing Python:
+
+1. Download `RoadTripPlanner` from [GitHub Releases](https://github.com/KM4HQZ/road-trip-planner/releases)
+2. Make executable: `chmod +x RoadTripPlanner`
+3. Run: `./RoadTripPlanner`
+4. Create a `.env` file in the same directory with your API key
+
+**Building from source:**
+```bash
+source venv/bin/activate
+./build_pyinstaller.sh
+```
+
+The executable will be created in `dist/RoadTripPlanner` (~163MB, includes Python and all dependencies).
+
+> **Note:** Cross-platform installers (.msi, .dmg, .AppImage) may be added in future releases.
+
+## 🚀 Quick Start
+
+### 1. Set Up Google Places API
 
 Copy the example environment file and add your API key:
 ```bash
@@ -113,14 +142,70 @@ GOOGLE_PLACES_API_KEY=your_actual_api_key_here
 3. Enable billing (required, but generous free tier)
 4. Create API key
 
-### 3. Plan Your Trip!
+### 2. Launch the Application
 
-**Activate virtual environment:**
+**GUI (Recommended):**
 ```bash
-source venv/bin/activate
+./launch_gui.sh  # Linux/macOS
+# Or: python gui_app.py
 ```
 
-## 📋 Usage Examples
+**Command Line:**
+
+**Option A: Use the GUI (Recommended for beginners)**
+```bash
+source venv/bin/activate
+python gui_app.py
+```
+
+The GUI provides:
+- Easy-to-use form interface
+- Real-time progress updates
+- Embedded map viewer
+- One-click export buttons
+- Settings dialog for API key configuration
+
+**Option B: Use the command line**
+```bash
+source venv/bin/activate
+python plan_trip.py "Origin City, State" "Destination City, State"
+```
+
+## �️ GUI Usage
+
+### Launching the GUI
+
+```bash
+source venv/bin/activate
+python gui_app.py
+```
+
+### GUI Features
+
+1. **Plan Trip Tab**
+   - Enter origin and destination cities
+   - Add optional via cities for varied routes
+   - Configure stop distance and waypoint interval
+   - Real-time progress dialog during planning
+
+2. **Results Tab**
+   - View your trip map embedded in the application
+   - See trip summary (distance, time, stops)
+   - Read detailed trip information
+   - Export GPX, summary, or data files
+
+3. **Settings Menu**
+   - Configure Google Places API key
+   - Manage application preferences
+   - Clear location cache
+
+4. **Export Options**
+   - Open map in default browser
+   - Export GPX for navigation apps
+   - Export summary markdown
+   - Export trip data JSON
+
+## �📋 Command Line Usage Examples
 
 ### Simple One-Way Trip
 ```bash
@@ -339,7 +424,26 @@ source venv/bin/activate
 pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabulate python-dotenv
 ```
 
-## 📄 License
+## � Documentation
+
+### User Guides
+- **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** - How to import GPX files into Magic Earth, OsmAnd, and other navigation apps
+- **[Pixel Quick Start](PIXEL_QUICK_START.md)** - Fast setup guide for Google Pixel users
+- **[Workflow Diagram](WORKFLOW_DIAGRAM.md)** - Visual overview of the planning → navigation workflow
+
+### Developer Documentation
+- **[GUI Implementation](GUI_IMPLEMENTATION.md)** - Complete PyQt6 GUI architecture and design
+- **[GPX Feature Summary](GPX_FEATURE_SUMMARY.md)** - Technical details of GPX export implementation
+- **[Building Executables](BUILDING.md)** - How to build standalone executables with PyInstaller
+
+### API Documentation
+All core modules are documented with docstrings. Key modules:
+- `services/` - External API integrations (Google Places, Nominatim, OSRM, Wikipedia)
+- `models/` - Data models (Hotel, Veterinarian, Attraction, etc.)
+- `utils/` - Helper functions (distance calculations, map generation, GPX export)
+- `gui/` - PyQt6 GUI components
+
+## �📄 License
 
 This project is dual-licensed:
 

@@ -1,5 +1,8 @@
 # 📱 Using GPX Routes on Your Phone
 
+> **Quick Start for Pixel Users?** See [PIXEL_QUICK_START.md](PIXEL_QUICK_START.md) for a streamlined guide.  
+> **Back to main README:** [README.md](README.md)
+
 The road trip planner now generates `.gpx` files that you can import into navigation apps on your Google Pixel or any Android/iOS device!
 
 ## 🗺️ Recommended Apps for Android

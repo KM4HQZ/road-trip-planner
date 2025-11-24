@@ -1,5 +1,8 @@
 # Road Trip Planner → Mobile Navigation Workflow
 
+> **Back to main README:** [README.md](README.md)  
+> **GPX Import Details:** [GPX_IMPORT_GUIDE.md](GPX_IMPORT_GUIDE.md)
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    COMPUTER (Planning Phase)                     │
