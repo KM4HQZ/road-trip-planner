@@ -121,7 +121,26 @@ source venv/bin/activate
 
 The executable will be created in `dist/RoadTripPlanner` (~271MB, includes Python and all dependencies).
 
-> **Note:** Cross-platform installers (.msi, .dmg, .AppImage) may be added in future releases.
+### Option C: macOS Application Bundle
+
+For macOS users who want a native .app bundle without installing Python:
+
+**Download pre-built app:**
+1. Download `RoadTripPlanner-macOS-v1.0.0.zip` from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
+   - Direct download: [RoadTripPlanner-macOS-v1.0.0.zip](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.0.0/RoadTripPlanner-macOS-v1.0.0.zip)
+2. Unzip: `unzip RoadTripPlanner-macOS-v1.0.0.zip`
+3. Open: Double-click `RoadTripPlanner.app` or run `open RoadTripPlanner.app`
+4. Settings and trip routes will be saved to `~/Documents/RoadTripPlanner/`
+
+**Building from source:**
+```bash
+source venv/bin/activate
+./build_pyinstaller_macos.sh
+```
+
+The app bundle will be created in `dist/RoadTripPlanner.app` (~464MB, includes Python and all dependencies).
+
+> **Note:** Windows installer (.msi) and Linux AppImage may be added in future releases.
 
 ## 🚀 Quick Start
 
