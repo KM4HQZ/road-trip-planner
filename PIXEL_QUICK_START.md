@@ -13,9 +13,14 @@ Free, no ads, respects privacy, works offline!
 
 ### Step 2: Run Your Trip Planner
 ```bash
-cd /home/mort/Documents/road-trip
+cd road-trip-planner
 source venv/bin/activate
 python plan_trip.py "Start City, ST" "End City, ST"
+```
+
+Or use the GUI:
+```bash
+python gui_app.py
 ```
 
 ### Step 3: Find Your GPX File

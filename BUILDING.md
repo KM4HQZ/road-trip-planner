@@ -13,7 +13,7 @@ PyInstaller creates a single-file executable that bundles:
 - Your application code
 - Required data files
 
-The result is a ~163MB executable that users can run without installing Python.
+The result is a ~271MB executable (Linux) or ~464MB .app bundle (macOS) that users can run without installing Python.
 
 ## Prerequisites
 
@@ -132,27 +132,38 @@ If sharing directly:
 
 ## Platform Support
 
-### Current: Linux x86-64
+## Platform Support
 
-The current build script creates executables for Linux only.
+### Linux (x86-64)
 
-### Future: Cross-Platform
+Build a single-file executable:
 
-To build for other platforms, run PyInstaller on the target OS:
-
-**macOS:**
 ```bash
-# On macOS:
 source venv/bin/activate
 ./build_pyinstaller.sh
-# Creates: dist/RoadTripPlanner (macOS executable)
+# Creates: dist/RoadTripPlanner (~271MB)
 ```
 
-**Windows:**
+### macOS (Universal2)
+
+Build a .app bundle:
+
+```bash
+source venv/bin/activate
+./build_pyinstaller_macos.sh
+# Creates: dist/RoadTripPlanner.app (~464MB)
+```
+
+The macOS build uses `--onedir --windowed` to create a proper .app bundle. Settings and trip routes are automatically saved to `~/Documents/RoadTripPlanner/` when running as a bundled app.
+
+### Windows
+
+Windows builds are not yet available. To build for Windows:
+
 ```cmd
 REM On Windows:
 venv\Scripts\activate.bat
-build_pyinstaller.bat
+pyinstaller --name="RoadTripPlanner" --onefile --windowed gui_app.py
 REM Creates: dist\RoadTripPlanner.exe
 ```
 
