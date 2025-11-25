@@ -37,7 +37,7 @@ iconutil -c icns icon.iconset
 
 ## Placeholder
 
-Currently, the GUI uses the default PyQt6 window icon. Custom icons can be added here for future packaging with tools like PyInstaller or Briefcase.
+Currently, the GUI uses the default PyQt6 window icon. Custom icons can be added here for future packaging with PyInstaller.
 
 Icon should represent:
 - 🚗 Car/road trip theme

@@ -280,11 +280,11 @@ jobs:
 - ✅ Good PyQt6 support
 
 **Alternatives:**
-- **Briefcase**: Native installers (.AppImage, .dmg, .msi) - more complex
 - **cx_Freeze**: Cross-platform freezing - similar to PyInstaller
 - **Nuitka**: Python-to-C compiler - faster but larger builds
+- **py2app** (macOS only): Alternative macOS bundler
 
-PyInstaller was chosen for simplicity and reliability with PyQt6.
+PyInstaller was chosen for simplicity and reliability with PyQt6 across all platforms.
 
 ## Support
 
