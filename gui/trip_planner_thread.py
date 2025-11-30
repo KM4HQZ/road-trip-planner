@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from services import WikipediaHelper, NominatimGeocoder, OSRMRouter, GooglePlacesFinder
 from models import Hotel, Veterinarian, Attraction, NationalPark
 from utils import haversine_distance, calculate_popularity_score, create_trip_map, create_gpx_file
-from config import STATE_ABBREV_TO_NAME
+from config import STATE_ABBREV_TO_NAME, TripConfig
 import time
 from datetime import datetime
 from dataclasses import asdict
@@ -32,6 +32,25 @@ class TripPlannerThread(QThread):
         """Execute trip planning in background."""
         try:
             self.progress.emit('Initializing services...')
+            
+            # Create trip configuration from params
+            trip_config = TripConfig(
+                search_hotels=self.params.get('search_hotels', True),
+                pet_friendly_only=self.params.get('pet_friendly_only', True),
+                search_vets=self.params.get('search_vets', True),
+                search_national_parks=self.params.get('search_national_parks', True),
+                search_monuments=self.params.get('search_monuments', True),
+                search_parks=self.params.get('search_parks', True),
+                search_museums=self.params.get('search_museums', True),
+                search_restaurants=self.params.get('search_restaurants', True),
+                search_dog_parks=self.params.get('search_dog_parks', True),
+                search_viewpoints=self.params.get('search_viewpoints', True),
+                search_ev_chargers=self.params.get('search_ev_chargers', True),
+                export_gpx=self.params.get('export_gpx', True),
+                export_map=self.params.get('export_map', True),
+                export_summary=self.params.get('export_summary', True),
+                export_data=self.params.get('export_data', True)
+            )
             
             # Load API key from the proper location
             from dotenv import load_dotenv
@@ -201,33 +220,43 @@ class TripPlannerThread(QThread):
                 })
             
             # Find hotels
-            self.progress.emit('Finding pet-friendly hotels...')
             hotels = {}
             waypoint_hotels = {}
             
-            for i, stop in enumerate(major_stops):
-                self.progress.emit(f'Finding hotel for {stop["name"]}... ({i+1}/{len(major_stops)})')
-                hotel_result = places_finder.find_pet_friendly_hotel(stop['name'], stop['lat'], stop['lon'])
-                if hotel_result:
-                    hotels[stop['name']] = hotel_result
-                time.sleep(0.5)
-            
-            for i, waypoint in enumerate(waypoint_cities):
-                self.progress.emit(f'Finding waypoint hotel... ({i+1}/{len(waypoint_cities)})')
-                hotel_result = places_finder.find_pet_friendly_hotel(waypoint['name'], waypoint['lat'], waypoint['lon'])
-                if hotel_result:
-                    waypoint_hotels[waypoint['name']] = hotel_result
-                time.sleep(0.5)
+            if trip_config.search_hotels:
+                hotel_type = "pet-friendly hotels" if trip_config.pet_friendly_only else "hotels"
+                self.progress.emit(f'Finding {hotel_type}...')
+                
+                for i, stop in enumerate(major_stops):
+                    self.progress.emit(f'Finding hotel for {stop["name"]}... ({i+1}/{len(major_stops)})')
+                    hotel_result = places_finder.find_pet_friendly_hotel(
+                        stop['name'], stop['lat'], stop['lon'],
+                        pet_friendly_only=trip_config.pet_friendly_only
+                    )
+                    if hotel_result:
+                        hotels[stop['name']] = hotel_result
+                    time.sleep(0.5)
+                
+                for i, waypoint in enumerate(waypoint_cities):
+                    self.progress.emit(f'Finding waypoint hotel... ({i+1}/{len(waypoint_cities)})')
+                    hotel_result = places_finder.find_pet_friendly_hotel(
+                        waypoint['name'], waypoint['lat'], waypoint['lon'],
+                        pet_friendly_only=trip_config.pet_friendly_only
+                    )
+                    if hotel_result:
+                        waypoint_hotels[waypoint['name']] = hotel_result
+                    time.sleep(0.5)
             
             # Find vets
-            self.progress.emit('Finding emergency veterinarians...')
             vets = {}
-            for i, stop in enumerate(major_stops):
-                self.progress.emit(f'Finding vet for {stop["name"]}... ({i+1}/{len(major_stops)})')
-                vet_result = places_finder.find_emergency_vet(stop['name'], stop['lat'], stop['lon'])
-                if vet_result:
-                    vets[stop['name']] = vet_result
-                time.sleep(0.5)
+            if trip_config.search_vets:
+                self.progress.emit('Finding emergency veterinarians...')
+                for i, stop in enumerate(major_stops):
+                    self.progress.emit(f'Finding vet for {stop["name"]}... ({i+1}/{len(major_stops)})')
+                    vet_result = places_finder.find_emergency_vet(stop['name'], stop['lat'], stop['lon'])
+                    if vet_result:
+                        vets[stop['name']] = vet_result
+                    time.sleep(0.5)
             
             # Find attractions
             self.progress.emit('Finding attractions...')
@@ -240,54 +269,88 @@ class TripPlannerThread(QThread):
                 'dog_parks': [],
                 'viewpoints': [],
                 'national_parks': [],
-                'monuments': []
+                'monuments': [],
+                'ev_chargers': []
             }
             
-            # National parks by state
-            self.progress.emit('Finding national parks...')
-            states_visited = set()
-            for city in all_cities:
-                if ',' in city['name']:
-                    state = city['name'].split(',')[-1].strip()
-                    states_visited.add(state)
-            
-            for stop in major_stops:
-                if ',' in stop['name']:
-                    state = stop['name'].split(',')[-1].strip()
-                    states_visited.add(state)
-            
-            for state_abbrev in sorted(states_visited):
-                state_name = STATE_ABBREV_TO_NAME.get(state_abbrev, state_abbrev)
-                self.progress.emit(f'Searching for parks in {state_name}...')
-                parks = places_finder.find_national_parks_by_state(state_name)
-                all_attractions['national_parks'].extend(parks[:5])
-                time.sleep(1)
+            # National parks and monuments by state
+            if trip_config.search_national_parks or trip_config.search_monuments:
+                self.progress.emit('Finding parks and monuments by state...')
+                states_visited = set()
+                for city in all_cities:
+                    if ',' in city['name']:
+                        state = city['name'].split(',')[-1].strip()
+                        if len(state) == 2 and state.isupper():
+                            states_visited.add(state)
+                
+                for stop in major_stops:
+                    if ',' in stop['name']:
+                        state = stop['name'].split(',')[-1].strip()
+                        if len(state) == 2 and state.isupper():
+                            states_visited.add(state)
+                
+                for state_abbrev in sorted(states_visited):
+                    state_name = STATE_ABBREV_TO_NAME.get(state_abbrev, state_abbrev)
+                    self.progress.emit(f'Searching {state_name}...')
+                    
+                    if trip_config.search_national_parks:
+                        parks = places_finder.find_national_parks_by_state(state_name)
+                        all_attractions['national_parks'].extend(parks)
+                    
+                    if trip_config.search_monuments:
+                        monuments = places_finder.find_monuments_by_state(state_name)
+                        all_attractions['monuments'].extend(monuments)
+                    
+                    time.sleep(1)
             
             # Parks along route
-            self.progress.emit('Scanning for parks along route...')
-            route_parks = places_finder.find_parks_along_route(route_geometry)
-            all_attractions['parks'].extend(route_parks)
+            if trip_config.search_parks:
+                self.progress.emit('Scanning for parks along route...')
+                route_parks = places_finder.find_parks_along_route(route_geometry)
+                all_attractions['parks'].extend(route_parks)
             
             # Viewpoints
-            self.progress.emit('Finding scenic viewpoints...')
-            viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=25)
-            all_attractions['viewpoints'].extend(viewpoints)
+            if trip_config.search_viewpoints:
+                self.progress.emit('Finding scenic viewpoints...')
+                viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=25)
+                all_attractions['viewpoints'].extend(viewpoints)
+            
+            # EV chargers along route
+            if trip_config.search_ev_chargers:
+                self.progress.emit('Finding EV charging stations along route...')
+                route_chargers = places_finder.find_ev_chargers_along_route(
+                    route_geometry,
+                    sample_interval_miles=25
+                )
+                all_attractions['ev_chargers'].extend(route_chargers)
             
             # Attractions at stop cities
-            for i, stop in enumerate(major_stops):
-                self.progress.emit(f'Finding attractions near {stop["name"]}... ({i+1}/{len(major_stops)})')
-                
-                parks = places_finder.find_parks_nearby(stop['name'], stop['lat'], stop['lon'])
-                all_attractions['parks'].extend(parks)
-                
-                museums = places_finder.find_museums_in_city(stop['name'], stop['lat'], stop['lon'])
-                all_attractions['museums'].extend(museums)
-                
-                restaurants = places_finder.find_dog_friendly_restaurants(stop['name'], stop['lat'], stop['lon'])
-                all_attractions['restaurants'].extend(restaurants)
-                
-                dog_parks = places_finder.find_dog_parks_in_city(stop['name'], stop['lat'], stop['lon'])
-                all_attractions['dog_parks'].extend(dog_parks)
+            if any([trip_config.search_parks, trip_config.search_museums, trip_config.search_restaurants, trip_config.search_dog_parks, trip_config.search_ev_chargers]):
+                for i, stop in enumerate(major_stops):
+                    self.progress.emit(f'Finding attractions near {stop["name"]}... ({i+1}/{len(major_stops)})')
+                    
+                    if trip_config.search_parks:
+                        parks = places_finder.find_parks_nearby(stop['name'], stop['lat'], stop['lon'])
+                        all_attractions['parks'].extend(parks)
+                    
+                    if trip_config.search_museums:
+                        museums = places_finder.find_museums_in_city(stop['name'], stop['lat'], stop['lon'])
+                        all_attractions['museums'].extend(museums)
+                    
+                    if trip_config.search_restaurants:
+                        restaurants = places_finder.find_dog_friendly_restaurants(stop['name'], stop['lat'], stop['lon'])
+                        all_attractions['restaurants'].extend(restaurants)
+                    
+                    if trip_config.search_dog_parks:
+                        dog_parks = places_finder.find_dog_parks_in_city(stop['name'], stop['lat'], stop['lon'])
+                        all_attractions['dog_parks'].extend(dog_parks)
+                    
+                    if trip_config.search_ev_chargers:
+                        ev_chargers = places_finder.find_ev_chargers_in_city(
+                            stop['name'], stop['lat'], stop['lon'],
+                            limit=3
+                        )
+                        all_attractions['ev_chargers'].extend(ev_chargers)
                 
                 time.sleep(0.5)
             
@@ -301,28 +364,39 @@ class TripPlannerThread(QThread):
                         unique.append(attraction)
                 all_attractions[category] = unique
             
-            # Create map
-            self.progress.emit('Generating map...')
-            map_route_geometry = [[coord[1], coord[0]] for coord in route_geometry]
-            
-            trip_name = f"Road Trip: {self.params['origin']} → {self.params['destination']}"
-            if via_cities:
-                for _, _, via_display in via_cities:
-                    trip_name += f" → {via_display}"
-            if self.params.get('roundtrip'):
-                trip_name += f" → {self.params['origin']}"
-            
-            trip_map = create_trip_map(
-                map_route_geometry,
-                major_stops,
-                waypoint_cities,
-                hotels,
-                waypoint_hotels,
-                vets,
-                all_attractions,
-                trip_name,
-                route_data
-            )
+            # Create map if needed
+            trip_map = None
+            if trip_config.export_map:
+                self.progress.emit('Generating map...')
+                map_route_geometry = [[coord[1], coord[0]] for coord in route_geometry]
+                
+                trip_name = f"Road Trip: {self.params['origin']} → {self.params['destination']}"
+                if via_cities:
+                    for _, _, via_display in via_cities:
+                        trip_name += f" → {via_display}"
+                if self.params.get('roundtrip'):
+                    trip_name += f" → {self.params['origin']}"
+                
+                trip_map = create_trip_map(
+                    map_route_geometry,
+                    major_stops,
+                    waypoint_cities,
+                    hotels,
+                    waypoint_hotels,
+                    vets,
+                    all_attractions,
+                    trip_name,
+                    route_data
+                )
+            else:
+                # Still need these for GPX and other exports
+                map_route_geometry = [[coord[1], coord[0]] for coord in route_geometry]
+                trip_name = f"Road Trip: {self.params['origin']} → {self.params['destination']}"
+                if via_cities:
+                    for _, _, via_display in via_cities:
+                        trip_name += f" → {via_display}"
+                if self.params.get('roundtrip'):
+                    trip_name += f" → {self.params['origin']}"
             
             # Save outputs
             self.progress.emit('Saving files...')
@@ -339,69 +413,125 @@ class TripPlannerThread(QThread):
             
             if via_cities:
                 via_names = '_'.join([v[2].replace(', ', '_').replace(' ', '_') for v in via_cities])
-                output_file = f"trip_{self.params['origin'].replace(', ', '_').replace(' ', '_')}_{self.params['destination'].replace(', ', '_').replace(' ', '_')}_via_{via_names}.html"
+                output_base = f"trip_{self.params['origin'].replace(', ', '_').replace(' ', '_')}_{self.params['destination'].replace(', ', '_').replace(' ', '_')}_via_{via_names}"
             else:
-                output_file = f"trip_{self.params['origin'].replace(', ', '_').replace(' ', '_')}_{self.params['destination'].replace(', ', '_').replace(' ', '_')}.html"
+                output_base = f"trip_{self.params['origin'].replace(', ', '_').replace(' ', '_')}_{self.params['destination'].replace(', ', '_').replace(' ', '_')}"
             
-            output_path = output_dir / output_file
-            trip_map.save(str(output_path))
+            output_files = {}
             
-            # Save trip data
-            data_file = str(output_path).replace('.html', '_data.json')
-            trip_data = {
-                'origin': self.params['origin'],
-                'destination': self.params['destination'],
-                'via_cities': [v[2] for v in via_cities],
-                'roundtrip': self.params.get('roundtrip', False),
-                'total_distance_miles': round(total_distance_mi, 1),
-                'total_duration_hours': round(total_duration_h, 2),
-                'generated_at': datetime.now().isoformat(),
-                'major_stops': major_stops,
-                'waypoint_cities': waypoint_cities,
-                'hotels': {k: asdict(v) for k, v in hotels.items()},
-                'waypoint_hotels': {k: asdict(v) for k, v in waypoint_hotels.items()},
-                'vets': {k: asdict(v) for k, v in vets.items()},
-                'attractions': {
-                    cat: [asdict(a) for a in attractions]
-                    for cat, attractions in all_attractions.items()
-                },
-                'output_files': {
-                    'map': str(output_path),
-                    'data': data_file,
-                    'summary': str(output_path).replace('.html', '_summary.md'),
-                    'gpx': str(output_path).replace('.html', '.gpx')
+            # Save map if enabled
+            if trip_config.export_map:
+                output_path = output_dir / (output_base + '.html')
+                trip_map.save(str(output_path))
+                output_files['map'] = str(output_path)
+            
+            # Save trip data if enabled
+            if trip_config.export_data:
+                data_file = output_dir / (output_base + '_data.json')
+                trip_data = {
+                    'origin': self.params['origin'],
+                    'destination': self.params['destination'],
+                    'via_cities': [v[2] for v in via_cities],
+                    'roundtrip': self.params.get('roundtrip', False),
+                    'total_distance_miles': round(total_distance_mi, 1),
+                    'total_duration_hours': round(total_duration_h, 2),
+                    'generated_at': datetime.now().isoformat(),
+                    'major_stops': major_stops,
+                    'waypoint_cities': waypoint_cities,
+                    'hotels': {k: asdict(v) for k, v in hotels.items()},
+                    'waypoint_hotels': {k: asdict(v) for k, v in waypoint_hotels.items()},
+                    'vets': {k: asdict(v) for k, v in vets.items()},
+                    'attractions': {
+                        cat: [asdict(a) for a in attractions]
+                        for cat, attractions in all_attractions.items()
+                    },
+                    'config': {
+                        'search_hotels': trip_config.search_hotels,
+                        'pet_friendly_only': trip_config.pet_friendly_only,
+                        'search_vets': trip_config.search_vets,
+                        'search_national_parks': trip_config.search_national_parks,
+                        'search_monuments': trip_config.search_monuments,
+                        'search_parks': trip_config.search_parks,
+                        'search_museums': trip_config.search_museums,
+                        'search_restaurants': trip_config.search_restaurants,
+                        'search_dog_parks': trip_config.search_dog_parks,
+                        'search_viewpoints': trip_config.search_viewpoints,
+                        'search_ev_chargers': trip_config.search_ev_chargers
+                    },
+                    'output_files': output_files
                 }
-            }
+                
+                import json
+                with open(data_file, 'w') as f:
+                    json.dump(trip_data, f, indent=2)
+                output_files['data'] = str(data_file)
+            else:
+                # Still need trip_data for the GUI
+                trip_data = {
+                    'origin': self.params['origin'],
+                    'destination': self.params['destination'],
+                    'via_cities': [v[2] for v in via_cities],
+                    'roundtrip': self.params.get('roundtrip', False),
+                    'total_distance_miles': round(total_distance_mi, 1),
+                    'total_duration_hours': round(total_duration_h, 2),
+                    'generated_at': datetime.now().isoformat(),
+                    'major_stops': major_stops,
+                    'waypoint_cities': waypoint_cities,
+                    'hotels': {k: asdict(v) for k, v in hotels.items()},
+                    'waypoint_hotels': {k: asdict(v) for k, v in waypoint_hotels.items()},
+                    'vets': {k: asdict(v) for k, v in vets.items()},
+                    'attractions': {
+                        cat: [asdict(a) for a in attractions]
+                        for cat, attractions in all_attractions.items()
+                    },
+                    'config': {
+                        'search_hotels': trip_config.search_hotels,
+                        'pet_friendly_only': trip_config.pet_friendly_only,
+                        'search_vets': trip_config.search_vets,
+                        'search_national_parks': trip_config.search_national_parks,
+                        'search_monuments': trip_config.search_monuments,
+                        'search_parks': trip_config.search_parks,
+                        'search_museums': trip_config.search_museums,
+                        'search_restaurants': trip_config.search_restaurants,
+                        'search_dog_parks': trip_config.search_dog_parks,
+                        'search_viewpoints': trip_config.search_viewpoints,
+                        'search_ev_chargers': trip_config.search_ev_chargers
+                    },
+                    'output_files': output_files
+                }
             
-            import json
-            with open(data_file, 'w') as f:
-                json.dump(trip_data, f, indent=2)
+            # Generate GPX if enabled
+            if trip_config.export_gpx:
+                self.progress.emit('Generating GPX file...')
+                gpx_file = output_dir / (output_base + '.gpx')
+                create_gpx_file(
+                    map_route_geometry,
+                    major_stops,
+                    waypoint_cities,
+                    hotels,
+                    waypoint_hotels,
+                    vets,
+                    all_attractions,
+                    trip_name,
+                    str(gpx_file)
+                )
+                output_files['gpx'] = str(gpx_file)
             
-            # Generate GPX
-            self.progress.emit('Generating GPX file...')
-            gpx_file = str(output_path).replace('.html', '.gpx')
-            create_gpx_file(
-                map_route_geometry,
-                major_stops,
-                waypoint_cities,
-                hotels,
-                waypoint_hotels,
-                vets,
-                all_attractions,
-                trip_name,
-                gpx_file
-            )
+            # Generate summary if enabled
+            if trip_config.export_summary:
+                summary_file = output_dir / (output_base + '_summary.md')
+                with open(summary_file, 'w') as f:
+                    f.write(f"# {trip_name}\n\n")
+                    f.write(f"*Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*\n\n")
+                    f.write(f"**Distance**: {total_distance_mi:.1f} miles\n\n")
+                    f.write(f"**Driving Time**: {int(total_duration_h)}h {int((total_duration_h % 1) * 60)}m\n\n")
+                    f.write(f"**Major Stops**: {len(major_stops)}\n\n")
+                    f.write(f"**Hotels Found**: {len(hotels)}\n\n")
+                    f.write(f"**Emergency Vets**: {len(vets)}\n\n")
+                output_files['summary'] = str(summary_file)
             
-            # Generate summary (simplified version)
-            summary_file = str(output_path).replace('.html', '_summary.md')
-            with open(summary_file, 'w') as f:
-                f.write(f"# {trip_name}\n\n")
-                f.write(f"*Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*\n\n")
-                f.write(f"**Distance**: {total_distance_mi:.1f} miles\n\n")
-                f.write(f"**Driving Time**: {int(total_duration_h)}h {int((total_duration_h % 1) * 60)}m\n\n")
-                f.write(f"**Major Stops**: {len(major_stops)}\n\n")
-                f.write(f"**Hotels Found**: {len(hotels)}\n\n")
-                f.write(f"**Emergency Vets**: {len(vets)}\n\n")
+            # Update trip data with final output files
+            trip_data['output_files'] = output_files
             
             self.progress.emit('Trip planning complete!')
             self.finished.emit(trip_data)

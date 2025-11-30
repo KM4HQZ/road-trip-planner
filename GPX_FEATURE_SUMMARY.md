@@ -59,6 +59,7 @@ Each category is limited to top-rated attractions:
 - 🍽️ **Restaurants** (top 10) - Dog-friendly dining
 - 🐾 **Dog Parks** (top 10) - Exercise areas
 - 📸 **Viewpoints** (top 10) - Scenic overlooks
+- ⚡ **EV Chargers** (top 15) - Electric vehicle charging stations
 
 ### Route Track
 - Complete driving route geometry

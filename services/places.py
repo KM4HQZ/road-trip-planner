@@ -23,8 +23,15 @@ class GooglePlacesFinder:
             'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel,places.id,places.internationalPhoneNumber,places.websiteUri,places.currentOpeningHours,places.regularOpeningHours,places.allowsDogs'
         }
     
-    def find_pet_friendly_hotel(self, city_name: str, lat: float, lon: float) -> Optional[Hotel]:
-        """Find the top pet-friendly hotel in a city."""
+    def find_pet_friendly_hotel(self, city_name: str, lat: float, lon: float, pet_friendly_only: bool = True) -> Optional[Hotel]:
+        """Find the top hotel in a city.
+        
+        Args:
+            city_name: Name of the city
+            lat: Latitude
+            lon: Longitude
+            pet_friendly_only: If True, filter to pet-friendly hotels only. If False, return any hotel.
+        """
         request_body = {
             "includedTypes": ["lodging"],
             "locationRestriction": {
@@ -49,6 +56,7 @@ class GooglePlacesFinder:
             
             pet_friendly_hotels = []
             chain_hotels = []
+            all_hotels = []
             
             for place in data.get('places', []):
                 name = place.get('displayName', {}).get('text', '')
@@ -56,7 +64,7 @@ class GooglePlacesFinder:
                 reviews = place.get('userRatingCount', 0)
                 allows_dogs = place.get('allowsDogs', False)
                 
-                # Keep good quality standards - pet-friendly doesn't mean low quality!
+                # Keep good quality standards
                 if rating < 3.5 or reviews < 50:
                     continue
                 
@@ -75,12 +83,22 @@ class GooglePlacesFinder:
                 )
                 hotel.score = calculate_popularity_score(rating, reviews)
                 
+                # Add to all hotels list
+                all_hotels.append(hotel)
+                
                 # Prioritize hotels that explicitly allow dogs
                 if allows_dogs:
                     pet_friendly_hotels.append(hotel)
                 # Fallback to known pet-friendly chains
                 elif any(chain in name.lower() for chain in PET_FRIENDLY_CHAINS):
                     chain_hotels.append(hotel)
+            
+            # If not filtering for pet-friendly, return best hotel overall
+            if not pet_friendly_only:
+                if all_hotels:
+                    all_hotels.sort(key=lambda h: h.score, reverse=True)
+                    return all_hotels[0]
+                return None
             
             # Return best pet-friendly hotel, or best chain hotel if no explicit pet-friendly found
             if pet_friendly_hotels:
@@ -816,3 +834,153 @@ class GooglePlacesFinder:
         except Exception as e:
             print(f"    ⚠ Error searching for monuments in {state_name}: {e}")
             return []
+    
+    def find_ev_chargers_in_city(self, city_name: str, lat: float, lon: float, limit: int = 5) -> List[Attraction]:
+        """Find EV charging stations in a city.
+        
+        Args:
+            city_name: Name of the city
+            lat: Latitude
+            lon: Longitude
+            limit: Maximum number of results
+        """
+        request_body = {
+            "includedTypes": ["electric_vehicle_charging_station"],
+            "locationRestriction": {
+                "circle": {
+                    "center": {"latitude": lat, "longitude": lon},
+                    "radius": 40000  # 40km radius for cities
+                }
+            },
+            "rankPreference": "POPULARITY",
+            "maxResultCount": 20
+        }
+        
+        try:
+            response = requests.post(
+                self.NEARBY_SEARCH_URL,
+                headers=self.headers,
+                json=request_body,
+                timeout=10
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            chargers = []
+            for place in data.get('places', []):
+                name = place.get('displayName', {}).get('text', '')
+                rating = place.get('rating', 0.0)
+                reviews = place.get('userRatingCount', 0)
+                
+                location_data = place.get('location', {})
+                
+                charger = Attraction(
+                    name=name,
+                    address=place.get('formattedAddress', ''),
+                    location=city_name,
+                    type='ev_charger',
+                    rating=rating,
+                    user_ratings_total=reviews,
+                    lat=location_data.get('latitude', lat),
+                    lon=location_data.get('longitude', lon),
+                    website=place.get('websiteUri', None),
+                    wikipedia_url=None,
+                    wikipedia_summary=None
+                )
+                chargers.append(charger)
+            
+            chargers.sort(
+                key=lambda c: calculate_popularity_score(c.rating, c.user_ratings_total),
+                reverse=True
+            )
+            
+            return chargers[:limit] if limit else chargers
+            
+        except Exception as e:
+            print(f"    ⚠ Error searching for EV chargers in {city_name}: {e}")
+            return []
+    
+    def find_ev_chargers_along_route(self, route_geometry: List[List[float]], 
+                                      sample_interval_miles: int = 15) -> List[Attraction]:
+        """Find EV charging stations along a route.
+        
+        Args:
+            route_geometry: List of [lon, lat] coordinates
+            sample_interval_miles: Distance between sample points in miles
+        """
+        chargers = []
+        sample_interval_m = sample_interval_miles * 1609.34
+        
+        # Sample points along route
+        total_distance = 0
+        last_sample_distance = 0
+        
+        for i in range(len(route_geometry) - 1):
+            lon1, lat1 = route_geometry[i]
+            lon2, lat2 = route_geometry[i + 1]
+            
+            segment_distance = haversine_distance(lat1, lon1, lat2, lon2) * 1609.34
+            total_distance += segment_distance
+            
+            if total_distance - last_sample_distance >= sample_interval_m:
+                # Search for chargers at this point
+                request_body = {
+                    "includedTypes": ["electric_vehicle_charging_station"],
+                    "locationRestriction": {
+                        "circle": {
+                            "center": {"latitude": lat2, "longitude": lon2},
+                            "radius": 20000  # 20km radius along route
+                        }
+                    },
+                    "rankPreference": "POPULARITY",
+                    "maxResultCount": 5
+                }
+                
+                try:
+                    response = requests.post(
+                        self.NEARBY_SEARCH_URL,
+                        headers=self.headers,
+                        json=request_body,
+                        timeout=10
+                    )
+                    response.raise_for_status()
+                    data = response.json()
+                    
+                    for place in data.get('places', []):
+                        name = place.get('displayName', {}).get('text', '')
+                        rating = place.get('rating', 0.0)
+                        reviews = place.get('userRatingCount', 0)
+                        
+                        location_data = place.get('location', {})
+                        
+                        charger = Attraction(
+                            name=name,
+                            address=place.get('formattedAddress', ''),
+                            location=f"Mile {int(total_distance / 1609.34)}",
+                            type='ev_charger',
+                            rating=rating,
+                            user_ratings_total=reviews,
+                            lat=location_data.get('latitude', lat2),
+                            lon=location_data.get('longitude', lon2),
+                            website=place.get('websiteUri', None),
+                            wikipedia_url=None,
+                            wikipedia_summary=None
+                        )
+                        chargers.append(charger)
+                    
+                    time.sleep(1)  # Rate limiting
+                    
+                except Exception as e:
+                    print(f"    ⚠ Error searching chargers at mile {int(total_distance / 1609.34)}: {e}")
+                
+                last_sample_distance = total_distance
+        
+        # Deduplicate by name
+        seen_names = set()
+        unique_chargers = []
+        for charger in chargers:
+            if charger.name not in seen_names:
+                seen_names.add(charger.name)
+                unique_chargers.append(charger)
+        
+        return unique_chargers

@@ -46,6 +46,7 @@
 │    ├── Vets: 🏥 24/7 emergency clinics                         │
 │    ├── Parks: 🌲 Scenic stops                                  │
 │    ├── Restaurants: 🍽️ Dog-friendly dining                    │
+│    ├── EV Chargers: ⚡ Electric vehicle charging               │
 │    └── More: Dog parks, viewpoints, museums, monuments         │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -83,7 +84,8 @@
     ├─ 🏛️ Top 5 museums
     ├─ 🍽️ Top 10 dog-friendly restaurants
     ├─ 🐾 Top 10 dog parks
-    └─ 📸 Top 10 scenic viewpoints
+    ├─ 📸 Top 10 scenic viewpoints
+    └─ ⚡ Top 15 EV charging stations
   
   🛣️ Route Track
     • Complete geometry

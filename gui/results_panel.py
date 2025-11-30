@@ -84,8 +84,18 @@ class ResultsPanel(QWidget):
         """Load trip data and display results."""
         self.trip_data = trip_data
         
-        # Load map
-        map_file = trip_data.get('output_files', {}).get('map')
+        # Get config to determine what was exported
+        config = trip_data.get('config', {})
+        output_files = trip_data.get('output_files', {})
+        
+        # Show/hide export buttons based on what was generated
+        self.open_map_btn.setVisible('map' in output_files)
+        self.export_gpx_btn.setVisible('gpx' in output_files)
+        self.export_summary_btn.setVisible('summary' in output_files)
+        self.export_data_btn.setVisible('data' in output_files)
+        
+        # Load map if available
+        map_file = output_files.get('map')
         if map_file and Path(map_file).exists():
             self.map_viewer.load_map(map_file)
         
@@ -105,8 +115,12 @@ class ResultsPanel(QWidget):
         self.add_summary_row('Driving Time', duration_text)
         
         self.add_summary_row('Major Stops', str(len(trip_data.get('major_stops', []))))
-        self.add_summary_row('Hotels Found', str(len(trip_data.get('hotels', {}))))
-        self.add_summary_row('Emergency Vets', str(len(trip_data.get('vets', {}))))
+        
+        # Only show hotel/vet counts if they were searched
+        if config.get('search_hotels', True):
+            self.add_summary_row('Hotels Found', str(len(trip_data.get('hotels', {}))))
+        if config.get('search_vets', True):
+            self.add_summary_row('Emergency Vets', str(len(trip_data.get('vets', {}))))
         
         # Update details
         details = []
@@ -120,21 +134,43 @@ class ResultsPanel(QWidget):
                 details.append(f"  (Travel guide available)")
             details.append("\n")
         
-        details.append(f"\n## Hotels ({len(trip_data.get('hotels', {}))})\n")
-        for city, hotel in trip_data.get('hotels', {}).items():
-            details.append(f"- **{city}**: {hotel.get('name')} ({hotel.get('rating')}⭐)\n")
+        # Only show hotels if searched
+        if config.get('search_hotels', True) and trip_data.get('hotels'):
+            details.append(f"\n## Hotels ({len(trip_data.get('hotels', {}))})\n")
+            for city, hotel in trip_data.get('hotels', {}).items():
+                details.append(f"- **{city}**: {hotel.get('name')} ({hotel.get('rating')}⭐)\n")
         
-        details.append(f"\n## Emergency Veterinarians ({len(trip_data.get('vets', {}))})\n")
-        for city, vet in trip_data.get('vets', {}).items():
-            hours = "24/7" if vet.get('is_24_hours') else "Regular hours"
-            details.append(f"- **{city}**: {vet.get('name')} ({hours})\n")
+        # Only show vets if searched
+        if config.get('search_vets', True) and trip_data.get('vets'):
+            details.append(f"\n## Emergency Veterinarians ({len(trip_data.get('vets', {}))})\n")
+            for city, vet in trip_data.get('vets', {}).items():
+                hours = "24/7" if vet.get('is_24_hours') else "Regular hours"
+                details.append(f"- **{city}**: {vet.get('name')} ({hours})\n")
         
-        # Attractions
+        # Attractions - only show categories that were searched
         attractions = trip_data.get('attractions', {})
-        total_attractions = sum(len(v) for v in attractions.values())
-        details.append(f"\n## Attractions ({total_attractions})\n")
+        searched_attractions = {}
+        
+        category_config_map = {
+            'national_parks': 'search_national_parks',
+            'monuments': 'search_monuments',
+            'parks': 'search_parks',
+            'museums': 'search_museums',
+            'restaurants': 'search_restaurants',
+            'dog_parks': 'search_dog_parks',
+            'viewpoints': 'search_viewpoints',
+            'ev_chargers': 'search_ev_chargers'
+        }
+        
         for category, items in attractions.items():
-            if items:
+            config_key = category_config_map.get(category)
+            if config_key and config.get(config_key, True) and items:
+                searched_attractions[category] = items
+        
+        if searched_attractions:
+            total_attractions = sum(len(v) for v in searched_attractions.values())
+            details.append(f"\n## Attractions ({total_attractions})\n")
+            for category, items in searched_attractions.items():
                 details.append(f"- {category.replace('_', ' ').title()}: {len(items)}\n")
         
         self.details_text.setMarkdown(''.join(details))

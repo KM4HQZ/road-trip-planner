@@ -215,14 +215,25 @@ def create_trip_map(
         'museum': {'color': 'purple', 'icon': 'university', 'prefix': 'fa', 'emoji': '🏛️'},
         'restaurant': {'color': 'orange', 'icon': 'cutlery', 'prefix': 'fa', 'emoji': '🍽️'},
         'dog_park': {'color': 'lightgreen', 'icon': 'paw', 'prefix': 'fa', 'emoji': '🐾'},
-        'viewpoint': {'color': 'blue', 'icon': 'camera', 'prefix': 'fa', 'emoji': '📸'}
+        'viewpoint': {'color': 'blue', 'icon': 'camera', 'prefix': 'fa', 'emoji': '📸'},
+        'ev_charger': {'color': 'lightblue', 'icon': 'bolt', 'prefix': 'fa', 'emoji': '⚡'},
+        'ev_charger_ea': {'color': 'purple', 'icon': 'bolt', 'prefix': 'fa', 'emoji': '⚡'}
     }
     
     attraction_groups = {}
     for attraction_type in icon_config.keys():
-        attraction_groups[attraction_type] = folium.FeatureGroup(
-            name=f"{icon_config[attraction_type]['emoji']} {attraction_type.replace('_', ' ').title()}s"
-        )
+        if attraction_type == 'ev_charger_ea':
+            attraction_groups[attraction_type] = folium.FeatureGroup(
+                name=f"⚡ EV Chargers (Electrify America)"
+            )
+        else:
+            attraction_groups[attraction_type] = folium.FeatureGroup(
+                name=f"{icon_config[attraction_type]['emoji']} {attraction_type.replace('_', ' ').title()}s"
+            )
+    
+    # Add separate group for other EV chargers
+    if 'ev_charger' in attraction_groups:
+        attraction_groups['ev_charger'].name = '⚡ EV Chargers (Other)'
     
     for category, attraction_list in attractions.items():
         for attraction in attraction_list:
@@ -247,7 +258,19 @@ def create_trip_map(
                     icon=folium.Icon(color=config['color'], icon=config['icon'], prefix=config['prefix'])
                 ).add_to(attraction_groups['national_park'])
             else:
-                config = icon_config.get(attraction.type, icon_config['park'])
+                # Special handling for EV chargers - split by Electrify America
+                if attraction.type == 'ev_charger':
+                    is_electrify_america = 'electrify america' in attraction.name.lower()
+                    
+                    if is_electrify_america:
+                        config = icon_config['ev_charger_ea']
+                        group = attraction_groups['ev_charger_ea']
+                    else:
+                        config = icon_config['ev_charger']
+                        group = attraction_groups['ev_charger']
+                else:
+                    config = icon_config.get(attraction.type, icon_config['park'])
+                    group = attraction_groups.get(attraction.type)
                 
                 popup_html = f"<b>{config['emoji']} {attraction.name}</b><br>"
                 popup_html += f"<b>⭐ {attraction.rating}/5.0</b> ({attraction.user_ratings_total:,} reviews)<br>"
@@ -261,7 +284,6 @@ def create_trip_map(
                         popup_html += f'<br><br><i style="font-size: 0.85em;">{attraction.wikipedia_summary}</i>'
                 popup_html += f"<br><br><i>{attraction.location}</i>"
                 
-                group = attraction_groups.get(attraction.type)
                 if group:
                     folium.Marker(
                         location=[attraction.lat, attraction.lon],

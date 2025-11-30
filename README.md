@@ -40,6 +40,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - 🍽️ **Locates dog-friendly restaurants** with outdoor seating
 - 🐾 **Finds dog parks** for exercise breaks
 - 📸 **Identifies scenic viewpoints** along the way
+- ⚡ **Locates EV charging stations** along route and at major stops (with separate map layers for Electrify America vs. other networks)
 - 📚 **Provides Wikipedia articles & summaries** for parks, museums, and monuments
 - 📖 **Links to Wikivoyage travel guides** for all stop cities
 - 📏 **Shows distances & driving times** between each stop city
@@ -51,7 +52,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 ## 🎯 Key Features
 
 ### Two-Tiered Discovery System
-- **Along Route**: Samples every 25-75 miles with tight 10km radius for parks/viewpoints
+- **Along Route**: Samples every 15-75 miles with 20km radius for EV chargers and 10km for parks/viewpoints
 - **At Stop Cities**: Searches 40km radius for comprehensive city exploration
 
 ### Intelligent Route Planning
@@ -207,6 +208,9 @@ python gui_app.py
    - Enter origin and destination cities
    - Add optional via cities for varied routes
    - Configure stop distance and waypoint interval
+   - **Search Options**: Toggle each attraction category (hotels, vets, parks, museums, restaurants, dog parks, viewpoints, EV chargers, national parks, monuments)
+   - **Pet-Friendly Toggle**: Search all hotels or just pet-friendly chains
+   - **Export Options**: Choose which files to generate (map, GPX, summary, data)
    - Real-time progress dialog during planning
 
 2. **Results Tab**
@@ -247,8 +251,8 @@ Add as many `--via` cities as you want!
 
 ### Custom Stop Distance
 ```bash
-python plan_trip.py "Atlanta, GA" "Chicago, IL" --stop-distance 200
-# Stops every ~200 miles instead of default 250
+python plan_trip.py "Atlanta, GA" "Chicago, IL" --target-hours 6
+# Stops every ~6 hours of driving instead of default 8
 ```
 
 ### Old-Style Round Trip (Not Recommended)
@@ -256,6 +260,31 @@ python plan_trip.py "Atlanta, GA" "Chicago, IL" --stop-distance 200
 python plan_trip.py "Atlanta, GA" "Chicago, IL" --roundtrip
 # Takes same route back - use --via instead for variety!
 ```
+
+### Customize What to Search
+```bash
+# Skip specific categories
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-museums --no-restaurants
+
+# Search all hotels (not just pet-friendly)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --all-hotels
+
+# Minimal trip (just route and hotels)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-vets --no-parks --no-museums --no-restaurants --no-dog-parks --no-viewpoints --no-ev-chargers --no-national-parks --no-monuments
+```
+
+### Customize Export Options
+```bash
+# Only generate the map (no GPX, summary, or data files)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-gpx --no-summary --no-data
+
+# Only generate GPX and summary (no map or data)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-map --no-data
+```
+
+**Available Toggles:**
+- Search: `--no-hotels`, `--all-hotels`, `--no-vets`, `--no-national-parks`, `--no-monuments`, `--no-parks`, `--no-museums`, `--no-restaurants`, `--no-dog-parks`, `--no-viewpoints`, `--no-ev-chargers`
+- Export: `--no-gpx`, `--no-map`, `--no-summary`, `--no-data`
 
 ## 📂 Output Files
 
@@ -276,6 +305,8 @@ Each trip generates **four files** in the `trip routes/` directory:
 - 🍽️ Orange fork icons for dog-friendly restaurants
 - 🐾 Light green paw icons for dog parks
 - 📸 Blue camera icons for scenic viewpoints
+- ⚡ Purple bolt icons for Electrify America charging stations
+- ⚡ Light blue bolt icons for other EV charging stations
 - 📏 Distance & time markers between stop cities
 - ☑️ **"Toggle All" button** to show/hide all layers at once
 - Layer controls to toggle each category individually
@@ -298,7 +329,7 @@ Each trip generates **four files** in the `trip routes/` directory:
 - Waypoint cities for flexible overnight stops
 - All hotels (pet-friendly) as POI markers
 - 24/7 emergency vets as medical POIs
-- Top attractions by category (parks, museums, restaurants, dog parks, viewpoints, etc.)
+- Top attractions by category (parks, museums, restaurants, dog parks, viewpoints, EV chargers, etc.)
 
 **How to use on Android:**
 1. Transfer `.gpx` file to your phone (email, Drive, USB, etc.)
@@ -312,7 +343,7 @@ Complete structured data including:
 - All stops with coordinates
 - Hotel details (name, rating, reviews, phone, website)
 - Vet details (name, rating, 24/7 status, phone)
-- All attractions by category (national parks, monuments, parks, museums, restaurants, dog parks, viewpoints) with ratings
+- All attractions by category (national parks, monuments, parks, museums, restaurants, dog parks, viewpoints, EV chargers) with ratings
 
 ### 4. Summary Report (Markdown)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_summary.md`
@@ -358,6 +389,12 @@ Human-readable summary with:
 - **Along Route**: 4.5+ stars, sampled every 75 miles
 - Examples: Overlooks, vista points, observation decks
 
+### ⚡ EV Charging Stations
+- **Along Route**: Sampled every 15 miles with 20km radius (all chargers, no quality filter)
+- **At Cities**: 40km radius (top 5 per city, no quality filter)
+- **Map Layers**: Separate toggleable layers for Electrify America (purple) vs. Other Networks (light blue)
+- Examples: Electrify America, ChargePoint, EVgo, Tesla Superchargers, etc.
+
 ## 🏨 Hotel Selection
 
 **Pet-Friendly Chains Searched:**
@@ -381,29 +418,38 @@ The system strictly verifies 24/7 status:
 
 ## 📊 Example Results
 
-**Atlanta → Chicago → Nashville → Memphis → Atlanta**
-- Distance: 1,745.7 miles
-- Driving Time: ~33 hours
-- Strategic Stops: 10 cities
-- Attractions Found: 217 total
-  - 129 Parks
-  - 25 Museums
-  - 43 Dog-friendly restaurants
-  - 16 Dog parks
-  - 4 Scenic viewpoints
-- 24/7 Vets: 4 confirmed (Atlanta, Chicago, Nashville, Memphis)
+**Atlanta → Colorado Springs → Las Vegas → Los Angeles → Atlanta**
+- Distance: 4,234 miles
+- Driving Time: ~63 hours
+- Major Stops: 7 cities
+- Waypoint Cities: 42 optional overnight stops
+- Attractions Found: 300+ total
+  - 23 National Parks (including Grand Canyon, Zion, Joshua Tree)
+  - 45+ Monuments & Memorials
+  - 150+ Parks
+  - 30+ Museums
+  - 50+ Dog-friendly restaurants
+  - 20+ Dog parks
+  - 15+ Scenic viewpoints
+  - 40+ EV charging stations
+- Hotels: Pet-friendly options at every major stop
+- 24/7 Vets: Available at all major cities
 
 ## 💡 Tips
 
-1. **Cache**: The script uses Nominatim's geocoding which has a 1 request/second rate limit. Be patient on first runs.
+1. **Use the GUI**: For the easiest experience, use `python gui_app.py` - it has checkboxes for all search and export options.
 
-2. **API Key**: Make sure your Google Places API key is set in the `.env` file and has billing enabled (free tier is generous).
+2. **Customize Your Search**: Use `--no-*` flags to skip categories you don't need, or use the GUI toggles to select exactly what you want.
 
-3. **Customization**: Adjust `--stop-distance` to change how often you want hotel stops (default is 250 miles).
+3. **API Key**: Make sure your Google Places API key is set in the `.env` file and has billing enabled (free tier is generous - typically costs under $5 per trip).
 
-4. **Multiple Routes**: Use `--via` to create interesting return routes instead of backtracking.
+4. **Multiple Routes**: Use `--via` to create interesting return routes instead of backtracking with `--roundtrip`.
 
-5. **Browser**: For best map experience, use Chrome, Firefox, or Edge.
+5. **Mobile Navigation**: Transfer the `.gpx` file to your phone and import it into Magic Earth or OsmAnd for turn-by-turn navigation with all POIs.
+
+6. **Cache**: The script caches geocoding results, so subsequent runs with the same cities will be faster.
+
+7. **Stop Distance**: Default is ~8 hours of driving (250 miles). Adjust with `--target-hours` for longer or shorter days.
 
 ## 🛠️ Troubleshooting
 

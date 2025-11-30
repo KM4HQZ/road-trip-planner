@@ -28,7 +28,7 @@ from services import WikipediaHelper, NominatimGeocoder, OSRMRouter, GooglePlace
 from utils import haversine_distance, calculate_popularity_score, create_trip_map, create_gpx_file
 
 # Import configuration
-from config import STATE_ABBREV_TO_NAME
+from config import STATE_ABBREV_TO_NAME, TripConfig
 
 # Load environment variables
 load_dotenv()
@@ -48,6 +48,29 @@ def main():
     parser.add_argument('--waypoint-interval', type=int, default=100,
                        help='Miles between waypoint cities for hotel options (default: 100)')
     
+    # Search toggles
+    search_group = parser.add_argument_group('search options', 'Control what to search for')
+    search_group.add_argument('--no-hotels', action='store_true', help='Skip hotel search')
+    search_group.add_argument('--all-hotels', action='store_true', help='Search all hotels (not just pet-friendly)')
+    search_group.add_argument('--no-vets', action='store_true', help='Skip emergency vet search')
+    search_group.add_argument('--no-national-parks', action='store_true', help='Skip national parks')
+    search_group.add_argument('--no-monuments', action='store_true', help='Skip monuments and memorials')
+    search_group.add_argument('--no-parks', action='store_true', help='Skip parks')
+    search_group.add_argument('--no-museums', action='store_true', help='Skip museums')
+    search_group.add_argument('--no-restaurants', action='store_true', help='Skip dog-friendly restaurants')
+    search_group.add_argument('--no-dog-parks', action='store_true', help='Skip dog parks')
+    search_group.add_argument('--no-viewpoints', action='store_true', help='Skip scenic viewpoints')
+    search_group.add_argument('--no-ev-chargers', action='store_true', help='Skip EV charging station search')
+    
+    # Export options
+    
+    # Export toggles
+    export_group = parser.add_argument_group('export options', 'Control what files to generate')
+    export_group.add_argument('--no-gpx', action='store_true', help='Skip GPX file generation')
+    export_group.add_argument('--no-map', action='store_true', help='Skip HTML map generation')
+    export_group.add_argument('--no-summary', action='store_true', help='Skip summary markdown generation')
+    export_group.add_argument('--no-data', action='store_true', help='Skip JSON data export')
+    
     args = parser.parse_args()
     
     if args.via and args.roundtrip:
@@ -57,6 +80,26 @@ def main():
     if not GOOGLE_PLACES_API_KEY:
         print("Error: GOOGLE_PLACES_API_KEY not found in .env file")
         return 1
+    
+    # Create trip configuration from arguments
+    trip_config = TripConfig(
+        search_hotels=not args.no_hotels,
+        pet_friendly_only=not args.all_hotels,
+        search_vets=not args.no_vets,
+        search_national_parks=not args.no_national_parks,
+        search_monuments=not args.no_monuments,
+        search_parks=not args.no_parks,
+        search_museums=not args.no_museums,
+        search_restaurants=not args.no_restaurants,
+        search_dog_parks=not args.no_dog_parks,
+        search_viewpoints=not args.no_viewpoints,
+        search_ev_chargers=not args.no_ev_chargers,
+        ev_electrify_america_only=args.electrify_america_only,
+        export_gpx=not args.no_gpx,
+        export_map=not args.no_map,
+        export_summary=not args.no_summary,
+        export_data=not args.no_data
+    )
     
     print("="*70)
     print("🚗 DYNAMIC ROAD TRIP PLANNER 🗺️")
@@ -288,64 +331,76 @@ def main():
     all_hotel_cities = major_stops + waypoint_cities
     
     # Find hotels for major stops AND waypoint cities
-    print(f"🏨 Finding top pet-friendly hotels...")
-    print(f"  Searching {len(major_stops)} major stops...")
     hotels = {}
     waypoint_hotels = {}
     
-    # Search hotels for major stops
-    for stop in major_stops:
-        if stop['type'] in ['start', 'major_stop', 'destination', 'via', 'return']:
-            print(f"  {stop['name']}...")
-            hotel = places_finder.find_pet_friendly_hotel(
-                stop['name'],
-                stop['lat'],
-                stop['lon']
-            )
-            if hotel:
-                hotels[stop['name']] = hotel
-                print(f"    ✓ {hotel.name} ({hotel.rating}⭐, {hotel.user_ratings_total} reviews)")
-            else:
-                print(f"    ⚠ No hotels found")
-            time.sleep(1)
-    
-    # Search hotels for waypoint cities
-    if waypoint_cities:
-        print(f"  Searching {len(waypoint_cities)} waypoint cities...")
-        for waypoint in waypoint_cities:
-            print(f"  {waypoint['name']}...")
-            hotel = places_finder.find_pet_friendly_hotel(
-                waypoint['name'],
-                waypoint['lat'],
-                waypoint['lon']
-            )
-            if hotel:
-                waypoint_hotels[waypoint['name']] = hotel
-                print(f"    ✓ {hotel.name} ({hotel.rating}⭐)")
-            else:
-                print(f"    ⚠ No hotels found")
-            time.sleep(1)
-    print()
+    if trip_config.search_hotels:
+        hotel_type = "pet-friendly hotels" if trip_config.pet_friendly_only else "hotels"
+        print(f"🏨 Finding top {hotel_type}...")
+        print(f"  Searching {len(major_stops)} major stops...")
+        
+        # Search hotels for major stops
+        for stop in major_stops:
+            if stop['type'] in ['start', 'major_stop', 'destination', 'via', 'return']:
+                print(f"  {stop['name']}...")
+                hotel = places_finder.find_pet_friendly_hotel(
+                    stop['name'],
+                    stop['lat'],
+                    stop['lon'],
+                    pet_friendly_only=trip_config.pet_friendly_only
+                )
+                if hotel:
+                    hotels[stop['name']] = hotel
+                    print(f"    ✓ {hotel.name} ({hotel.rating}⭐, {hotel.user_ratings_total} reviews)")
+                else:
+                    print(f"    ⚠ No hotels found")
+                time.sleep(1)
+        
+        # Search hotels for waypoint cities
+        if waypoint_cities:
+            print(f"  Searching {len(waypoint_cities)} waypoint cities...")
+            for waypoint in waypoint_cities:
+                print(f"  {waypoint['name']}...")
+                hotel = places_finder.find_pet_friendly_hotel(
+                    waypoint['name'],
+                    waypoint['lat'],
+                    waypoint['lon'],
+                    pet_friendly_only=trip_config.pet_friendly_only
+                )
+                if hotel:
+                    waypoint_hotels[waypoint['name']] = hotel
+                    print(f"    ✓ {hotel.name} ({hotel.rating}⭐)")
+                else:
+                    print(f"    ⚠ No hotels found")
+                time.sleep(1)
+        print()
+    else:
+        print(f"⊘ Hotel search disabled")
+        print()
     
     # Find vets for major stops only
-    print(f"🏥 Finding 24/7 emergency veterinarians...")
     vets = {}
-    for stop in major_stops:
-        if stop['type'] in ['start', 'major_stop', 'destination', 'via']:
-            print(f"  Searching {stop['name']}...")
-            vet = places_finder.find_emergency_vet(
-                stop['name'],
-                stop['lat'],
-                stop['lon']
-            )
-            if vet:
-                vets[stop['name']] = vet
-                hours_text = "24/7" if vet.is_24_hours else "Regular hours"
-                print(f"    ✓ {vet.name} ({vet.rating}⭐, {hours_text})")
-            else:
-                print(f"    ⚠ No vets found")
-            time.sleep(1)
-    print()
+    if trip_config.search_vets:
+        print(f"🏥 Finding 24/7 emergency veterinarians...")
+        for stop in major_stops:
+            if stop['type'] in ['start', 'major_stop', 'destination', 'via']:
+                print(f"  Searching {stop['name']}...")
+                vet = places_finder.find_emergency_vet(
+                    stop['name'],
+                    stop['lat'],
+                    stop['lon']
+                )
+                if vet:
+                    vets[stop['name']] = vet
+                    hours_text = "24/7" if vet.is_24_hours else "Regular hours"
+                    print(f"    ✓ {vet.name} ({vet.rating}⭐, {hours_text})")
+                else:
+                    print(f"    ⚠ No vets found")
+                time.sleep(1)
+        print()
+    else:
+        print(f"⊘ Emergency vet search disabled")
+        print()
     
     # Find all attractions along route and at major stop cities only
     print(f"🎯 Finding attractions and points of interest...")
@@ -358,72 +413,107 @@ def main():
         'dog_parks': [],
         'viewpoints': [],
         'national_parks': [],
-        'monuments': []
+        'monuments': [],
+        'ev_chargers': []
     }
     
-    # 0. Find national parks in each state we pass through
-    print(f"  🏞️ Finding major national parks by state...")
-    states_visited = set()
-    
-    # Get states from cities found along route
-    for city in all_cities:
-        if ', ' in city['name']:
-            state_abbrev = city['name'].split(', ')[-1]
-            states_visited.add(state_abbrev)
-    
-    # ALSO get states from our actual stop cities (origin, destination, via cities)
-    for stop in major_stops:
-        if ', ' in stop['name']:
-            state_abbrev = stop['name'].split(', ')[-1].strip()
-            # Only add if it looks like a state abbreviation (2 uppercase letters)
-            if len(state_abbrev) == 2 and state_abbrev.isupper():
-                states_visited.add(state_abbrev)
-    
-    # Use module-level state mapping
-    for state_abbrev in sorted(states_visited):
-        state_name = STATE_ABBREV_TO_NAME.get(state_abbrev, state_abbrev)
-        print(f"    Searching {state_name}...")
-        national_parks = places_finder.find_national_parks_by_state(state_name)
-        all_attractions['national_parks'].extend(national_parks)
+    # 0. Find national parks and monuments in each state we pass through
+    if trip_config.search_national_parks or trip_config.search_monuments:
+        states_visited = set()
         
-        # Also find monuments in this state
-        monuments = places_finder.find_monuments_by_state(state_name)
-        all_attractions['monuments'].extend(monuments)
-        time.sleep(1)
+        # Get states from cities found along route
+        for city in all_cities:
+            if ', ' in city['name']:
+                state_abbrev = city['name'].split(', ')[-1]
+                states_visited.add(state_abbrev)
+        
+        # ALSO get states from our actual stop cities (origin, destination, via cities)
+        for stop in major_stops:
+            if ', ' in stop['name']:
+                state_abbrev = stop['name'].split(', ')[-1].strip()
+                # Only add if it looks like a state abbreviation (2 uppercase letters)
+                if len(state_abbrev) == 2 and state_abbrev.isupper():
+                    states_visited.add(state_abbrev)
+        
+        # Use module-level state mapping
+        for state_abbrev in sorted(states_visited):
+            state_name = STATE_ABBREV_TO_NAME.get(state_abbrev, state_abbrev)
+            
+            if trip_config.search_national_parks:
+                if state_abbrev == sorted(states_visited)[0]:  # First state
+                    print(f"  🏞️ Finding major national parks by state...")
+                print(f"    Searching {state_name}...")
+                national_parks = places_finder.find_national_parks_by_state(state_name)
+                all_attractions['national_parks'].extend(national_parks)
+            
+            # Also find monuments in this state
+            if trip_config.search_monuments:
+                if state_abbrev == sorted(states_visited)[0] and not trip_config.search_national_parks:  # First state
+                    print(f"  🗿 Finding monuments by state...")
+                monuments = places_finder.find_monuments_by_state(state_name)
+                all_attractions['monuments'].extend(monuments)
+            time.sleep(1)
     
     # 1. Major parks along the route (tighter criteria)
-    print(f"  🌲 Scanning for major parks along route...")
-    route_parks = places_finder.find_parks_along_route(route_geometry)
-    all_attractions['parks'].extend(route_parks)
+    if trip_config.search_parks:
+        print(f"  🌲 Scanning for major parks along route...")
+        route_parks = places_finder.find_parks_along_route(route_geometry)
+        all_attractions['parks'].extend(route_parks)
     
     # 2. Scenic viewpoints along the route
-    print(f"  📸 Scanning for scenic viewpoints...")
-    viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=25)
-    all_attractions['viewpoints'].extend(viewpoints)
+    if trip_config.search_viewpoints:
+        print(f"  📸 Scanning for scenic viewpoints...")
+        viewpoints = places_finder.find_scenic_viewpoints_along_route(route_geometry, sample_interval_miles=25)
+        all_attractions['viewpoints'].extend(viewpoints)
+    
+    # 2.5. EV chargers along the route
+    if trip_config.search_ev_chargers:
+        charger_type = "Electrify America chargers" if trip_config.ev_electrify_america_only else "EV charging stations"
+        print(f"  ⚡ Scanning for {charger_type} along route...")
+        route_chargers = places_finder.find_ev_chargers_along_route(
+            route_geometry, 
+            electrify_america_only=trip_config.ev_electrify_america_only,
+            sample_interval_miles=25
+        )
+        all_attractions['ev_chargers'].extend(route_chargers)
     
     # 3. Attractions at major stop cities
-    print(f"  Searching near major stop cities...")
-    for stop in major_stops:
-        if stop['type'] in ['start', 'stop', 'destination', 'via']:
-            print(f"    {stop['name']}...")
-            
-            # Parks at cities
-            parks = places_finder.find_parks_nearby(stop['name'], stop['lat'], stop['lon'], limit=3)
-            all_attractions['parks'].extend(parks)
-            
-            # Museums
-            museums = places_finder.find_museums_in_city(stop['name'], stop['lat'], stop['lon'], limit=3)
-            all_attractions['museums'].extend(museums)
-            
-            # Dog-friendly restaurants
-            restaurants = places_finder.find_dog_friendly_restaurants(stop['name'], stop['lat'], stop['lon'], limit=5)
-            all_attractions['restaurants'].extend(restaurants)
-            
-            # Dog parks
-            dog_parks = places_finder.find_dog_parks_in_city(stop['name'], stop['lat'], stop['lon'], limit=2)
-            all_attractions['dog_parks'].extend(dog_parks)
-            
-            time.sleep(1)
+    if any([trip_config.search_parks, trip_config.search_museums, trip_config.search_restaurants, trip_config.search_dog_parks, trip_config.search_ev_chargers]):
+        print(f"  Searching near major stop cities...")
+        for stop in major_stops:
+            if stop['type'] in ['start', 'stop', 'destination', 'via']:
+                print(f"    {stop['name']}...")
+                
+                # Parks at cities
+                if trip_config.search_parks:
+                    parks = places_finder.find_parks_nearby(stop['name'], stop['lat'], stop['lon'], limit=3)
+                    all_attractions['parks'].extend(parks)
+                
+                # Museums
+                if trip_config.search_museums:
+                    museums = places_finder.find_museums_in_city(stop['name'], stop['lat'], stop['lon'], limit=3)
+                    all_attractions['museums'].extend(museums)
+                
+                # Dog-friendly restaurants
+                if trip_config.search_restaurants:
+                    restaurants = places_finder.find_dog_friendly_restaurants(stop['name'], stop['lat'], stop['lon'], limit=5)
+                    all_attractions['restaurants'].extend(restaurants)
+                
+                # Dog parks
+                if trip_config.search_dog_parks:
+                    dog_parks = places_finder.find_dog_parks_in_city(stop['name'], stop['lat'], stop['lon'], limit=2)
+                    all_attractions['dog_parks'].extend(dog_parks)
+                
+                # EV chargers
+                if trip_config.search_ev_chargers:
+                    ev_chargers = places_finder.find_ev_chargers_in_city(
+                        stop['name'], stop['lat'], stop['lon'],
+                        electrify_america_only=trip_config.ev_electrify_america_only,
+                        limit=3
+                    )
+                    all_attractions['ev_chargers'].extend(ev_chargers)
+                
+                time.sleep(1)
     
     # Deduplicate attractions by name within each category
     for category in all_attractions:
@@ -447,104 +537,155 @@ def main():
     print(f"   🍽️ Restaurants: {len(all_attractions['restaurants'])}")
     print(f"   🐾 Dog Parks: {len(all_attractions['dog_parks'])}")
     print(f"   📸 Viewpoints: {len(all_attractions['viewpoints'])}")
+    print(f"   ⚡ EV Chargers: {len(all_attractions['ev_chargers'])}")
     print()
-    
-    # Create map
-    print(f"🗺️  Generating interactive map...")
-    map_route_geometry = [[coord[1], coord[0]] for coord in route_data['geometry']['coordinates']]
-    
-    trip_name = f"Road Trip: {args.origin} → {args.destination}"
-    if via_cities:
-        for via in via_cities:
-            trip_name += f" → {via['name']}"
-        trip_name += f" → {args.origin}"
-    elif args.roundtrip:
-        trip_name += f" → {args.origin}"
-    
-    trip_map = create_trip_map(
-        map_route_geometry,
-        major_stops,
-        waypoint_cities,
-        hotels,
-        waypoint_hotels,
-        vets,
-        all_attractions,
-        trip_name,
-        route_data
-    )
     
     # Create output directory
     output_dir = Path("trip routes")
     output_dir.mkdir(exist_ok=True)
     
-    # Save map
+    # Determine base filename
     if via_cities:
         via_names = '_'.join([via['name'].replace(', ', '_').replace(' ', '_') for via in via_cities])
-        output_file = f"trip_{args.origin.replace(', ', '_')}_{args.destination.replace(', ', '_')}_via_{via_names}.html"
+        output_base = f"trip_{args.origin.replace(', ', '_')}_{args.destination.replace(', ', '_')}_via_{via_names}"
     else:
-        output_file = f"trip_{args.origin.replace(', ', '_')}_{args.destination.replace(', ', '_')}.html"
-    output_file = output_file.replace(' ', '_')
-    output_path = output_dir / output_file
-    trip_map.save(str(output_path))
-    print(f"  ✓ Map saved: {output_path}")
-    print()
+        output_base = f"trip_{args.origin.replace(', ', '_')}_{args.destination.replace(', ', '_')}"
+    output_base = output_base.replace(' ', '_')
     
-    # Save data
-    trip_data = {
-        'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'origin': args.origin,
-        'destination': args.destination,
-        'via_cities': [via['name'] for via in via_cities] if via_cities else None,
-        'roundtrip': args.roundtrip,
-        'total_distance_miles': round(total_distance_mi, 1),
-        'total_duration_hours': round(total_duration_h, 1),
-        'major_stops': major_stops,
-        'waypoint_cities': waypoint_cities,
-        'hotels': {city: asdict(hotel) for city, hotel in hotels.items()},
-        'waypoint_hotels': {city: asdict(hotel) for city, hotel in waypoint_hotels.items()},
-        'vets': {city: asdict(vet) for city, vet in vets.items()},
-        'attractions': {
-            'national_parks': [asdict(a) for a in all_attractions['national_parks']],
-            'monuments': [asdict(a) for a in all_attractions['monuments']],
-            'parks': [asdict(a) for a in all_attractions['parks']],
-            'museums': [asdict(a) for a in all_attractions['museums']],
-            'restaurants': [asdict(a) for a in all_attractions['restaurants']],
-            'dog_parks': [asdict(a) for a in all_attractions['dog_parks']],
-            'viewpoints': [asdict(a) for a in all_attractions['viewpoints']]
+    # Create map if enabled
+    if trip_config.export_map:
+        print(f"🗺️  Generating interactive map...")
+        map_route_geometry = [[coord[1], coord[0]] for coord in route_data['geometry']['coordinates']]
+        
+        trip_name = f"Road Trip: {args.origin} → {args.destination}"
+        if via_cities:
+            for via in via_cities:
+                trip_name += f" → {via['name']}"
+            trip_name += f" → {args.origin}"
+        elif args.roundtrip:
+            trip_name += f" → {args.origin}"
+        
+        trip_map = create_trip_map(
+            map_route_geometry,
+            major_stops,
+            waypoint_cities,
+            hotels,
+            waypoint_hotels,
+            vets,
+            all_attractions,
+            trip_name,
+            route_data
+        )
+        
+        output_file = output_base + ".html"
+        output_path = output_dir / output_file
+        trip_map.save(str(output_path))
+        print(f"  ✓ Map saved: {output_path}")
+        print()
+    else:
+        print(f"⊘ Map generation disabled")
+        print()
+    
+    # Save data if enabled
+    if trip_config.export_data:
+        trip_data = {
+            'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'origin': args.origin,
+            'destination': args.destination,
+            'via_cities': [via['name'] for via in via_cities] if via_cities else None,
+            'roundtrip': args.roundtrip,
+            'total_distance_miles': round(total_distance_mi, 1),
+            'total_duration_hours': round(total_duration_h, 1),
+            'major_stops': major_stops,
+            'waypoint_cities': waypoint_cities,
+            'hotels': {city: asdict(hotel) for city, hotel in hotels.items()},
+            'waypoint_hotels': {city: asdict(hotel) for city, hotel in waypoint_hotels.items()},
+            'vets': {city: asdict(vet) for city, vet in vets.items()},
+            'attractions': {
+                'national_parks': [asdict(a) for a in all_attractions['national_parks']],
+                'monuments': [asdict(a) for a in all_attractions['monuments']],
+                'parks': [asdict(a) for a in all_attractions['parks']],
+                'museums': [asdict(a) for a in all_attractions['museums']],
+                'restaurants': [asdict(a) for a in all_attractions['restaurants']],
+                'dog_parks': [asdict(a) for a in all_attractions['dog_parks']],
+                'viewpoints': [asdict(a) for a in all_attractions['viewpoints']],
+                'ev_chargers': [asdict(a) for a in all_attractions['ev_chargers']]
+            },
+            'config': {
+                'search_hotels': trip_config.search_hotels,
+                'pet_friendly_only': trip_config.pet_friendly_only,
+                'search_vets': trip_config.search_vets,
+                'search_national_parks': trip_config.search_national_parks,
+                'search_monuments': trip_config.search_monuments,
+                'search_parks': trip_config.search_parks,
+                'search_museums': trip_config.search_museums,
+                'search_restaurants': trip_config.search_restaurants,
+                'search_dog_parks': trip_config.search_dog_parks,
+                'search_viewpoints': trip_config.search_viewpoints,
+                'search_ev_chargers': trip_config.search_ev_chargers,
+                'ev_electrify_america_only': trip_config.ev_electrify_america_only
+            }
         }
-    }
+        
+        data_file = output_dir / (output_base + "_data.json")
+        with open(data_file, 'w') as f:
+            json.dump(trip_data, f, indent=2)
+        print(f"  ✓ Trip data saved: {data_file}")
+    else:
+        trip_data = None  # Still need this for summary generation
     
-    data_file = str(output_path).replace('.html', '_data.json')
-    with open(data_file, 'w') as f:
-        json.dump(trip_data, f, indent=2)
-    print(f"  ✓ Trip data saved: {data_file}")
+    # Generate GPX file for navigation apps if enabled
+    if trip_config.export_gpx:
+        print(f"🗺️  Generating GPX file for navigation apps...")
+        map_route_geometry = [[coord[1], coord[0]] for coord in route_data['geometry']['coordinates']]
+        
+        trip_name = f"Road Trip: {args.origin} → {args.destination}"
+        if via_cities:
+            for via in via_cities:
+                trip_name += f" → {via['name']}"
+            trip_name += f" → {args.origin}"
+        elif args.roundtrip:
+            trip_name += f" → {args.origin}"
+        
+        gpx_file = output_dir / (output_base + ".gpx")
+        create_gpx_file(
+            map_route_geometry,
+            major_stops,
+            waypoint_cities,
+            hotels,
+            waypoint_hotels,
+            vets,
+            all_attractions,
+            trip_name,
+            str(gpx_file)
+        )
+        print()
+    else:
+        print(f"⊘ GPX generation disabled")
+        print()
     
-    # Generate GPX file for navigation apps
-    print(f"🗺️  Generating GPX file for navigation apps...")
-    gpx_file = str(output_path).replace('.html', '.gpx')
-    create_gpx_file(
-        map_route_geometry,
-        major_stops,
-        waypoint_cities,
-        hotels,
-        waypoint_hotels,
-        vets,
-        all_attractions,
-        trip_name,
-        gpx_file
-    )
-    print()
-    
-    # Generate summary
-    summary_file = str(output_path).replace('.html', '_summary.md')
-    with open(summary_file, 'w') as f:
-        f.write(f"# {trip_name}\n\n")
-        f.write(f"*Generated: {trip_data['generated']}*\n\n")
-        f.write(f"## Trip Overview\n\n")
-        f.write(f"- **Distance**: {total_distance_mi:.1f} miles\n")
-        f.write(f"- **Estimated Driving Time**: {int(total_duration_h)}h {int((total_duration_h % 1) * 60)}m\n")
-        f.write(f"- **Number of Major Stops**: {len(major_stops)}\n")
-        f.write(f"- **Number of Waypoint Cities**: {len(waypoint_cities)}\n\n")
+    # Generate summary if enabled
+    if trip_config.export_summary:
+        summary_file = output_dir / (output_base + '_summary.md')
+        
+        trip_name = f"Road Trip: {args.origin} → {args.destination}"
+        if via_cities:
+            for via in via_cities:
+                trip_name += f" → {via['name']}"
+            trip_name += f" → {args.origin}"
+        elif args.roundtrip:
+            trip_name += f" → {args.origin}"
+        
+        generated_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        with open(summary_file, 'w') as f:
+            f.write(f"# {trip_name}\n\n")
+            f.write(f"*Generated: {generated_time}*\n\n")
+            f.write(f"## Trip Overview\n\n")
+            f.write(f"- **Distance**: {total_distance_mi:.1f} miles\n")
+            f.write(f"- **Estimated Driving Time**: {int(total_duration_h)}h {int((total_duration_h % 1) * 60)}m\n")
+            f.write(f"- **Number of Major Stops**: {len(major_stops)}\n")
+            f.write(f"- **Number of Waypoint Cities**: {len(waypoint_cities)}\n\n")
         
         f.write(f"## Major Stops\n\n")
         for i, stop in enumerate(major_stops, 1):
@@ -639,25 +780,46 @@ def main():
             for viewpoint in all_attractions['viewpoints']:
                 f.write(f"- **{viewpoint.name}** ({viewpoint.rating}⭐, {viewpoint.user_ratings_total:,} reviews) - {viewpoint.location}\n")
             f.write("\n")
-    
-    print(f"  ✓ Summary saved: {summary_file}")
-    print()
+        
+        print(f"  ✓ Summary saved: {summary_file}")
+        print()
+    else:
+        print(f"⊘ Summary generation disabled")
+        print()
     
     print("="*70)
     print("✅ TRIP PLANNING COMPLETE!")
     print("="*70)
     print()
-    print(f"📂 Files generated:")
-    print(f"   - {output_path} (interactive map)")
-    print(f"   - {gpx_file} (GPX route for Magic Earth, OsmAnd, etc.)")
-    print(f"   - {data_file} (trip data)")
-    print(f"   - {summary_file} (summary report)")
-    print()
-    print(f"🎉 Open {output_path} in your browser to explore your trip!")
-    print(f"📱 Import {gpx_file} to your navigation app on your Pixel!")
+    
+    # Print generated files
+    if any([trip_config.export_map, trip_config.export_gpx, trip_config.export_data, trip_config.export_summary]):
+        print(f"📂 Files generated:")
+        if trip_config.export_map:
+            map_file = output_dir / (output_base + ".html")
+            print(f"   - {map_file} (interactive map)")
+        if trip_config.export_gpx:
+            gpx_file = output_dir / (output_base + ".gpx")
+            print(f"   - {gpx_file} (GPX route for Magic Earth, OsmAnd, etc.)")
+        if trip_config.export_data:
+            data_file = output_dir / (output_base + "_data.json")
+            print(f"   - {data_file} (trip data)")
+        if trip_config.export_summary:
+            summary_file = output_dir / (output_base + "_summary.md")
+            print(f"   - {summary_file} (summary report)")
+        print()
+        
+        # Print helpful messages based on what was exported
+        if trip_config.export_map:
+            map_file = output_dir / (output_base + ".html")
+            print(f"🎉 Open {map_file} in your browser to explore your trip!")
+        if trip_config.export_gpx:
+            gpx_file = output_dir / (output_base + ".gpx")
+            print(f"📱 Import {gpx_file} to your navigation app!")
     
     return 0
 
 
 if __name__ == '__main__':
     sys.exit(main())
+

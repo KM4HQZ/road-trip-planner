@@ -80,6 +80,7 @@ The road trip planner now generates `.gpx` files that you can import into naviga
 - 🍽️ **Restaurants**: Dog-friendly dining options
 - 🐾 **Dog Parks**: Exercise areas for your pet
 - 📸 **Viewpoints**: Scenic photo opportunities
+- ⚡ **EV Chargers**: Electric vehicle charging stations
 
 ### Route Track
 - ✅ Complete driving route following actual roads

@@ -93,6 +93,92 @@ class TripForm(QWidget):
         options_group.setLayout(options_layout)
         form_layout.addWidget(options_group)
         
+        # Search options group
+        search_group = QGroupBox('Search Options')
+        search_layout = QVBoxLayout()
+        
+        # Hotels subsection
+        hotels_label = QLabel('<b>Accommodations</b>')
+        search_layout.addWidget(hotels_label)
+        
+        self.search_hotels = QCheckBox('Search for hotels')
+        self.search_hotels.setChecked(True)
+        self.search_hotels.toggled.connect(self.on_hotels_toggled)
+        search_layout.addWidget(self.search_hotels)
+        
+        self.pet_friendly_only = QCheckBox('Pet-friendly hotels only')
+        self.pet_friendly_only.setChecked(True)
+        self.pet_friendly_only.setEnabled(True)
+        self.pet_friendly_only.setStyleSheet('margin-left: 20px;')
+        search_layout.addWidget(self.pet_friendly_only)
+        
+        self.search_vets = QCheckBox('Search for 24/7 emergency vets')
+        self.search_vets.setChecked(True)
+        search_layout.addWidget(self.search_vets)
+        
+        # Attractions subsection
+        attractions_label = QLabel('<b>Attractions & Points of Interest</b>')
+        attractions_label.setStyleSheet('margin-top: 10px;')
+        search_layout.addWidget(attractions_label)
+        
+        self.search_national_parks = QCheckBox('National parks')
+        self.search_national_parks.setChecked(True)
+        search_layout.addWidget(self.search_national_parks)
+        
+        self.search_monuments = QCheckBox('Monuments & memorials')
+        self.search_monuments.setChecked(True)
+        search_layout.addWidget(self.search_monuments)
+        
+        self.search_parks = QCheckBox('Parks')
+        self.search_parks.setChecked(True)
+        search_layout.addWidget(self.search_parks)
+        
+        self.search_museums = QCheckBox('Museums')
+        self.search_museums.setChecked(True)
+        search_layout.addWidget(self.search_museums)
+        
+        self.search_restaurants = QCheckBox('Dog-friendly restaurants')
+        self.search_restaurants.setChecked(True)
+        search_layout.addWidget(self.search_restaurants)
+        
+        self.search_dog_parks = QCheckBox('Dog parks')
+        self.search_dog_parks.setChecked(True)
+        search_layout.addWidget(self.search_dog_parks)
+        
+        self.search_viewpoints = QCheckBox('Scenic viewpoints')
+        self.search_viewpoints.setChecked(True)
+        search_layout.addWidget(self.search_viewpoints)
+        
+        self.search_ev_chargers = QCheckBox('EV charging stations')
+        self.search_ev_chargers.setChecked(True)
+        search_layout.addWidget(self.search_ev_chargers)
+        
+        search_group.setLayout(search_layout)
+        form_layout.addWidget(search_group)
+        
+        # Export options group
+        export_group = QGroupBox('Export Options')
+        export_layout = QVBoxLayout()
+        
+        self.export_map = QCheckBox('Generate interactive HTML map')
+        self.export_map.setChecked(True)
+        export_layout.addWidget(self.export_map)
+        
+        self.export_gpx = QCheckBox('Generate GPX file for navigation apps')
+        self.export_gpx.setChecked(True)
+        export_layout.addWidget(self.export_gpx)
+        
+        self.export_data = QCheckBox('Generate JSON data file')
+        self.export_data.setChecked(True)
+        export_layout.addWidget(self.export_data)
+        
+        self.export_summary = QCheckBox('Generate markdown summary')
+        self.export_summary.setChecked(True)
+        export_layout.addWidget(self.export_summary)
+        
+        export_group.setLayout(export_layout)
+        form_layout.addWidget(export_group)
+        
         # Add stretch to push everything to the top
         form_layout.addStretch()
         
@@ -132,6 +218,10 @@ class TripForm(QWidget):
         """Remove a via city input field."""
         self.via_city_widgets.remove(widget)
         widget.deleteLater()
+    
+    def on_hotels_toggled(self, checked):
+        """Enable/disable pet-friendly checkbox based on hotels checkbox."""
+        self.pet_friendly_only.setEnabled(checked)
         
     def get_via_cities(self):
         """Get list of via cities from input fields."""
@@ -175,7 +265,24 @@ class TripForm(QWidget):
             'via_cities': via_cities,
             'roundtrip': self.roundtrip.isChecked(),
             'target_hours': self.stop_distance.value() // 65,  # Approximate
-            'waypoint_interval': self.waypoint_interval.value()
+            'waypoint_interval': self.waypoint_interval.value(),
+            # Search options
+            'search_hotels': self.search_hotels.isChecked(),
+            'pet_friendly_only': self.pet_friendly_only.isChecked(),
+            'search_vets': self.search_vets.isChecked(),
+            'search_national_parks': self.search_national_parks.isChecked(),
+            'search_monuments': self.search_monuments.isChecked(),
+            'search_parks': self.search_parks.isChecked(),
+            'search_museums': self.search_museums.isChecked(),
+            'search_restaurants': self.search_restaurants.isChecked(),
+            'search_dog_parks': self.search_dog_parks.isChecked(),
+            'search_viewpoints': self.search_viewpoints.isChecked(),
+            'search_ev_chargers': self.search_ev_chargers.isChecked(),
+            # Export options
+            'export_map': self.export_map.isChecked(),
+            'export_gpx': self.export_gpx.isChecked(),
+            'export_data': self.export_data.isChecked(),
+            'export_summary': self.export_summary.isChecked()
         }
         
         # Create and start worker thread

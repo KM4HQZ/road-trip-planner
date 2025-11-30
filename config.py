@@ -1,5 +1,59 @@
 """Configuration and constants for the road trip planner."""
 
+from dataclasses import dataclass
+
+
+@dataclass
+class TripConfig:
+    """Configuration for what to search and include in trip planning."""
+    
+    # Accommodation options
+    search_hotels: bool = True
+    pet_friendly_only: bool = True  # If False, search all hotels
+    
+    # Emergency services
+    search_vets: bool = True
+    
+    # Attraction categories
+    search_national_parks: bool = True
+    search_monuments: bool = True
+    search_parks: bool = True
+    search_museums: bool = True
+    search_restaurants: bool = True
+    search_dog_parks: bool = True
+    search_viewpoints: bool = True
+    search_ev_chargers: bool = True
+    
+    # Export options
+    export_gpx: bool = True
+    export_map: bool = True
+    export_summary: bool = True
+    export_data: bool = True
+    
+    @classmethod
+    def all_enabled(cls):
+        """Create config with all options enabled (default)."""
+        return cls()
+    
+    @classmethod
+    def minimal(cls):
+        """Create config with minimal options (route only)."""
+        return cls(
+            search_hotels=False,
+            search_vets=False,
+            search_national_parks=False,
+            search_monuments=False,
+            search_parks=False,
+            search_museums=False,
+            search_restaurants=False,
+            search_dog_parks=False,
+            search_viewpoints=False,
+            search_ev_chargers=False,
+            export_gpx=False,
+            export_summary=False
+        )
+
+
 # State abbreviation mapping
 STATE_ABBREV_TO_NAME = {
     'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
