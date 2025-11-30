@@ -3,7 +3,7 @@
   <metadata>
     <name>Road Trip: Atlanta, GA → Birmingham, AL</name>
     <desc>Pet-friendly road trip generated on 2025-11-30</desc>
-    <time>2025-11-30T00:04:04.320041</time>
+    <time>2025-11-30T00:11:15.355371</time>
   </metadata>
   <wpt lat="33.7544657" lon="-84.3898151">
     <name>Stop 0: Atlanta, GA</name>
@@ -35,9 +35,21 @@
     <desc>Pet-friendly hotel | 4.4⭐ | 210 Colonial Dr, Oxford, AL 36203, USA</desc>
     <type>Lodging</type>
   </wpt>
+  <rte>
+    <name>Road Trip: Atlanta, GA → Birmingham, AL - Navigation Route</name>
+    <desc>Major stops for turn-by-turn navigation</desc>
+    <rtept lat="33.7544657" lon="-84.3898151">
+      <name>Atlanta, GA</name>
+      <desc>Stop 0</desc>
+    </rtept>
+    <rtept lat="33.5206824" lon="-86.8024326">
+      <name>Birmingham, AL</name>
+      <desc>Stop 1</desc>
+    </rtept>
+  </rte>
   <trk>
-    <name>Road Trip: Atlanta, GA → Birmingham, AL - Route</name>
-    <desc>Full driving route along actual roads</desc>
+    <name>Road Trip: Atlanta, GA → Birmingham, AL - Track</name>
+    <desc>Exact route geometry from OSRM</desc>
     <trkseg>
       <trkpt lat="33.754505" lon="-84.389816"/>
       <trkpt lat="33.754505" lon="-84.389795"/>

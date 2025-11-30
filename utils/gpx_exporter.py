@@ -214,14 +214,37 @@ def create_gpx_file(
             wpt_type = ET.SubElement(wpt, 'type')
             wpt_type.text = category.replace('_', ' ').title()
     
-    # Add the route as a track
+    # Add a route element for navigation apps (Magic Earth, etc.)
+    # This tells the app to calculate turn-by-turn directions between major stops
+    rte = ET.SubElement(gpx, 'rte')
+    
+    rte_name = ET.SubElement(rte, 'name')
+    rte_name.text = f"{trip_name} - Navigation Route"
+    
+    rte_desc = ET.SubElement(rte, 'desc')
+    rte_desc.text = "Major stops for turn-by-turn navigation"
+    
+    # Add major stops as route points
+    for stop in major_stops:
+        rtept = ET.SubElement(rte, 'rtept', {
+            'lat': str(stop['lat']),
+            'lon': str(stop['lon'])
+        })
+        
+        rtept_name = ET.SubElement(rtept, 'name')
+        rtept_name.text = stop['name']
+        
+        rtept_desc = ET.SubElement(rtept, 'desc')
+        rtept_desc.text = f"Stop {stop.get('stop_number', '?')}"
+    
+    # Also add the route as a track (for displaying the exact path)
     trk = ET.SubElement(gpx, 'trk')
     
     trk_name = ET.SubElement(trk, 'name')
-    trk_name.text = f"{trip_name} - Route"
+    trk_name.text = f"{trip_name} - Track"
     
     trk_desc = ET.SubElement(trk, 'desc')
-    trk_desc.text = "Full driving route along actual roads"
+    trk_desc.text = "Exact route geometry from OSRM"
     
     # Create track segment
     trkseg = ET.SubElement(trk, 'trkseg')
