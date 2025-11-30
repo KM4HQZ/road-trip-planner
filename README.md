@@ -2,98 +2,61 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips. **Available as both a GUI application and command-line tool!** 🖥️ **Now with GPX export for mobile navigation apps!** 📱
+An intelligent road trip planning tool that automatically finds pet-friendly hotels, emergency vets, parks, restaurants, and attractions for multi-city road trips. **Available as both a GUI application and command-line tool!**
 
-> 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
-> 
-> 📱 **NEW!** Import your trip into [OsmAnd](https://osmand.net/) or any GPX-compatible navigation app! See the **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** for iOS and Android instructions.
-> 
-> 🖥️ **NEW!** Desktop GUI with embedded maps and one-click exports!
+> **Quick Links:**
+> - 🗺️ [View Live Example Trip](https://km4hqz.github.io/road-trip-planner/) - Atlanta → Colorado Springs → Las Vegas → Los Angeles → Atlanta
+> - 📱 [GPX Import Guide](GPX_IMPORT_GUIDE.md) - Use your trip on iPhone or Android with OsmAnd
+> - 📱 [Pixel Quick Start](PIXEL_QUICK_START.md) - Fast setup for Google Pixel users
+> - 🎯 [Feature Details](FEATURES.md) - Search algorithms, scoring systems, and technical details
 
 ## 📑 Table of Contents
 
-- [What This Does](#-what-this-does)
-- [Key Features](#-key-features)
-- [Services Used](#️-services-used)
+- [Features](#-features)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
-- [GUI Usage](#️-gui-usage)
-- [Command Line Usage Examples](#-command-line-usage-examples)
+- [Usage](#-usage)
 - [Output Files](#-output-files)
-- [Attraction Categories](#-attraction-categories)
-- [Hotel Selection](#-hotel-selection)
-- [Emergency Vet Verification](#-emergency-vet-verification)
-- [Example Results](#-example-results)
-- [Tips](#-tips)
 - [Troubleshooting](#️-troubleshooting)
 - [Documentation](#-documentation)
 - [License](#-license)
 
-## 🌟 What This Does
+## ✨ Features
 
-- 🏨 **Finds pet-friendly hotels** at strategic stops (rated by score)
-- 🏥 **Locates 24/7 emergency vets** at each major city
-- 🏞️ **Discovers national parks** in every state you pass through
-- 🗿 **Finds monuments & memorials** in each state along your route
-- 🌲 **Discovers parks** along your entire route (with tighter radius for roadside stops)
-- 🏛️ **Finds museums & cultural attractions** in stop cities
-- 🍽️ **Locates dog-friendly restaurants** with outdoor seating
-- 🐾 **Finds dog parks** for exercise breaks
-- 📸 **Identifies scenic viewpoints** along the way
-- ⚡ **Locates EV charging stations** along route and at major stops (with separate map layers for Electrify America vs. other networks)
-- 📚 **Provides Wikipedia articles & summaries** for parks, museums, and monuments
-- 📖 **Links to Wikivoyage travel guides** for all stop cities
-- 📏 **Shows distances & driving times** between each stop city
-- 🗺️ **Creates interactive maps** with different icons for each attraction type
-- 📱 **Exports GPX files** for OsmAnd and other navigation apps
-- 📄 **Generates detailed reports** in Markdown and JSON formats
-- 🛣️ **Uses actual road routes** with accurate distances and driving times
+### What It Finds
+- 🏨 **Pet-friendly hotels** at strategic stops (La Quinta, Drury Inn, Red Roof, Best Western, Kimpton, and more)
+- 🏥 **24/7 emergency vets** with strict verification (confirmed hours, prioritized in results)
+- 🏞️ **National parks** in every state you pass through (4.3+ stars, 1000+ reviews)
+- 🗿 **Monuments & memorials** along your route (state-by-state searches)
+- 🌲 **Parks** for exercise breaks (sampled every 75 miles + top picks at cities)
+- 🏛️ **Museums** and cultural attractions at stop cities (top 3 per city)
+- 🍽️ **Dog-friendly restaurants** with outdoor seating (explicit pet-friendly search)
+- 🐾 **Dog parks** for off-leash play (top 2 per city)
+- 📸 **Scenic viewpoints** along the way (overlooks, vista points)
+- ⚡ **EV charging stations** every 15 miles (all networks: Electrify America, ChargePoint, EVgo, Tesla)
 
-## 🎯 Key Features
+### Smart Planning
+- **City-based stops**: Finds actual cities ~250 miles apart, not random coordinates
+- **Multi-city routes**: Add unlimited waypoints with `--via` for varied return trips
+- **Actual road routes**: Uses OSRM for accurate distances and driving times
+- **Smart filtering**: High-rated attractions only (4.0-4.5+ stars depending on category)
+- **Deduplication**: Automatically removes duplicate results
+- **Wikipedia integration**: Educational content for parks, museums, and monuments
+- **Wikivoyage guides**: Travel information for every stop city
 
-### Two-Tiered Discovery System
-- **Along Route**: Samples every 15-75 miles with 20km radius for EV chargers and 10km for parks/viewpoints
-- **At Stop Cities**: Searches 40km radius for comprehensive city exploration
+### Output Options
+- 🗺️ **Interactive HTML map** with toggleable layers and detailed popups
+- 📱 **GPX file** for OsmAnd, Organic Maps, Maps.me navigation (2000+ route points)
+- 📄 **Markdown summary** with all details in human-readable format
+- 📊 **JSON data file** with complete structured trip information
+- 🖥️ **GUI application** with embedded maps and one-click exports
+- ⌨️ **Command-line tool** for automation and scripting
 
-### Intelligent Route Planning
-- **City-based stops**: Finds actual cities ~250 miles apart (not random coordinates)
-- **Multi-city routes**: Add unlimited waypoints for varied return routes
-- **Smart filtering**: Only major parks (4.5+ stars, 500+ reviews) along route
-- **Deduplication**: Automatically removes duplicate attractions
-- **Distance tracking**: Shows miles and driving time between each stop city
-
-### Interactive Map Features
-- **Toggle All Layers**: One-click button to show/hide all map categories at once
-- **Distance Markers**: Visual indicators showing miles and hours between stops
-- **Customizable Layers**: Show/hide any combination of hotels, vets, parks, monuments, etc.
-- **Rich Popups**: Detailed information for every point of interest
-
-### Pet-First Design
-- Prioritizes 24/7 vets with 1.5x score boost
-- Searches explicitly for "dog friendly" restaurants
-- Finds dedicated dog parks at each stop city
-- All hotels from trusted pet-friendly chains
-
-### Mobile Navigation Ready 🆕
-- **GPX Export**: Every trip generates a `.gpx` file
-- **Universal Format**: Compatible with OsmAnd, Organic Maps, Maps.me
-- **Complete Package**: Route, waypoints, hotels, vets, and attractions included
-- **📱 See [GPX Import Guide](GPX_IMPORT_GUIDE.md)** for detailed instructions
-
-## 🛠️ Services Used
-
-1. **Google Places API (New)** - Hotels, restaurants, vets, attractions, ratings
-2. **OpenStreetMap (Nominatim)** - City geocoding and reverse geocoding
-3. **OSRM (Open Source Routing Machine)** - Actual road routes and geometry
-4. **Wikipedia API** - Educational content and articles for attractions
-5. **Wikivoyage API** - Travel guides and city information
-6. **Folium** - Interactive map generation with layers
+> **See [FEATURES.md](FEATURES.md) for detailed information about search algorithms, scoring systems, and verification processes.**
 
 ## 📥 Installation
 
-### Option A: From Source (Recommended)
-
-Clone the repository and install dependencies:
+### Option A: From Source (Recommended for Development)
 
 ```bash
 git clone https://github.com/KM4HQZ/road-trip-planner.git
@@ -103,45 +66,25 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Option B: Linux Executable (PyInstaller)
+### Option B: Linux Executable
 
-For Linux users who want a single-file executable without installing Python:
+Download the pre-built executable (no Python installation required):
 
-**Download pre-built executable:**
-1. Download from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
-   - Direct download: [RoadTripPlanner v1.1.1](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.1.1/RoadTripPlanner-v1.1.1-Linux-x86_64)
-2. Make executable: `chmod +x RoadTripPlanner-v1.1.1-Linux-x86_64`
-3. Run: `./RoadTripPlanner-v1.1.1-Linux-x86_64`
-4. Create a `.env` file in the same directory with your API key
+1. **Download:** [RoadTripPlanner v1.1.1](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.1.1/RoadTripPlanner-v1.1.1-Linux-x86_64) (272MB)
+2. **Make executable:** `chmod +x RoadTripPlanner-v1.1.1-Linux-x86_64`
+3. **Run:** `./RoadTripPlanner-v1.1.1-Linux-x86_64`
+4. **Configure:** Create a `.env` file in the same directory with your API key
 
-**Building from source:**
-```bash
-source venv/bin/activate
-./build_pyinstaller.sh
-```
+### Option C: macOS Application
 
-The executable will be created in `dist/RoadTripPlanner` (~271MB, includes Python and all dependencies).
+Download the native .app bundle (no Python installation required):
 
-### Option C: macOS Application Bundle
+1. **Download:** [RoadTripPlanner-macOS-v1.0.0.zip](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.0.0/RoadTripPlanner-macOS-v1.0.0.zip) (464MB)
+2. **Unzip:** `unzip RoadTripPlanner-macOS-v1.0.0.zip`
+3. **Open:** Double-click `RoadTripPlanner.app`
+4. **Settings:** Saved to `~/Documents/RoadTripPlanner/`
 
-For macOS users who want a native .app bundle without installing Python:
-
-**Download pre-built app:**
-1. Download `RoadTripPlanner-macOS-v1.0.0.zip` from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
-   - Direct download: [RoadTripPlanner-macOS-v1.0.0.zip](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.0.0/RoadTripPlanner-macOS-v1.0.0.zip)
-2. Unzip: `unzip RoadTripPlanner-macOS-v1.0.0.zip`
-3. Open: Double-click `RoadTripPlanner.app` or run `open RoadTripPlanner.app`
-4. Settings and trip routes will be saved to `~/Documents/RoadTripPlanner/`
-
-**Building from source:**
-```bash
-source venv/bin/activate
-./build_pyinstaller_macos.sh
-```
-
-The app bundle will be created in `dist/RoadTripPlanner.app` (~464MB, includes Python and all dependencies).
-
-> **Note:** Windows installer (.msi) and Linux AppImage may be added in future releases.
+> **Building from source:** See [BUILDING.md](BUILDING.md) for instructions on building your own executables with PyInstaller.
 
 ## 🚀 Quick Start
 
@@ -164,34 +107,51 @@ GOOGLE_PLACES_API_KEY=your_actual_api_key_here
 3. Enable billing (required, but generous free tier)
 4. Create API key
 
-### 2. Launch the Application
+## 🚀 Usage
 
-**GUI (Recommended):**
+### GUI Application (Easiest)
+
 ```bash
-./launch_gui.sh  # Linux/macOS
-# Or: python gui_app.py
-```
-
-**Command Line:**
-
-**Option A: Use the GUI (Recommended for beginners)**
-```bash
-source venv/bin/activate
+source venv/bin/activate  # If installed from source
 python gui_app.py
+# Or use: ./launch_gui.sh
 ```
 
-The GUI provides:
-- Easy-to-use form interface
+**Features:**
+- Easy form interface with all options
 - Real-time progress updates
 - Embedded map viewer
 - One-click export buttons
-- Settings dialog for API key configuration
+- Settings dialog for API configuration
 
-**Option B: Use the command line**
+### Command Line
+
+**Basic trip:**
 ```bash
-source venv/bin/activate
-python plan_trip.py "Origin City, State" "Destination City, State"
+python plan_trip.py "Atlanta, GA" "Chicago, IL"
 ```
+
+**Multi-city route (recommended over round-trip):**
+```bash
+python plan_trip.py "Atlanta, GA" "Seattle, WA" --via "Denver, CO" --via "Portland, OR"
+```
+
+**Customize options:**
+```bash
+# Shorter stops (6 hours driving instead of 8)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --target-hours 6
+
+# Skip specific categories
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-museums --no-restaurants
+
+# Only generate GPX (no map, summary, or data files)
+python plan_trip.py "Atlanta, GA" "Denver, CO" --no-map --no-summary --no-data
+```
+
+**Available flags:**
+- **Search toggles:** `--no-hotels`, `--all-hotels`, `--no-vets`, `--no-national-parks`, `--no-monuments`, `--no-parks`, `--no-museums`, `--no-restaurants`, `--no-dog-parks`, `--no-viewpoints`, `--no-ev-chargers`
+- **Export toggles:** `--no-gpx`, `--no-map`, `--no-summary`, `--no-data`
+- **Route options:** `--via "City, State"` (multiple allowed), `--target-hours N`, `--roundtrip`
 
 ## �️ GUI Usage
 
@@ -288,170 +248,34 @@ python plan_trip.py "Atlanta, GA" "Denver, CO" --no-map --no-data
 
 ## 📂 Output Files
 
-Each trip generates **four files** in the `trip routes/` directory:
+Each trip generates up to four files in the `trip routes/` directory (customize with export toggles):
 
 ### 1. Interactive Map (HTML)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN.html`
 
-**Map Features:**
-- 🗺️ Blue route line following actual highways
-- 📍 Blue markers for stop cities
-- 🏨 Red bed icons for pet-friendly hotels
-- 🏥 Dark red cross icons for emergency vets
-- 🏞️ Dark green flag icons for national parks
-- 🗿 Gray monument icons for monuments & memorials
-- 🌲 Green tree icons for parks
-- 🏛️ Purple building icons for museums
-- 🍽️ Orange fork icons for dog-friendly restaurants
-- 🐾 Light green paw icons for dog parks
-- 📸 Blue camera icons for scenic viewpoints
-- ⚡ Purple bolt icons for Electrify America charging stations
-- ⚡ Light blue bolt icons for other EV charging stations
-- 📏 Distance & time markers between stop cities
-- ☑️ **"Toggle All" button** to show/hide all layers at once
-- Layer controls to toggle each category individually
+- Blue route line following actual highways with distance markers
+- Toggleable layers for each category (hotels, vets, parks, museums, etc.)
+- "Toggle All" button to show/hide all layers at once
+- Rich popups with ratings, contact info, and links
 - Fullscreen mode and measure tool
 
-### 2. GPX Route File (GPX) 🆕
+### 2. GPX Navigation File
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN.gpx`
 
-**Import into your favorite navigation app!**
-- ✅ **Magic Earth** (recommended for privacy)
-- ✅ **OsmAnd** (offline maps)
-- ✅ **Organic Maps** (lightweight)
-- ✅ **Maps.me** (offline navigation)
-- ✅ Google Maps (limited import)
-- ✅ Most GPS devices
+- Complete driving route with 2000+ coordinate points (actual roads, not straight lines)
+- All stop cities, hotels, vets, and attractions as waypoints
+- Import into OsmAnd, Organic Maps, Maps.me, or most GPS devices
+- **See [GPX Import Guide](GPX_IMPORT_GUIDE.md) for iOS and Android transfer instructions**
 
-**What's included:**
-- Complete driving route along actual roads
-- Major stop waypoints with descriptions
-- Waypoint cities for flexible overnight stops
-- All hotels (pet-friendly) as POI markers
-- 24/7 emergency vets as medical POIs
-- Top attractions by category (parks, museums, restaurants, dog parks, viewpoints, EV chargers, etc.)
-
-**How to use on Android or iPhone:**
-1. Transfer `.gpx` file to your phone (email, AirDrop, Drive, USB, etc.)
-2. Open with OsmAnd, Organic Maps, or Maps.me
-3. The route and all POIs will be imported!
-
-> See [GPX_IMPORT_GUIDE.md](GPX_IMPORT_GUIDE.md) for detailed iOS and Android instructions.
-
-### 3. Trip Data (JSON)
-`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_data.json`
-
-Complete structured data including:
-- All stops with coordinates
-- Hotel details (name, rating, reviews, phone, website)
-- Vet details (name, rating, 24/7 status, phone)
-- All attractions by category (national parks, monuments, parks, museums, restaurants, dog parks, viewpoints, EV chargers) with ratings
-
-### 4. Summary Report (Markdown)
+### 3. Trip Summary (Markdown)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_summary.md`
 
-Human-readable summary with:
-- Trip overview (distance, time, route)
-- Stop cities list
-- Hotel recommendations with full details
-- Emergency vet locations
-- Categorized attractions with ratings and locations
+Human-readable report with trip overview, hotel recommendations, vet locations, and categorized attractions with ratings.
 
-## 🎯 Attraction Categories
+### 4. Complete Data (JSON)
+`trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_data.json`
 
-### 🏞️ National Parks
-- **By State**: Searches each state crossed by the route
-- **Criteria**: 4.3+ stars, 1000+ reviews
-- Examples: National Parks, National Monuments, National Recreation Areas
-
-### 🗿 Monuments & Memorials
-- **By State**: Searches each state crossed by the route
-- **Criteria**: 4.0+ stars, 50+ reviews
-- Examples: Historical monuments, war memorials, commemorative statues
-
-### 🌲 Parks
-- **Along Route**: 4.5+ stars, 500+ reviews (major parks only)
-- **At Cities**: 4.0+ stars, 50+ reviews (top 3 per city)
-- Examples: State parks, regional parks, botanical gardens
-
-### 🏛️ Museums & Cultural Attractions
-- **At Cities Only**: 4.0+ stars, 100+ reviews (top 3 per city)
-- Examples: Art museums, historical sites, science centers
-
-### 🍽️ Dog-Friendly Restaurants
-- **At Cities Only**: 4.0+ stars, 50+ reviews (top 5 per city)
-- **Explicit search**: "dog friendly restaurant" (not just outdoor seating)
-- Examples: Breweries with patios, pet-friendly cafes
-
-### 🐾 Dog Parks
-- **At Cities Only**: 4.0+ stars (top 2 per city)
-- Dedicated off-leash areas for exercise
-
-### 📸 Scenic Viewpoints
-- **Along Route**: 4.5+ stars, sampled every 75 miles
-- Examples: Overlooks, vista points, observation decks
-
-### ⚡ EV Charging Stations
-- **Along Route**: Sampled every 15 miles with 20km radius (all chargers, no quality filter)
-- **At Cities**: 40km radius (top 5 per city, no quality filter)
-- **Map Layers**: Separate toggleable layers for Electrify America (purple) vs. Other Networks (light blue)
-- Examples: Electrify America, ChargePoint, EVgo, Tesla Superchargers, etc.
-
-## 🏨 Hotel Selection
-
-**Pet-Friendly Chains Searched:**
-La Quinta, Drury Inn, Red Roof Inn, Motel 6, Best Western, Kimpton, Aloft, Extended Stay, Candlewood Suites, Residence Inn, TownePlace Suites, Homewood Suites, Hampton Inn, Hilton, Hyatt, Marriott, Sheraton, Westin, and more!
-
-**Scoring Formula:**
-```
-score = rating × log₁₀(reviews + 1)
-```
-Balances high ratings with popularity.
-
-## 🏥 Emergency Vet Verification
-
-The system strictly verifies 24/7 status:
-1. Checks `regularOpeningHours.weekdayDescriptions` for "Open 24 hours" on all 7 days
-2. Checks periods structure for continuous operation
-3. Falls back to name checking only if no hours data available
-4. Marks as "Regular hours" if not confirmed 24/7
-
-**Score Boost:** 24/7 vets get 1.5x score multiplier for prioritization.
-
-## 📊 Example Results
-
-**Atlanta → Colorado Springs → Las Vegas → Los Angeles → Atlanta**
-- Distance: 4,234 miles
-- Driving Time: ~63 hours
-- Major Stops: 7 cities
-- Waypoint Cities: 42 optional overnight stops
-- Attractions Found: 300+ total
-  - 23 National Parks (including Grand Canyon, Zion, Joshua Tree)
-  - 45+ Monuments & Memorials
-  - 150+ Parks
-  - 30+ Museums
-  - 50+ Dog-friendly restaurants
-  - 20+ Dog parks
-  - 15+ Scenic viewpoints
-  - 40+ EV charging stations
-- Hotels: Pet-friendly options at every major stop
-- 24/7 Vets: Available at all major cities
-
-## 💡 Tips
-
-1. **Use the GUI**: For the easiest experience, use `python gui_app.py` - it has checkboxes for all search and export options.
-
-2. **Customize Your Search**: Use `--no-*` flags to skip categories you don't need, or use the GUI toggles to select exactly what you want.
-
-3. **API Key**: Make sure your Google Places API key is set in the `.env` file and has billing enabled (free tier is generous - typically costs under $5 per trip).
-
-4. **Multiple Routes**: Use `--via` to create interesting return routes instead of backtracking with `--roundtrip`.
-
-5. **Mobile Navigation**: Transfer the `.gpx` file to your phone and import it into OsmAnd for turn-by-turn navigation with all POIs.
-
-6. **Cache**: The script caches geocoding results, so subsequent runs with the same cities will be faster.
-
-7. **Stop Distance**: Default is ~8 hours of driving (250 miles). Adjust with `--target-hours` for longer or shorter days.
+Structured data for all stops, hotels, vets, and attractions. Useful for automation or custom processing.
 
 ## 🛠️ Troubleshooting
 
@@ -495,22 +319,25 @@ pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabul
 
 ## � Documentation
 
+## 📚 Documentation
+
 ### User Guides
-- **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** - How to import GPX files into OsmAnd and other navigation apps
+- **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** - Transfer GPX files to iPhone or Android with OsmAnd, Organic Maps, or Maps.me
 - **[Pixel Quick Start](PIXEL_QUICK_START.md)** - Fast setup guide for Google Pixel users
+- **[Feature Details](FEATURES.md)** - Complete technical details: search algorithms, scoring formulas, and verification processes
 - **[Workflow Diagram](WORKFLOW_DIAGRAM.md)** - Visual overview of the planning → navigation workflow
 
 ### Developer Documentation
-- **[GUI Implementation](GUI_IMPLEMENTATION.md)** - Complete PyQt6 GUI architecture and design
+- **[Building Executables](BUILDING.md)** - Build standalone executables with PyInstaller for Linux and macOS
+- **[GUI Implementation](GUI_IMPLEMENTATION.md)** - PyQt6 GUI architecture and design details
 - **[GPX Feature Summary](GPX_FEATURE_SUMMARY.md)** - Technical details of GPX export implementation
-- **[Building Executables](BUILDING.md)** - How to build standalone executables with PyInstaller
 
 ### API Documentation
-All core modules are documented with docstrings. Key modules:
+All core modules are documented with docstrings:
 - `services/` - External API integrations (Google Places, Nominatim, OSRM, Wikipedia)
-- `models/` - Data models (Hotel, Veterinarian, Attraction, etc.)
+- `models/` - Data models (Hotel, Veterinarian, Attraction, Location)
 - `utils/` - Helper functions (distance calculations, map generation, GPX export)
-- `gui/` - PyQt6 GUI components
+- `gui/` - PyQt6 GUI components (main window, map viewer, dialogs)
 
 ## �📄 License
 
