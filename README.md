@@ -331,10 +331,12 @@ Each trip generates **four files** in the `trip routes/` directory:
 - 24/7 emergency vets as medical POIs
 - Top attractions by category (parks, museums, restaurants, dog parks, viewpoints, EV chargers, etc.)
 
-**How to use on Android:**
-1. Transfer `.gpx` file to your phone (email, Drive, USB, etc.)
-2. Open with OsmAnd/Organic Maps
+**How to use on Android or iPhone:**
+1. Transfer `.gpx` file to your phone (email, AirDrop, Drive, USB, etc.)
+2. Open with OsmAnd, Organic Maps, or Maps.me
 3. The route and all POIs will be imported!
+
+> See [GPX_IMPORT_GUIDE.md](GPX_IMPORT_GUIDE.md) for detailed iOS and Android instructions.
 
 ### 3. Trip Data (JSON)
 `trip_Atlanta_GA_Chicago_IL_via_Nashville_TN_data.json`

@@ -75,9 +75,9 @@ Each category is limited to top-rated attractions:
 - ✅ Google Maps (limited import support)
 
 ### iOS
-- ✅ Maps.me
-- ✅ Organic Maps
-- ✅ OsmAnd
+- ✅ OsmAnd (recommended - offline capable)
+- ✅ Organic Maps (fast & lightweight)
+- ✅ Maps.me (popular choice)
 
 ### GPS Devices
 - ✅ Garmin devices

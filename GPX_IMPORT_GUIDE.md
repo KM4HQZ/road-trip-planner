@@ -115,9 +115,36 @@ The road trip planner now generates `.gpx` files that you can import into naviga
 ### Garmin GPS Devices
 - Copy `.gpx` file to `Garmin/GPX/` folder via USB
 
-### Apple iOS (iPhone/iPad)
-- Use **Maps.me**, **Organic Maps**, or **OsmAnd** (all available on App Store)
-- Import works the same way as Android
+## 🗺️ Recommended Apps for iOS
+
+### OsmAnd (Recommended)
+- **Free version available** (7 map downloads)
+- Fully offline navigation
+- Detailed POI information
+- **How to import:**
+  1. Install [OsmAnd Maps](https://apps.apple.com/us/app/osmand-maps-travel-navigate/id934850257) from App Store
+  2. Transfer `.gpx` file via AirDrop, iCloud Drive, or email
+  3. Open the `.gpx` file and choose "Open in OsmAnd"
+  4. In OsmAnd: Menu → My Places → Tracks → Select your file
+  5. Tap "Show on map" to view route
+
+### Organic Maps (Fastest & Lightest)
+- **100% free and open source**
+- Fast offline maps
+- No ads, no tracking
+- **How to import:**
+  1. Install [Organic Maps](https://apps.apple.com/app/organic-maps/id1567437057) from App Store
+  2. Transfer `.gpx` file to iPhone
+  3. Open the GPX file and choose "Open with Organic Maps"
+  4. Route displays instantly!
+
+### Maps.me (Popular Alternative)
+- Free offline maps
+- Large user community
+- **How to import:**
+  1. Install [Maps.me](https://apps.apple.com/app/maps-me-offline-map-nav/id510623322) from App Store
+  2. Open GPX file with Maps.me
+  3. Route and bookmarks appear on map
 
 ### Desktop Planning
 - Open in **Google Earth** (File → Open)
