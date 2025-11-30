@@ -6,7 +6,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 
 > 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
 > 
-> 📱 **NEW!** Import your trip into [Magic Earth](https://www.magicearth.com/), [OsmAnd](https://osmand.net/), or any GPX-compatible navigation app!
+> 📱 **NEW!** Import your trip into [OsmAnd](https://osmand.net/) or any GPX-compatible navigation app!
 > 
 > 🖥️ **NEW!** Desktop GUI with embedded maps and one-click exports!
 
@@ -45,7 +45,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 - 📖 **Links to Wikivoyage travel guides** for all stop cities
 - 📏 **Shows distances & driving times** between each stop city
 - 🗺️ **Creates interactive maps** with different icons for each attraction type
-- 📱 **Exports GPX files** for Magic Earth, OsmAnd, and other navigation apps
+- 📱 **Exports GPX files** for OsmAnd and other navigation apps
 - 📄 **Generates detailed reports** in Markdown and JSON formats
 - 🛣️ **Uses actual road routes** with accurate distances and driving times
 
@@ -76,7 +76,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 
 ### Mobile Navigation Ready 🆕
 - **GPX Export**: Every trip generates a `.gpx` file
-- **Universal Format**: Compatible with Magic Earth, OsmAnd, Organic Maps, Maps.me
+- **Universal Format**: Compatible with OsmAnd, Organic Maps, Maps.me
 - **Complete Package**: Route, waypoints, hotels, vets, and attractions included
 - **📱 See [GPX Import Guide](GPX_IMPORT_GUIDE.md)** for detailed instructions
 
@@ -333,7 +333,7 @@ Each trip generates **four files** in the `trip routes/` directory:
 
 **How to use on Android:**
 1. Transfer `.gpx` file to your phone (email, Drive, USB, etc.)
-2. Open with Magic Earth/OsmAnd/Organic Maps
+2. Open with OsmAnd/Organic Maps
 3. The route and all POIs will be imported!
 
 ### 3. Trip Data (JSON)
@@ -445,7 +445,7 @@ The system strictly verifies 24/7 status:
 
 4. **Multiple Routes**: Use `--via` to create interesting return routes instead of backtracking with `--roundtrip`.
 
-5. **Mobile Navigation**: Transfer the `.gpx` file to your phone and import it into Magic Earth or OsmAnd for turn-by-turn navigation with all POIs.
+5. **Mobile Navigation**: Transfer the `.gpx` file to your phone and import it into OsmAnd for turn-by-turn navigation with all POIs.
 
 6. **Cache**: The script caches geocoding results, so subsequent runs with the same cities will be faster.
 
@@ -494,7 +494,7 @@ pip install --upgrade requests beautifulsoup4 markdown geopy folium pandas tabul
 ## � Documentation
 
 ### User Guides
-- **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** - How to import GPX files into Magic Earth, OsmAnd, and other navigation apps
+- **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** - How to import GPX files into OsmAnd and other navigation apps
 - **[Pixel Quick Start](PIXEL_QUICK_START.md)** - Fast setup guide for Google Pixel users
 - **[Workflow Diagram](WORKFLOW_DIAGRAM.md)** - Visual overview of the planning → navigation workflow
 

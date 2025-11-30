@@ -5,11 +5,11 @@
 
 ## Fastest Method for Your Pixel
 
-### Step 1: Install Magic Earth
+### Step 1: Install OsmAnd
 ```
-Play Store → Search "Magic Earth" → Install
+Play Store → Search "OsmAnd" → Install
 ```
-Free, no ads, respects privacy, works offline!
+Free, offline capable, excellent GPX support!
 
 ### Step 2: Run Your Trip Planner
 ```bash
@@ -36,23 +36,22 @@ trip_Start_City_ST_End_City_ST.gpx
 1. Email the `.gpx` file to yourself
 2. Open email on Pixel
 3. Tap the attachment
-4. Select "Open with Magic Earth"
+4. Select "Open with OsmAnd"
 5. ✅ Done!
 
 **Method B: Google Drive**
 1. Upload `.gpx` to Google Drive from computer
 2. Open Drive app on Pixel
-3. Tap the file → "Open with Magic Earth"
+3. Tap the file → "Open with OsmAnd"
 4. ✅ Done!
 
-**Method C: USB Cable** (if you have one handy)
-1. Connect Pixel via USB
-2. Copy `.gpx` to Download folder
-3. Open Files app → Downloads
-4. Tap `.gpx` file → "Magic Earth"
-5. ✅ Done!
+**Method C: Direct Import to OsmAnd**
+1. Transfer `.gpx` to: `/Android/data/net.osmand/files/tracks/`
+2. In OsmAnd: Menu → My Places → Tracks
+3. Tap your file → "Show on map"
+4. ✅ Done!
 
-### Step 5: Use in Magic Earth
+### Step 5: Use in OsmAnd
 1. Route appears on map automatically
 2. Tap any waypoint to see details
 3. Tap "Navigate" to start turn-by-turn
@@ -70,14 +69,15 @@ trip_Start_City_ST_End_City_ST.gpx
 
 ## Pro Tips
 
-1. **Download offline maps** in Magic Earth for your route before leaving
+1. **Download offline maps** in OsmAnd for your route before leaving
 2. **Tap waypoints** to see ratings, phone numbers, addresses
-3. **Filter POIs** if the map gets too crowded
+3. **Configure map layers** if you want to show/hide certain POI types
 4. **Keep phone charged** - navigation uses battery!
 
 ## Alternative Apps (Also Great)
 
-- **OsmAnd**: Best for offline, more technical
+- **Organic Maps**: Lighter weight, faster
+- **Maps.me**: Popular with good offline support
 - **Organic Maps**: Fastest, most lightweight
 - **Maps.me**: Popular, easy to use
 

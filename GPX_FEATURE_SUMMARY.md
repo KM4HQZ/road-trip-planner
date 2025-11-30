@@ -69,8 +69,7 @@ Each category is limited to top-rated attractions:
 ## Compatible Navigation Apps
 
 ### Android
-- ✅ Magic Earth (privacy-focused)
-- ✅ OsmAnd (offline capable)
+- ✅ OsmAnd (recommended - offline capable)
 - ✅ Organic Maps (fast & lightweight)
 - ✅ Maps.me (popular choice)
 - ✅ Google Maps (limited import support)
@@ -159,7 +158,7 @@ create_gpx_file(
 
 1. **Universal Compatibility**: Works with any GPX-supporting app
 2. **Offline Capable**: Load route before trip, use offline
-3. **Privacy Friendly**: Use privacy-focused apps like Magic Earth
+3. **Privacy Friendly**: Use privacy-focused apps like OsmAnd or Organic Maps
 4. **Complete Package**: Route + all POIs in one file
 5. **Easy Sharing**: Send GPX file to travel companions
 6. **Backup**: Keep digital copy of trip plan

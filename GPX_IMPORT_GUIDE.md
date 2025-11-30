@@ -5,19 +5,11 @@
 
 The road trip planner now generates `.gpx` files that you can import into navigation apps on your Google Pixel or any Android/iOS device!
 
+**Note:** We recommend OsmAnd for the best GPX compatibility and offline navigation.
+
 ## 🗺️ Recommended Apps for Android
 
-### Magic Earth (Best for Privacy)
-- **Free, no ads, no tracking**
-- Offline maps available
-- Turn-by-turn navigation
-- **How to import:**
-  1. Install [Magic Earth](https://play.google.com/store/apps/details?id=com.generalmagic.magicearth) from Play Store
-  2. Transfer `.gpx` file to your phone (email, Google Drive, USB, etc.)
-  3. Open the GPX file with Magic Earth or use "Import" from the app menu
-  4. Route and all waypoints will appear on your map!
-
-### OsmAnd (Best for Offline)
+### OsmAnd (Recommended)
 - **Free version available** (7 map downloads)
 - Fully offline navigation
 - Detailed POI information

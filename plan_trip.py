@@ -795,7 +795,7 @@ def main():
             print(f"   - {map_file} (interactive map)")
         if trip_config.export_gpx:
             gpx_file = output_dir / (output_base + ".gpx")
-            print(f"   - {gpx_file} (GPX route for Magic Earth, OsmAnd, etc.)")
+            print(f"   - {gpx_file} (GPX route for OsmAnd, etc.)")
         if trip_config.export_data:
             data_file = output_dir / (output_base + "_data.json")
             print(f"   - {data_file} (trip data)")

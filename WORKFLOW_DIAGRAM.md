@@ -32,7 +32,7 @@
 │    • Messaging app                                              │
 │                                                                  │
 │  ┌─────────────────────────────────────────────────────────┐  │
-│  │  Import to Magic Earth / OsmAnd / Organic Maps          │  │
+│  │  Import to OsmAnd / Organic Maps                        │  │
 │  │                                                           │  │
 │  │  • Tap GPX file → "Open with..." → Choose app           │  │
 │  │  • Route loads automatically                             │  │
@@ -126,7 +126,7 @@
 
 ✅ **Universal**: Works with ANY GPX-compatible app
 ✅ **Offline**: Download maps, use without internet
-✅ **Privacy**: Use apps like Magic Earth (no tracking)
+✅ **Privacy**: Use apps like OsmAnd or Organic Maps (no tracking)
 ✅ **Reliable**: Standard format, won't break
 ✅ **Shareable**: Send to travel companions
 ✅ **Backup**: Digital copy of entire trip plan

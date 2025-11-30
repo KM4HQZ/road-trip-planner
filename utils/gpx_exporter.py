@@ -21,10 +21,9 @@ def create_gpx_file(
     Create a GPX file from trip data for import into navigation apps.
     
     GPX files are compatible with:
-    - Magic Earth
-    - OsmAnd
-    - Maps.me
+    - OsmAnd (recommended)
     - Organic Maps
+    - Maps.me
     - Google Maps (import)
     - Most GPS devices
     
@@ -214,7 +213,7 @@ def create_gpx_file(
             wpt_type = ET.SubElement(wpt, 'type')
             wpt_type.text = category.replace('_', ' ').title()
     
-    # Add a route element for navigation apps (Magic Earth, etc.)
+    # Add a route element for navigation apps
     # This tells the app to calculate turn-by-turn directions between major stops
     rte = ET.SubElement(gpx, 'rte')
     
@@ -267,4 +266,4 @@ def create_gpx_file(
         f.write(xml_str)
     
     print(f"  ✓ GPX file saved: {output_path}")
-    print(f"    Compatible with Magic Earth, OsmAnd, Maps.me, Organic Maps, and more!")
+    print(f"    Compatible with OsmAnd, Maps.me, Organic Maps, and more!")
