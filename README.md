@@ -6,7 +6,7 @@ An intelligent road trip planning tool that automatically finds pet-friendly hot
 
 > 🗺️ **[View Live Example Trip!](https://km4hqz.github.io/road-trip-planner/)** See an example trip from Atlanta through Colorado Springs, Las Vegas, and Los Angeles.
 > 
-> 📱 **NEW!** Import your trip into [OsmAnd](https://osmand.net/) or any GPX-compatible navigation app!
+> 📱 **NEW!** Import your trip into [OsmAnd](https://osmand.net/) or any GPX-compatible navigation app! See the **[GPX Import Guide](GPX_IMPORT_GUIDE.md)** for iOS and Android instructions.
 > 
 > 🖥️ **NEW!** Desktop GUI with embedded maps and one-click exports!
 
@@ -108,10 +108,10 @@ pip install -r requirements.txt
 For Linux users who want a single-file executable without installing Python:
 
 **Download pre-built executable:**
-1. Download `RoadTripPlanner` from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
-   - Direct download: [RoadTripPlanner v1.0.0](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.0.0/RoadTripPlanner)
-2. Make executable: `chmod +x RoadTripPlanner`
-3. Run: `./RoadTripPlanner`
+1. Download from the [latest release](https://github.com/KM4HQZ/road-trip-planner/releases/latest)
+   - Direct download: [RoadTripPlanner v1.1.1](https://github.com/KM4HQZ/road-trip-planner/releases/download/v1.1.1/RoadTripPlanner-v1.1.1-Linux-x86_64)
+2. Make executable: `chmod +x RoadTripPlanner-v1.1.1-Linux-x86_64`
+3. Run: `./RoadTripPlanner-v1.1.1-Linux-x86_64`
 4. Create a `.env` file in the same directory with your API key
 
 **Building from source:**
