@@ -1,0 +1,8 @@
+# Exclude generated HTML map files from language statistics
+trip\ routes/*.html linguist-generated=true
+
+# Mark GPX files as data
+*.gpx linguist-detectable=false
+
+# Mark JSON data files as generated
+trip\ routes/*.json linguist-generated=true
