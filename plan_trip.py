@@ -94,7 +94,6 @@ def main():
         search_dog_parks=not args.no_dog_parks,
         search_viewpoints=not args.no_viewpoints,
         search_ev_chargers=not args.no_ev_chargers,
-        ev_electrify_america_only=args.electrify_america_only,
         export_gpx=not args.no_gpx,
         export_map=not args.no_map,
         export_summary=not args.no_summary,
@@ -468,11 +467,9 @@ def main():
     
     # 2.5. EV chargers along the route
     if trip_config.search_ev_chargers:
-        charger_type = "Electrify America chargers" if trip_config.ev_electrify_america_only else "EV charging stations"
-        print(f"  ⚡ Scanning for {charger_type} along route...")
+        print(f"  ⚡ Scanning for EV charging stations along route...")
         route_chargers = places_finder.find_ev_chargers_along_route(
-            route_geometry, 
-            electrify_america_only=trip_config.ev_electrify_america_only,
+            route_geometry,
             sample_interval_miles=25
         )
         all_attractions['ev_chargers'].extend(route_chargers)
@@ -508,7 +505,6 @@ def main():
                 if trip_config.search_ev_chargers:
                     ev_chargers = places_finder.find_ev_chargers_in_city(
                         stop['name'], stop['lat'], stop['lon'],
-                        electrify_america_only=trip_config.ev_electrify_america_only,
                         limit=3
                     )
                     all_attractions['ev_chargers'].extend(ev_chargers)
@@ -622,8 +618,7 @@ def main():
                 'search_restaurants': trip_config.search_restaurants,
                 'search_dog_parks': trip_config.search_dog_parks,
                 'search_viewpoints': trip_config.search_viewpoints,
-                'search_ev_chargers': trip_config.search_ev_chargers,
-                'ev_electrify_america_only': trip_config.ev_electrify_america_only
+                'search_ev_chargers': trip_config.search_ev_chargers
             }
         }
         
