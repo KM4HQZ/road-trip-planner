@@ -309,6 +309,17 @@ If you see timeouts:
 - Wait a minute and try again (temporary API issues)
 - Some services (Nominatim, OSRM) are public and may have intermittent issues
 
+### How sessions work
+
+Road Trip Planner does **not** use autonomous agents or long-lived "agent sessions." Each run is independent:
+
+- **CLI:** Every `python plan_trip.py ...` command starts a fresh planning run and exits when it finishes.
+- **GUI planning:** Clicking **Plan Trip** starts a new background planning job for the current window.
+- **What persists:** Your Google Places API key is saved to `.env`, some GUI preferences are stored with `QSettings`, and geocoding results stay in `location_cache.json` until you clear the cache.
+- **Trip results:** Generated trip data stays in memory only for the current GUI window unless you save/export the files. You can reopen a saved JSON trip later with **File → Open Trip Data...**.
+
+So if you close the app or start a new command, the planner does not resume a previous run automatically—it starts from scratch unless you reload exported trip data.
+
 ### Missing dependencies
 
 If you see import errors, make sure the virtual environment is activated and dependencies are installed:
